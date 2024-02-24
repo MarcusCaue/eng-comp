@@ -1,44 +1,26 @@
-// Tipos de Triângulos => https://www.beecrowd.com.br/judge/pt/problems/view/1045
+// Menor e Posição => https://judge.beecrowd.com/pt/problems/view/1180
 
 #include <stdio.h>
 
 int main() {
 
-   // A => MAIOR LADO
-   double a, b, c;
-   scanf("%lf %lf %lf", &a, &b, &c);
+   int tam;
+   scanf("%i", &tam);
 
-   if (b > a && b > c) {
-      double refer = a;
-      // B é o maior
-      a = b;
-      b = refer;
-   } else if (c > a && c > b) {
-      double refer = a;
-      // C é o maior
-      a = c;
-      c = refer;
+   int vetor[tam];
+   for (int i = 0; i < tam; i++)
+      scanf("%i", &vetor[i]);
+   
+   int menor = vetor[0];
+   int pos;
+   for (int i = 1; i < tam; i++) {
+      if (vetor[i] < menor) {
+         menor = vetor[i];
+         pos = i;
+      }
    }
 
-   if (a >= (b + c))
-      printf("NAO FORMA TRIANGULO\n");
-   else {
-
-      double quadA = a * a, quadB = b*b, quadC = c * c;
-
-      if (quadA == (quadB + quadC))
-         printf("TRIANGULO RETANGULO\n");
-      else if (quadA > (quadB + quadC))
-         printf("TRIANGULO OBTUSANGULO\n");
-      else if (quadA < (quadB + quadC))
-         printf("TRIANGULO ACUTANGULO\n");
-      
-      if (quadA == quadB && quadB == quadC)
-         printf("TRIANGULO EQUILATERO\n");
-      else if (quadB == quadC || quadB == quadA || quadA == quadC)
-         printf("TRIANGULO ISOSCELES\n");
-
-   }
+   printf("Menor valor: %i\nPosicao: %i\n", menor, pos);
 
    return 0;
 }
