@@ -1,29 +1,53 @@
 // Painel de LED => https://judge.beecrowd.com/pt/problems/view/2292
 
 #include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 
-int main() {
+char* toInvertedBin(char num[]) {
+   int len = strlen(num) - 1;
 
-   int qCasosTeste;
-   scanf("%i", &qCasosTeste);
+   char *numInvert = (char *) malloc(sizeof(char) * (len + 1));
 
-   for (int i = 0; i < qCasosTeste; i++) {
-      char painel[61];
-      int alternacias;
-      scanf("%s ", painel);
-      scanf("%i", &alternacias);
-
-      for (int j = 0; j < alternacias; j++) {
-         painel[0] = (painel[0] == 'X' ? 'O' : 'X');
-
-         
-
-
-      }
+   for (int i = 0; num[i] != '\0'; i++) {
+      num[i] = (num[i] == 'X' ? '0' : '1');
    }
 
+   for (int i = 0; num[i] != '\0'; i++) {
+      numInvert[i] = num[len - i];
+   }
+
+   numInvert[len+1] = '\0';
+
+   return numInvert;
+}
+
+int main() {
+   char painel[61];
+   scanf("%s", painel);
+
+   char *painelBin = toInvertedBin(painel);
+
+   int binary = atoi(painelBin);
+
+   // Converter para binário agora
+   int novoLed = binary + alternacias;
+
+   printf("%d", novoLed);
+   // int qCasosTeste;
+   // scanf("%i", &qCasosTeste);
+
+   // long long unsigned alternacias;
+   // scanf("%llu", &alternacias);
+
+   // for (int i = 0;i < qCasosTeste; i++) {
+   //    char painel[61];
+   //    scanf("%s", painel);
 
 
+
+
+   // }
 
 
 
