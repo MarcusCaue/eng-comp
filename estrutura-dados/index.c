@@ -1,26 +1,31 @@
-// Menor e Posição => https://judge.beecrowd.com/pt/problems/view/1180
+// Painel de LED => https://judge.beecrowd.com/pt/problems/view/2292
 
 #include <stdio.h>
 
 int main() {
 
-   int tam;
-   scanf("%i", &tam);
+   int qCasosTeste;
+   scanf("%i", &qCasosTeste);
 
-   int vetor[tam];
-   for (int i = 0; i < tam; i++)
-      scanf("%i", &vetor[i]);
-   
-   int menor = vetor[0];
-   int pos;
-   for (int i = 1; i < tam; i++) {
-      if (vetor[i] < menor) {
-         menor = vetor[i];
-         pos = i;
+   for (int i = 0; i < qCasosTeste; i++) {
+      char painel[61];
+      int alternacias;
+      scanf("%s ", painel);
+      scanf("%i", &alternacias);
+
+      for (int j = 0; j < alternacias; j++) {
+         painel[0] = (painel[0] == 'X' ? 'O' : 'X');
+
+         
+
+
       }
    }
 
-   printf("Menor valor: %i\nPosicao: %i\n", menor, pos);
+
+
+
+
 
    return 0;
 }
