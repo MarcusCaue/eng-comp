@@ -1,16 +1,15 @@
-// #ifndef CHAPEU_HPP
-// #define CHAPEU_HPP
+#ifndef CHAPEU_HPP
+#define CHAPEU_HPP
 
-// #include <string>
-// using namespace std;
+#include <string>
+using namespace std;
 
-// class ChapeuSeletor {
+class ChapeuSeletor {
 
-// public:
-//   void recepcionar();
-//   string sortearCasa();
-//   void avaliarCasa(string);
+public:
+  void recepcionar();
+  string sortearCasa();
+  void avaliarCasa(string);
+};
 
-// };
-
-// #endif
+#endif

@@ -1,32 +1,33 @@
-// #ifndef ARRAYLIST_HPP
-// #define ARRAYLIST_HPP
+#ifndef ARRAYLIST_HPP
+#define ARRAYLIST_HPP
 
-// class ArrayList {
+class ArrayList
+{
 
-//   friend void somaArray(ArrayList&, int);
-//   friend void subArray(ArrayList&, int);
-//   friend void mulArray(ArrayList&, int);
-//   friend void divArray(ArrayList&, int);
+   friend void somaArray(ArrayList &, int);
+   friend void subArray(ArrayList &, int);
+   friend void mulArray(ArrayList &, int);
+   friend void divArray(ArrayList &, int);
 
-// private:
-//   int *arr;
-//   int tam;
-//   int pos;
+private:
+   int *arr;
+   int tam;
+   int pos;
 
-// public:
-//   ArrayList(int);
-//   ~ArrayList();
+public:
+   ArrayList(int);
+   ~ArrayList();
 
-//   void print() const;
+   void print() const;
 
-//   ArrayList& add(int);
-//   int busca(int) const;
+   ArrayList &add(int);
+   
+   int busca(int) const;
 
-//   void remove(int);
-//   void removeEl(int);
+   void remove(int);
+   void removeEl(int);
 
-//   int getIndex(int) const;
+   int getIndex(int) const;
+};
 
-// };
-
-// #endif
+#endif

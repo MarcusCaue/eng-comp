@@ -1,28 +1,28 @@
-// #ifndef PESSOA_HPP
-// #define PESSOA_HPP
+#ifndef PESSOA_HPP
+#define PESSOA_HPP
 
-// #include <string>
+#include <string>
 
-// using namespace std;
+using namespace std;
 
-// class Pessoa {
+class Pessoa
+{
 
-// private:
-//   string nome;
-//   int idade;
-//   float altura;
+private:
+   string nome;
+   int idade;
+   float altura;
 
-// public:
-//   Pessoa();
-//   Pessoa(string, int, float);
-  
-//   string getNome() const;
-//   int getIdade() const;
-//   float getAltura() const;
+public:
+   Pessoa();
+   Pessoa(string, int, float);
 
-//   void setIdade(int);
-//   void setAltura(float);
+   string getNome() const;
+   int getIdade() const;
+   float getAltura() const;
 
-// };
+   void setIdade(int);
+   void setAltura(float);
+};
 
-// #endif
+#endif

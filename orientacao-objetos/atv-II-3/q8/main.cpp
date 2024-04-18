@@ -1,11 +1,11 @@
-// #include "Varinha.hpp"
+#include "Varinha.hpp"
 
-// int main() {
+int main() {
 
-//   Varinha *v1 = new Varinha("Eucalipto", "Água do Rio Tigre", 23.5);
-//   v1->display();
+  Varinha *v1 = new Varinha("Eucalipto", "Água do Rio Tigre", 23.5);
+  v1->display();
 
-//   delete v1;
+  delete v1;
   
-//   return 0;
-// }
+  return 0;
+}

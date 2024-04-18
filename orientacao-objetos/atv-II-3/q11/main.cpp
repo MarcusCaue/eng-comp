@@ -1,19 +1,19 @@
-// #include "ChapeuSeletor.hpp"
-// #include <iostream>
+#include "ChapeuSeletor.hpp"
+#include <iostream>
 
-// using namespace std;
+using namespace std;
 
-// int main() {
+int main() {
 
-//   ChapeuSeletor chapeu;
+  ChapeuSeletor chapeu;
   
-//   chapeu.recepcionar();
+  chapeu.recepcionar();
   
-//   string casa = chapeu.sortearCasa();
+  string casaSorteada = chapeu.sortearCasa();
 
-//   cout << "A casa sorteada foi: " << casa;
+  cout << "A casa sorteada foi: " << casaSorteada;
 
-//   chapeu.avaliarCasa(casa);
+  chapeu.avaliarCasa(casaSorteada);
   
-//   return 0;
-// }
+  return 0;
+}

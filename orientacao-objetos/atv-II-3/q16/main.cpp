@@ -17,10 +17,12 @@ int main() {
   int elements[] = {1, 1, 1, 0, 0, 1, 1, 0, 1, 1};
   IntegerSet conjunto2 = IntegerSet(elements, 10);
 
+  cout << "=========== CRIAÇÃO DOS CONJUNTOS ===========" << endl;
   showSet(&conjunto);
   showSet(&conjunto2);
 
   // Setando elementos
+  cout << "=========== ADICIONANDO ELEMENTOS AOS CONJUNTOS ===========" << endl;
   conjunto.insertElement(101);
   conjunto.insertElement(82);
   conjunto.insertElement(9);
@@ -36,6 +38,7 @@ int main() {
   showSet(&conjunto2);
 
   // Deletando elementos   
+  cout << "=========== REMOVENDO ELEMENTOS AOS CONJUNTOS ===========" << endl;
   conjunto.deleteElement(82);
   conjunto.deleteElement(200);
   conjunto.deleteElement(51);
@@ -49,19 +52,13 @@ int main() {
 
   // Unindo os elementos 
   IntegerSet uniao = unionOfSets(conjunto, conjunto2);
-  cout << "====== Conjunto uniao ======" << endl;
+  cout << "=========== CONJUNTO UNIÃO ===========" << endl;
   showSet(&uniao);
-
-  showSet(&conjunto);
-  showSet(&conjunto2);
 
   // Obtendo os elementos em comum
   IntegerSet intersection = intersectionOfSets(conjunto, conjunto2);
-  cout << "====== Conjunto intersecção ======" << endl;
+  cout << "=========== CONJUNTO INTERSECÇÃO ===========" << endl;
   showSet(&intersection);
-
-  showSet(&conjunto);
-  showSet(&conjunto2);
 
   return 0;
 }

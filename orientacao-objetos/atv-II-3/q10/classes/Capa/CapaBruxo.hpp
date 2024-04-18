@@ -1,28 +1,29 @@
-// #ifndef CAPABRUXO_HPP
-// #define CAPABRUXO_HPP
+#ifndef CAPABRUXO_HPP
+#define CAPABRUXO_HPP
 
-// #include <string>
+#include <string>
 
-// using namespace std;
+using namespace std;
 
-// class CapaBruxo {
-//   private:
-//     // Considere que uma Capa já criada não pode ter suas características modificadas.
-//     double tamanho;
-//     string casa;
-//     string cor;
+class CapaBruxo
+{
+private:
+  // Considere que uma capa já criada não pode ter suas características modificadas.
+  double tamanho;
+  string casa;
+  string cor;
 
-//     void setCasa(string);
-//     void setTam(double);
+  void setCasa(string);
+  void setTam(double);
 
-//   public:
-//     CapaBruxo(string, double);
+public:
+  CapaBruxo(string, double);
 
-//     void display() const;
+  void display() const;
 
-//     string getCor() const;
-//     string getCasa() const;
-//     double getTam() const;
-// };
+  string getCor() const;
+  string getCasa() const;
+  double getTam() const;
+};
 
-// #endif
+#endif

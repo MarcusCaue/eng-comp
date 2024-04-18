@@ -1,102 +1,91 @@
-// #include <iostream>
-// #include "Bruxo.hpp"
+#include <iostream>
+#include "Bruxo.hpp"
 
-// // Novo aluno na escola
-// Bruxo::Bruxo(string nome) : nome(nome) {
-//   this->casa = "undefined";
-//   this->feiticoPredileto = "undefined";
-//   this->varinha = nullptr;
-//   this->capa = nullptr;
-// }
+// Novo aluno na escola
+Bruxo::Bruxo(string nome) : nome(nome)
+{
+  this->casa = "undefined";
+  this->feitico = "undefined";
+  this->varinha = nullptr;
+  this->capa = nullptr;
+}
 
-// // Aluno com atributos definidos
-// Bruxo::Bruxo(string nome, string casa, string feitico, Varinha *varinha, CapaBruxo *capa) : 
-//   nome(nome)
-// {
-//   setCasa(casa);
-//   this->feiticoPredileto = feitico;
-//   this->varinha = varinha;
-//   setCapa(capa);
-// }
+// Aluno com atributos definidos
+Bruxo::Bruxo(string nome, string casa, string feitico, Varinha *varinha, CapaBruxo *capa) : nome(nome)
+{
+  setCasa(casa);
+  this->feitico = feitico;
+  this->varinha = varinha;
+  setCapa(capa);
+}
 
-// void Bruxo::display() const {
-//    cout << "\n===== ATRIBUTOS DO BRUXO =====\n";
-//    cout << "Nome: " << this->nome << endl;
-//    cout << "Feitico preferido: " << this->feiticoPredileto << endl;
-//    cout << "Casa: " << this->casa << endl;
+void Bruxo::display() const
+{
+  cout << "\n===== ATRIBUTOS DO BRUXO =====\n";
+  cout << "Nome: " << this->nome << endl;
+  cout << "Casa: " << this->casa << endl;
+  cout << "Feitiço preferido: " << this->feitico << endl;
 
-//    if (this->varinha == nullptr) {
-//      cout << "Este bruxo ainda nao tem varinha" << endl;
-//    }
-//    else {
-//     // Dados da Varinha
-//     this->varinha->display();
-//    }
+  // Dados da Varinha
+  if (this->varinha == nullptr)
+    cout << "Este bruxo ainda não tem varinha" << endl;
+  else
+    this->varinha->display();
 
-//    if (this->capa == nullptr) {
-//      cout << "Este bruxo ainda nao tem capa" << endl;
-//    }
-//    else {
-//      // Dados da Capa
-//      this->capa->display();
-//    }
-//  }
+  // Dados da Capa
+  if (this->capa == nullptr)
+    cout << "Este bruxo ainda não tem capa" << endl;
+  else
+    this->capa->display();
+}
 
-// // Não tem como um bruxo lançar feitiço se ele ainda não tem um
-// void Bruxo::lancarFeitico() const {
-//   if (this->feiticoPredileto != "undefined") {
-//     cout << "Lancando feitico '" << this->feiticoPredileto << "'!!!" << endl;
-//   }
-//   else {
-//     cout << "Este jovem bruxo ainda nao sabe nenhum feitico." << endl;
-//   }
-//  }
+// Não tem como um bruxo lançar feitiço se ele ainda não tem um
+void Bruxo::lancarFeitico() const
+{
+  if (this->feitico != "undefined")
+    cout << "Lançando feitiço '" << this->feitico << "'!!!" << endl;
+  else
+    cout << "Este jovem bruxo ainda não sabe nenhum feitiço." << endl;
+}
 
-// string Bruxo::getNome() const { return this->nome; }
-// string Bruxo::getFeitico() const { return this->feiticoPredileto; }
-// string Bruxo::getCasa() const { return this->casa; }
-// Varinha Bruxo::getVarinha() const {
-//   Varinha copia = *(this->varinha);
+string Bruxo::getNome() const { return this->nome; }
+string Bruxo::getFeitico() const { return this->feitico; }
+string Bruxo::getCasa() const { return this->casa; }
 
-//   cout << "Endereço da varinha CAMPO: " << &(this->varinha) << endl;
-//   cout << "Endereço da varinha COPIA: " << &copia << endl;
+Varinha Bruxo::getVarinha() const
+{
+  Varinha copia = *(this->varinha);
+  return copia;
+};
 
-//   return copia;
-// };
-// CapaBruxo Bruxo::getCapa() const {
-//   CapaBruxo copia = *(this->capa);
+CapaBruxo Bruxo::getCapa() const
+{
+  CapaBruxo copia = *(this->capa);
+  return copia;
+}
 
-//   cout << "Endereço da capa CAMPO: " << &(this->capa) << endl;
-//   cout << "Endereço da capa COPIA: " << &copia << endl;
+// Um bruxo não pode ser de uma casa e usar uma capa de outra casa.
+void Bruxo::setCapa(CapaBruxo *capa)
+{
+  string casaCapa = capa->getCasa();
+  this->capa = this->casa != casaCapa ? nullptr : capa;
+}
 
-//   return copia;
-// }
+void Bruxo::setCasa(string casa)
+{
+  string casas[] = {"Lufa-Lufa", "Corvinal", "Grifinória", "Sonserina"};
 
-// // Um bruxo não pode ser de uma casa e usar uma capa de outra casa.
-// void Bruxo::setCapa(CapaBruxo* capa) {
-//   string casaCapa = capa->getCasa();
+  for (string c : casas)
+  {
+    if (casa == c)
+    {
+      this->casa = casa;
+      return;
+    }
+  }
 
-//   if (this->casa != casaCapa) {
-//     this->capa = nullptr;
-//   }
-//   else {
-//     this->capa = capa;
-//   }
-// };
-// void Bruxo::setFeitico(string feitico) { this->feiticoPredileto = feitico; }
-// void Bruxo::setCasa(string casa) {
-//   string casas[] = {"Lufa-Lufa", "Corvinal", "Grifinoria", "Sonserina"};
-//   bool casaValida = false;
+  this->casa = "undefined";
+}
 
-//   for (string c : casas) {
-//     if (casa == c) {
-//       casaValida = true;
-//       break;
-//     }
-//   }
-
-//   this->casa = casaValida ? casa : "undefined";
-//  }
-// void Bruxo::setVarinha(Varinha* varinha) {
-//   this->varinha = varinha;
-// }
+void Bruxo::setVarinha(Varinha *varinha) { this->varinha = varinha; }
+void Bruxo::setFeitico(string feitico) { this->feitico = feitico; }

@@ -39,11 +39,15 @@ IntegerSet::IntegerSet() {
 IntegerSet::IntegerSet(int *elements, int tam) {
   this->setedElements = 0;
 
-  for (int i = 0; i < tam; i++) {
+  int i;
+  for (i = 0; i < tam; i++) {
     this->set[i] = elements[i];
     if (elements[i] == 1)
       this->setedElements++;
   }
+
+  for (i = tam; i < 100; i++)
+    this->set[i] = 0;
 }
 
 void IntegerSet::print() {
@@ -70,8 +74,7 @@ void IntegerSet::insertElement(int element) {
 
 void IntegerSet::deleteElement(int element) {
   if (element < 0 || element > 99) {
-    cout << "So estao presentes no conjunto numeros no intervalo [0, 99]"
-         << endl;
+    cout << "So estao presentes no conjunto numeros no intervalo [0, 99]" << endl;
     return;
   }
 
@@ -81,4 +84,4 @@ void IntegerSet::deleteElement(int element) {
   }
 }
 
-int IntegerSet::getTam() { return this->setedElements; }
+int IntegerSet::getTam() const { return this->setedElements; }
