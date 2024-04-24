@@ -6,6 +6,11 @@ int main() {
    // Lista base
    LISTA l;
    criar(&l, 20);
+
+   // Pegando a quantidade de ocorrências de algum número quando a lista está vazia
+   int quant = contar(&l, 10);
+
+   // Inserindo elementos na lista
    inserir(&l, 10); inserir(&l, 10); inserir(&l, 10); inserir(&l, 10); inserir(&l, 9); inserir(&l, 2102); inserir(&l, 278);
 
    // Pegando a quantidade de ocorrências de 10 na lista
@@ -15,6 +20,7 @@ int main() {
 
    imprimir(&l);
 
+   printf("Quantidade de ocorrências de 10 quando a lista estava vazia: %d\n", quant);
    printf("Quantidade de ocorrências de 10: %d\n", quant10);
    printf("Quantidade de ocorrências de 2788: %d\n", quantAusente);
    

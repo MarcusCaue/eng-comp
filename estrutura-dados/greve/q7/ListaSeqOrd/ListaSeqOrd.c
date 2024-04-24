@@ -2,7 +2,33 @@
 #include <stdlib.h>
 #include "ListaSeqOrd.h"
 
-// Retorna a quantidade de ocorrências de um determinado inteiro.
+// Realoca dinamicamente a memória da lista
+void redimensionar(LISTA* l, int max) {
+  // Evitando que a lista perca seus elementos
+  if (max < l->len)
+    return;
+
+  // Backup
+  LISTA newList;
+  criar(&newList, l->max);
+  newList.len = l->len;
+  newList.arr = l->arr;
+
+  // Redimensionando l
+  l->max = max;
+  l->arr = (int *) malloc(sizeof(int) * max);
+
+  if (l->arr == NULL) {
+    printf("NÃO HÁ MAIS MEMÓRIA DISPONÍVEL!!!\n");
+    exit(1);
+  }
+
+  copiar(l, &newList); // Pegando os valores de l;
+  apagar(&newList);
+}
+
+
+//  Retorna a quantidade de ocorrências de um determinado inteiro.
 int contar(LISTA* l, int valor) {
   // Quando não há elementos na lista
   if (l->len == 0)
@@ -57,6 +83,50 @@ void inserirPos(LISTA* l, int pos, int valor) {
 
   array[pos] = valor;
   l->len++;
+}
+// Copia todos os elementos de l2 em l1 (sobrescrevendo o que já tinha em l1)
+void copiar(LISTA* l1, LISTA* l2) {
+  int max1 = l1->max;
+  int len2 = l2->len;
+
+  // Adicionar somente o que cabe em l1
+  int len = len2 <= max1 ? len2 : max1;
+
+  for (int i = 0; i < len; i++)
+    l1->arr[i] = l2->arr[i];
+
+  l1->len = len;
+}
+// Anexa uma cópia dos elementos de l2 ao fim de l1
+void estender(LISTA* l1, LISTA* l2) {
+  // l2 vazia ou l1 sem espaço disponível
+  if (l2->len == 0 || l1->len >= l1->max)
+    return;
+  
+  int quantosCabem = l1->max - l1->len;
+
+  int iteracoes = (l2->len <= quantosCabem ? l2->len : quantosCabem);
+
+  // Índice para o fim de l1
+  int j = l1->len;
+
+  for (int i = 0; i < iteracoes; i++)
+    l1->arr[j + i] = l2->arr[i];
+  
+  l1->len += iteracoes;
+}
+// Adicionando os elementos de l2 em l1 na ordem inversa (sobrescrevendo o que já tinha em l1)
+void inverter(LISTA* l1, LISTA* l2) {
+  if (l2->len == 0 || l1->len >= l1->max)
+    return;
+  
+  // Último índice mas também o tamanho da segunda lista
+  int lastIndexl2 = l2->len;
+
+  for (int i = 0; i < lastIndexl2; i++)
+    l1->arr[i] = l2->arr[(lastIndexl2 - 1 - i)];
+  
+  l1->len = lastIndexl2;
 }
 
 

@@ -10,6 +10,8 @@ typedef struct {
 int contar(LISTA*, int);
 int pop(LISTA*);
 void inserirPos(LISTA*, int, int);
+void copiar(LISTA*, LISTA*);
+void estender(LISTA*, LISTA*);
 
 void criar(LISTA*, int);
 void apagar(LISTA*);

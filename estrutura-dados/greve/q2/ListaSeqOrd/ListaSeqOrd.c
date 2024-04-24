@@ -2,27 +2,30 @@
 #include <stdlib.h>
 #include "ListaSeqOrd.h"
 
-int contar(LISTA* lst, int valor) {
+// Retorna a quantidade de ocorrências de um determinado inteiro.
+int contar(LISTA* l, int valor) {
+  // Quando não há elementos na lista
+  if (l->len == 0)
+    return 0;
+
   int occ = 0;
 
-  for (int i = 0; i < lst->len; i++) {
-    int element = *(lst->arr + i);
+  for (int i = 0; i < l->len; i++) {
+    int element = l->arr[i];
     if (element == valor)
       occ++;
   }
 
   return occ;
 }
-
-int pop(LISTA* lst) {
-  if (lst->len <= 0) {
+// Remove e retorna o último elemento da lista
+int pop(LISTA* l) {
+  if (l->len <= 0) {
     printf("ERRO!!! A LISTA NÃO TEM ELEMENTOS!\n");
     exit(1);
   }
 
-  int lastElement = lst->arr[lst->len - 1];
-  lst->len--;
-
+  int lastElement = l->arr[--l->len];
   return lastElement;
 }
 
@@ -30,7 +33,12 @@ int pop(LISTA* lst) {
 void criar(LISTA *lst, int tam_max) {
   lst->max = tam_max;
   lst->len = 0;
-  lst->arr = (int *) malloc(sizeof(int) * tam_max); 
+  lst->arr = (int *) malloc(sizeof(int) * tam_max);
+  
+  if (lst->arr == NULL) {
+    printf("NÃO HÁ MAIS MEMÓRIA DISPONÍVEL!!!\n");
+    exit(1);
+  }
 }
 void apagar(LISTA *lst) {
   lst->len = 0;

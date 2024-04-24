@@ -1,0 +1,305 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "ListaSeqOrd.h"
+
+int getMinor(LISTA* l) {
+  int* array = l->arr;
+
+  int minor = array[0];
+  
+  for (int i = 1; i < l->len; i++) {
+    int element = array[i];
+    if (element < minor)
+      minor = element;
+  }
+
+  return minor;
+}
+
+// Selection Sort
+void ordenar(LISTA* l) {
+  int* array = l->arr;
+
+  LISTA copia;
+  criar(&copia, 2);
+  copiar_v2(&copia, l);
+
+  for (int i = 0; i < l->len; i++) {
+    int minor = getMinor(&copia);
+    int indexMinor = buscar(l, minor);
+
+    int backUp = array[i];
+    array[i] = minor;
+    array[indexMinor] = backUp;
+
+    remover(&copia, minor);
+  }
+
+  apagar(&copia);
+}
+
+// Realoca dinamicamente a memória da lista
+void redimensionar(LISTA* l, int max) {
+  // Evitando que a lista perca seus elementos
+  if (max < l->len)
+    return;
+
+  // Backup
+  LISTA newList;
+  criar(&newList, l->max);
+  newList.len = l->len;
+  newList.arr = l->arr;
+
+  // Redimensionando l
+  l->max = max;
+  l->arr = (int *) malloc(sizeof(int) * max);
+
+  if (l->arr == NULL) {
+    printf("NÃO HÁ MAIS MEMÓRIA DISPONÍVEL!!!\n");
+    exit(1);
+  }
+
+  copiar(l, &newList); // Pegando os valores de l;
+  apagar(&newList);
+}
+
+
+//  Retorna a quantidade de ocorrências de um determinado inteiro.
+int contar(LISTA* l, int valor) {
+  // Quando não há elementos na lista
+  if (l->len == 0)
+    return 0;
+
+  int occ = 0;
+
+  for (int i = 0; i < l->len; i++) {
+    int element = l->arr[i];
+    if (element == valor)
+      occ++;
+  }
+
+  return occ;
+}
+// Remove e retorna o último elemento da lista
+int pop(LISTA* l) {
+  if (l->len <= 0) {
+    printf("ERRO!!! A LISTA NÃO TEM ELEMENTOS!\n");
+    exit(1);
+  }
+
+  int lastElement = l->arr[--l->len];
+  return lastElement;
+}
+// Insere um elemento em uma determinada posição da lista
+void inserirPos(LISTA* l, int pos, int valor) {
+  int len = l->len;
+
+  // Posição inválida
+  if (pos < 0 || pos > len) {
+    printf("Posição inválida. Tente novamente\n");
+    return;
+  }
+
+  int* array = l->arr;
+
+  // Inserindo na última posição
+  if (pos == len) {
+    array[l->len++] = valor;
+    return;
+  }
+  
+  // Abrindo o espaço para adicionar 'valor' em 'pos'
+  for (int i = len; i > pos; i--) 
+    array[i] = array[i - 1];
+
+  array[pos] = valor;
+  l->len++;
+}
+// Copia todos os elementos de l2 em l1 (sobrescrevendo o que já tinha em l1)
+void copiar(LISTA* l1, LISTA* l2) {
+  int max1 = l1->max;
+  int len2 = l2->len;
+
+  // Adicionar somente o que cabe em l1
+  int len = len2 <= max1 ? len2 : max1;
+
+  for (int i = 0; i < len; i++)
+    l1->arr[i] = l2->arr[i];
+
+  l1->len = len;
+}
+// Anexa uma cópia dos elementos de l2 ao fim de l1
+void estender(LISTA* l1, LISTA* l2) {
+  // l2 vazia ou l1 sem espaço disponível
+  if (l2->len == 0 || l1->len >= l1->max)
+    return;
+  
+  int quantosCabem = l1->max - l1->len;
+
+  int iteracoes = (l2->len <= quantosCabem ? l2->len : quantosCabem);
+
+  // Índice para o fim de l1
+  int j = l1->len;
+
+  for (int i = 0; i < iteracoes; i++)
+    l1->arr[j + i] = l2->arr[i];
+  
+  l1->len += iteracoes;
+}
+// Adicionando os elementos de l2 em l1 na ordem inversa (sobrescrevendo o que já tinha em l1)
+void inverter(LISTA* l1, LISTA* l2) {
+  if (l2->len == 0 || l1->len >= l1->max)
+    return;
+  
+  // Último índice mas também o tamanho da segunda lista
+  int lastIndexl2 = l2->len;
+
+  for (int i = 0; i < lastIndexl2; i++)
+    l1->arr[i] = l2->arr[(lastIndexl2 - 1 - i)];
+  
+  l1->len = lastIndexl2;
+}
+
+
+// Funções que fazem uso do redimensionamento
+void inserir_v2(LISTA* l, int el) {
+  if (l->len >= l->max)
+    redimensionar(l, l->max + 2);
+  
+  inserir(l, el);
+}
+void inserirPos_v2(LISTA* l, int pos, int valor) {
+  if (l->len >= l->max)
+    redimensionar(l, l->max + 2);
+  
+  inserirPos(l, pos, valor);
+}
+void inserirOrd_v2(LISTA* l, int valor) {
+  if (l->len >= l->max)
+    redimensionar(l, l->max + 2);
+  
+  inserirOrd(l, valor);
+}
+void copiar_v2(LISTA* l1, LISTA* l2) {
+
+  if (l2->len > l1->max)
+    redimensionar(l1, l2->len + 1);
+
+  int iteracoes = l2->len;
+
+  for (int i = 0; i < iteracoes; i++)
+    l1->arr[i] = l2->arr[i];
+
+  l1->len = iteracoes;
+}
+void estender_v2(LISTA* l1, LISTA* l2) {
+  if (l2->len == 0)
+    return;
+  
+  int len2 = l2->len;
+
+  if ((len2 + l1->len) > l1->max)
+    redimensionar(l1, (len2 + l1->len + 1));
+
+  int finalIndexl1 = l1->len;
+  for (int i = 0; i < len2; i++)
+    l1->arr[finalIndexl1 + i] = l2->arr[i];
+  
+  l1->len += len2;
+}
+void inverter_v2(LISTA* l1, LISTA* l2) {
+  if (l2->len == 0)
+    return;
+
+  int len2 = l2->len;
+
+  if (len2 > l1->max)
+    redimensionar(l1, len2 + 1);
+
+  int lastIndexl2 = len2 - 1;
+  for (int i = 0; i < len2; i++)
+    l1->arr[i] = l2->arr[(lastIndexl2 - i)];
+
+  l1->len = len2;  
+}
+
+
+void criar(LISTA *lst, int tam_max) {
+  lst->max = tam_max;
+  lst->len = 0;
+  lst->arr = (int *) malloc(sizeof(int) * tam_max);
+
+  if (lst->arr == NULL) {
+    printf("NÃO HÁ MAIS MEMÓRIA DISPONÍVEL!!!\n");
+    exit(1);
+  }
+}
+void apagar(LISTA *lst) {
+  lst->len = 0;
+  lst->max = 0;
+  free(lst->arr);
+}
+
+void inserir(LISTA* lst, int el) {  
+  lst->arr[lst->len++] = el;
+}
+void inserirOrd(LISTA *lst, int el) {
+  int* len = &lst->len;
+  int  max = lst->max;
+  int* array = lst->arr;
+  
+  int p = 0;
+  while (p < *len && array[p] < el)
+    p++;
+
+  for (int i = *len ; i > p ; i--)
+    array[i] = array[i-1];
+
+  array[p] = el;
+  *len += 1;
+}
+void remover(LISTA *lst, int el) {
+  int index = buscar(lst, el);
+
+  if (index != -1) {
+    int *len = &lst->len;
+    int *array = lst->arr;
+    
+    for (int i = index; i < (*len) - 1; i++)
+      array[i] = array[i+1];
+    
+    *len -= 1;
+  }
+}
+
+int buscar(LISTA *lst, int el) {
+  int len = lst->len;
+  int *array = lst->arr;
+  
+  for (int i = 0 ; i < len ; i++)
+    if (array[i] == el)
+      return i;
+
+  return -1;
+}
+int obter(LISTA *lst, int index) {
+  int *len = &lst->len;
+  int *array = lst->arr;
+
+  if (index >= 0 && index < *len)
+    return *(array + index);
+
+  printf("Posição inexistente!\nPROGRAMA FECHADO\n");
+  exit(1);
+}
+
+void imprimir(LISTA *lst) {
+  int len = lst->len;
+  int *array = lst->arr;
+  
+  printf("Lista %p => [ ", lst);
+  for (int i = 0 ; i < len; i++)
+    printf("%d ", array[i]);
+  printf("]\n");
+}
+int tamanho(LISTA *lst) { return lst->len; }

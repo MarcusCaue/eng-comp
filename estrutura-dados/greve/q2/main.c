@@ -21,8 +21,9 @@ int main() {
    // Removendo o restante
    int len = tamanho(&l);
    for (int i = 0; i < len; i++)
-      pop(&l);
+      printf("Removendo o elemento '%d' da lista.\n", pop(&l));
 
+   printf("\n");
    imprimir(&l);
    printf("Tamanho: %d\n\n", tamanho(&l));
 
@@ -30,6 +31,5 @@ int main() {
    pop(&l);
 
    apagar(&l);
-
    return 0;
 }

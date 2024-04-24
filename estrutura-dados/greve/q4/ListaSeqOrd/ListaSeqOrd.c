@@ -18,6 +18,59 @@ int contar(LISTA* l, int valor) {
 
   return occ;
 }
+// Remove e retorna o último elemento da lista
+int pop(LISTA* l) {
+  if (l->len <= 0) {
+    printf("ERRO!!! A LISTA NÃO TEM ELEMENTOS!\n");
+    exit(1);
+  }
+
+  int lastElement = l->arr[--l->len];
+  return lastElement;
+}
+// Insere um elemento em uma determinada posição da lista
+void inserirPos(LISTA* l, int pos, int valor) {
+  int len = l->len;
+
+  // Lista cheia, não dá para adicionar
+  if (len >= l->max) {
+    printf("Lista cheia, não dá para adicionar.\n");
+    return;
+  }
+  // Posição inválida
+  else if (pos < 0 || pos > len) {
+    printf("Posição inválida. Tente novamente\n");
+    return;
+  }
+
+  int* array = l->arr;
+
+  // Inserindo na última posição
+  if (pos == len) {
+    array[l->len++] = valor;
+    return;
+  }
+  
+  // Abrindo o espaço para adicionar 'valor' em 'pos'
+  for (int i = len; i > pos; i--) 
+    array[i] = array[i - 1];
+
+  array[pos] = valor;
+  l->len++;
+}
+// Copia todos os elementos de l2 em l1 (sobrescrevendo o que já tinha em l1)
+void copiar(LISTA* l1, LISTA* l2) {
+  int max1 = l1->max;
+  int len2 = l2->len;
+
+  // Adicionar somente o que cabe em l1
+  int len = len2 <= max1 ? len2 : max1;
+
+  for (int i = 0; i < len; i++)
+    l1->arr[i] = l2->arr[i];
+
+  l1->len = len;
+}
 
 
 void criar(LISTA *lst, int tam_max) {
@@ -42,7 +95,6 @@ void inserir(LISTA* lst, int el) {
   
   lst->arr[lst->len++] = el;
 }
-
 void inserir_ord(LISTA *lst, int el) {
   int *len = &lst->len;
   int max = lst->max;
@@ -108,5 +160,4 @@ void imprimir(LISTA *lst) {
     printf("%d ", array[i]);
   printf("]\n");
 }
-
 int tamanho(LISTA *lst) { return lst->len; }
