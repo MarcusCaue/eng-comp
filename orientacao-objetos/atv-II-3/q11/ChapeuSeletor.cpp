@@ -3,13 +3,11 @@
 #include <ctime>
 #include <cstdlib>
 
-void ChapeuSeletor::recepcionar()
-{
+void ChapeuSeletor::recepcionar() {
    cout << "Não há nada escondido em sua cabeça que o Chapéu Seletor não consiga ver, por isso é só me porem na cabeça que vou dizer em que casa de Hogwarts deverão ficar." << endl << endl;
 }
 
-string ChapeuSeletor::sortearCasa()
-{
+string ChapeuSeletor::sortearCasa() {
    unsigned int semente = time(0);
    srand(semente);
 
@@ -21,8 +19,7 @@ string ChapeuSeletor::sortearCasa()
    return casaSorteada;
 }
 
-void ChapeuSeletor::avaliarCasa(string casa)
-{
+void ChapeuSeletor::avaliarCasa(string& casa) {
    if (casa == "Lufa-Lufa")
       cout << " (simplesmente a melhor casa de Hogwarts)" << endl;
    else if (casa == "Sonserina")

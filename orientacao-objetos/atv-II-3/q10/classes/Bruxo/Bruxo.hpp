@@ -14,12 +14,14 @@ private:
   const string nome;
   string casa;
   string feitico;
-  Varinha *varinha;
-  CapaBruxo *capa;
+  Varinha* varinha;
+  CapaBruxo* capa;
 
 public:
-  Bruxo(string, string, string, Varinha *, CapaBruxo *);
-  Bruxo(string);
+  // Aluno matriculado
+  Bruxo(const string&, const string&, const string&, Varinha&, CapaBruxo&);
+  // Novo aluno
+  Bruxo(const string&);
 
   void lancarFeitico() const;
   void display() const;
@@ -30,10 +32,10 @@ public:
   Varinha getVarinha() const;
   CapaBruxo getCapa() const;
 
-  void setCasa(string);
-  void setFeitico(string);
-  void setCapa(CapaBruxo *);
-  void setVarinha(Varinha *);
+  void setCasa(const string&);
+  void setFeitico(const string&);
+  void setCapa(CapaBruxo&);
+  void setVarinha(Varinha&);
 };
 
 #endif

@@ -1,11 +1,10 @@
 #ifndef INTEGER_SET_HPP
 #define INTEGER_SET_HPP
 
-class IntegerSet
-{
+class IntegerSet {
 
-  friend IntegerSet unionOfSets(IntegerSet &, IntegerSet &);
-  friend IntegerSet intersectionOfSets(IntegerSet &, IntegerSet &);
+  friend IntegerSet unionOfSets(IntegerSet&, IntegerSet&);
+  friend IntegerSet intersectionOfSets(IntegerSet&, IntegerSet&);
 
 private:
   int set[100];
@@ -13,11 +12,11 @@ private:
 
 public:
   IntegerSet();
-  IntegerSet(int *, int);
+  IntegerSet(int[], int);
 
   void insertElement(int);
   void deleteElement(int);
-  void print();
+  void print() const;
 
   int getTam() const;
 };

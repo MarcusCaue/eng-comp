@@ -6,15 +6,12 @@ using namespace std;
 #include "./classes/Agenda/Agenda.hpp"
 #include "./classes/Pessoa/Pessoa.hpp"
 
-void printLine()
-{
+void printLine() {
    string linha = "---------------------------------------------";
    cout << linha << endl;
 }
 
-int main()
-{
-   printLine();
+int main() {
 
    Agenda agendaRomana = Agenda(20);
    Agenda agendaPadrao = Agenda();
@@ -23,8 +20,6 @@ int main()
    agendaPadrao.armazenaPessoa(Pessoa("Padrao", 0, 0.00));
    agendaPadrao.armazenaPessoa("Padrao 2", 0, 0.0);
    agendaPadrao.imprimePovo();
-
-   printLine();
 
    cout << "-=-=-=-=-=-=-=-=-=-=-=- AGENDA ROMANA -=-=-=-=-=-=-=-=-=-=-=-" << endl;
 

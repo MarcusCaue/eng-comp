@@ -5,11 +5,10 @@
 using namespace std;
 
 class ChapeuSeletor {
-
 public:
   void recepcionar();
   string sortearCasa();
-  void avaliarCasa(string);
+  void avaliarCasa(string&);
 };
 
 #endif

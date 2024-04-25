@@ -41,7 +41,7 @@ int Agenda::buscaPessoa(const string& nome) const {
       return i + 1;
   }
 
-  return 0;
+  return -1;
 }
 
 void Agenda::imprimePessoa(int i) const {

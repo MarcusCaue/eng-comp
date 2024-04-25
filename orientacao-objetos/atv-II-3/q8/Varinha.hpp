@@ -6,8 +6,7 @@
 
 using namespace std;
 
-class Varinha
-{
+class Varinha {
 
    // Não conheço muito o universo de Harry Potter, mas vou considerar que uma vez que uma varinha é criada, ela não pode ter suas características modificadas.
 private:
@@ -20,7 +19,7 @@ public:
 
    void display() const;
 
-   // Como não temos uma regra de verificação dos valores que serão enviados para os atributos, e uma vez que estes são consts, optei por não implementar métodos set.
+   // Como não temos uma regra de verificação dos valores que serão enviados para os atributos, e uma vez que estes são consts, optei por não declarar e implementar métodos set.
    string getMad() const;
    string getNucleo() const;
    double getComp() const;

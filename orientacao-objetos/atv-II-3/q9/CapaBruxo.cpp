@@ -11,7 +11,7 @@ CapaBruxo::CapaBruxo(double tamanho, string casa) :
 
 void CapaBruxo::display() const {
   cout << "====== CAPA DE BRUXO ======" << endl;
-  printf("Tamanho: %.1fm\n", this->tamanho);
+  printf("Tamanho: %.1lfm\n", this->tamanho);
   cout << "Cor: " << this->cor << endl;
   cout << "Casa: " << this->casa << endl << endl;
 }
@@ -23,23 +23,19 @@ double CapaBruxo::getTam() const { return this->tamanho; }
 // Na ocasião de o usuário passar valores inválidos, será criada uma capa padrão
 void CapaBruxo::setCasa(string casa) {
 
-  if (casa == "Grifinória") 
-  {
+  if (casa == "Grifinória") {
     this->cor = "Vermelho";
     this->casa = "Grifinória";
   } 
-  else if (casa == "Corvinal") 
-  {
+  else if (casa == "Corvinal") {
     this->cor = "Azul";
     this->casa = "Corvinal";
   } 
-  else if (casa == "Sonserina") 
-  {
+  else if (casa == "Sonserina") {
     this->cor = "Verde";
     this->casa = "Sonserina";
   } 
-  else
-  {
+  else {
     this->cor = "Amarelo";
     this->casa = "Lufa-Lufa";
   } 
@@ -50,5 +46,5 @@ void CapaBruxo::setTam(double tam) {
   // Considere as dimensões mínimas e máximas de uma pessoa que vá usar uma capa:
   // 1.20m -> 2.10m
 
-  this->tamanho = (tam < 1.20 || tam > 2.10) ? 1.20 : tam;
+  this->tamanho = (tam < 1.20 || tam > 2.10 ? 1.20 : tam);
 }

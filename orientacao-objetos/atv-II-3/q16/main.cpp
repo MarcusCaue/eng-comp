@@ -11,7 +11,7 @@ void showSet(IntegerSet* s) {
 
 int main() {
 
-  // Creating Sets
+  // Criando os conjuntos
   IntegerSet conjunto = IntegerSet();
 
   int elements[] = {1, 1, 1, 0, 0, 1, 1, 0, 1, 1};

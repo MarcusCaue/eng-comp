@@ -3,8 +3,7 @@
 
 #include "../Pessoa/Pessoa.hpp"
 
-class Agenda
-{
+class Agenda {
 
 private:
    Pessoa pessoas[10];

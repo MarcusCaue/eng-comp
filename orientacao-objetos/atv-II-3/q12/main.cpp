@@ -32,7 +32,7 @@ int main() {
   cout << endl;
 
   divArray(list, 10);
-  cout << "Lista com cada elemento sendo dividido por 10: ";
+  cout << "Lista com cada elemento sendo dividido por 10 em uma divisão inteira: ";
   list.print();
   cout << endl;
 

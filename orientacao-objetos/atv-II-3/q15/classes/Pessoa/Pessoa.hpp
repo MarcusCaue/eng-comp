@@ -5,9 +5,7 @@
 
 using namespace std;
 
-class Pessoa
-{
-
+class Pessoa {
 private:
    string nome;
    int idade;

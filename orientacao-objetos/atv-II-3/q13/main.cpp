@@ -36,6 +36,8 @@ int main() {
   cout << "Lista: ";
   list.print();
   cout << endl;
+  // cout << "Removendo o elemento na posicao 54" << endl;
+  // list.remove(54);
 
   cout << "Removendo todas as ocorrências de 8 na lista." << endl;
   list.removeEl(8);

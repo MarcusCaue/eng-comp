@@ -2,6 +2,7 @@
 
 int main() {
 
+  // Capa válida
   CapaBruxo *capaCaue = new CapaBruxo(1.75, "Lufa-Lufa");
   capaCaue->display();
 

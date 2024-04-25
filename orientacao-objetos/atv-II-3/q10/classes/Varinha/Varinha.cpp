@@ -14,6 +14,6 @@ void Varinha::display() const {
   printf("Comprimento: %.1lfcm\n\n", getComp());
 }
 
-string Varinha::getMad() const { return this->tipoMadeira; }
+string Varinha::getMad()    const { return this->tipoMadeira; }
 string Varinha::getNucleo() const { return this->nucleo; }
-double Varinha::getComp() const { return this->comprimento; }
+double Varinha::getComp()   const { return this->comprimento; }

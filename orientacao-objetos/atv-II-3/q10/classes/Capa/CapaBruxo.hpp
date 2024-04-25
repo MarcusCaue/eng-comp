@@ -5,8 +5,7 @@
 
 using namespace std;
 
-class CapaBruxo
-{
+class CapaBruxo {
 private:
   // Considere que uma capa já criada não pode ter suas características modificadas.
   double tamanho;

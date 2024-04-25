@@ -30,15 +30,12 @@ IntegerSet intersectionOfSets(IntegerSet &s1, IntegerSet &s2) {
   return intersection;
 }
 
-IntegerSet::IntegerSet() {
+IntegerSet::IntegerSet() : setedElements(0) {
   for (int i = 0; i < 100; i++)
     this->set[i] = 0;
-  this->setedElements = 0;
 }
 
-IntegerSet::IntegerSet(int *elements, int tam) {
-  this->setedElements = 0;
-
+IntegerSet::IntegerSet(int elements[], int tam) : setedElements(0) {
   int i;
   for (i = 0; i < tam; i++) {
     this->set[i] = elements[i];
@@ -46,41 +43,45 @@ IntegerSet::IntegerSet(int *elements, int tam) {
       this->setedElements++;
   }
 
+  // Completando com zeros
   for (i = tam; i < 100; i++)
     this->set[i] = 0;
 }
 
-void IntegerSet::print() {
-  int *elementos = this->set;
+void IntegerSet::print() const {
+  const int* elementos = this->set;
+
   cout << "[ ";
+
   for (int i = 0; i < 100; i++) {
-    if (elementos[i] == 1)
+    if (elementos[i] != 0)
       cout << i << " ";
   }
+
   cout << "]" << endl;
 }
 
 void IntegerSet::insertElement(int element) {
   if (element < 0 || element > 99) {
-    cout << "O conjunto so aceita numeros no intervalo [0, 99]" << endl;
+    cout << "O conjunto só aceita números no intervalo [0, 99]" << endl;
     return;
   }
 
   if (*(this->set + element) != 1) {
-    this->setedElements++;
     *(this->set + element) = 1;
+    this->setedElements++;
   }
 }
 
 void IntegerSet::deleteElement(int element) {
   if (element < 0 || element > 99) {
-    cout << "So estao presentes no conjunto numeros no intervalo [0, 99]" << endl;
+    cout << "Só estão presentes no conjunto números no intervalo [0, 99]" << endl;
     return;
   }
 
   if (*(this->set + element) != 0) {
-    this->setedElements--;
     *(this->set + element) = 0;
+    this->setedElements--;
   }
 }
 

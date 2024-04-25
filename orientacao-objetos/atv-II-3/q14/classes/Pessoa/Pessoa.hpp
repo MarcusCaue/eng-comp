@@ -2,11 +2,9 @@
 #define PESSOA_HPP
 
 #include <string>
-
 using namespace std;
 
-class Pessoa
-{
+class Pessoa {
 
 private:
    string nome;
@@ -17,8 +15,8 @@ public:
    Pessoa();
    Pessoa(string, int, float);
 
-   string getNome() const;
-   int getIdade() const;
+   string getNome()  const;
+   int getIdade()    const;
    float getAltura() const;
 
    void setIdade(int);

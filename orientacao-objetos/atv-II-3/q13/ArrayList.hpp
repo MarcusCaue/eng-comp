@@ -1,13 +1,12 @@
 #ifndef ARRAYLIST_HPP
 #define ARRAYLIST_HPP
 
-class ArrayList
-{
+class ArrayList {
 
-   friend void somaArray(ArrayList &, int);
-   friend void subArray(ArrayList &, int);
-   friend void mulArray(ArrayList &, int);
-   friend void divArray(ArrayList &, int);
+   friend void somaArray(ArrayList&, int);
+   friend void subArray(ArrayList&, int);
+   friend void mulArray(ArrayList&, int);
+   friend void divArray(ArrayList&, int);
 
 private:
    int *arr;
@@ -20,7 +19,7 @@ public:
 
    void print() const;
 
-   ArrayList &add(int);
+   ArrayList& add(int);
    
    int busca(int) const;
 

@@ -1,7 +1,5 @@
-#include "classes/Bruxo/Bruxo.hpp"
-#include "classes/Capa/CapaBruxo.hpp"
-#include "classes/Varinha/Varinha.hpp"
 #include <iostream>
+#include "classes/Bruxo/Bruxo.hpp"
 
 int main() {
   // Novo Aluno na escola sem atributos definidos
@@ -14,24 +12,25 @@ int main() {
   cout << "\n<<< ====== ALUNO MATRICULADO ====== >>>\n";
   Varinha varinha = Varinha("Carvalho", "Mel de Abelha", 21.4);
   CapaBruxo capa = CapaBruxo("Grifinória", 1.70);
-  Bruxo alunoExistente = Bruxo("Ricardo", "Grifinória", "Pyrus", &varinha, &capa);
-  alunoExistente.display();
+  Bruxo aluno = Bruxo("Ricardo", "Grifinória", "Pyrus", varinha, capa);
+  aluno.display();
+  aluno.lancarFeitico();
 
   // Setando novos valores para o aluno novato
-  Varinha varinhaNovato = Varinha("Abeto", "Lágrima de Boi", 19.3);
+  Varinha varinhaNovato =  Varinha("Abeto", "Lágrima de Boi", 19.3);
   CapaBruxo capaCorvinal = CapaBruxo("Corvinal", 1.5);
-  CapaBruxo capaLufana = CapaBruxo("Lufa-Lufa", 1.5);
+  CapaBruxo capaLufaLufa = CapaBruxo("Lufa-Lufa", 1.5);
 
   novoAluno.setCasa("Organistas"); // Tentando setar uma casa inválida
-  novoAluno.setCasa("Lufa-Lufa");
+  novoAluno.setCasa("Corvinal");
 
   novoAluno.setFeitico("Fiat Musicam!");
-  novoAluno.setVarinha(&varinhaNovato);
+  novoAluno.setVarinha(varinhaNovato);
 
-  novoAluno.setCapa(&capaCorvinal); // A casa da capa não é a mesma que a do aluno
-  novoAluno.setCapa(&capaLufana);
+  novoAluno.setCapa(capaLufaLufa); // A casa da capa não é a mesma que a do aluno
+  novoAluno.setCapa(capaCorvinal); 
 
-  cout << "\n<<< ====== ALUNO NOVATO ====== >>>\n";
+  cout << "\n<<< ====== NOVO ALUNO ====== >>>\n";
   novoAluno.display();
   novoAluno.lancarFeitico();
 
