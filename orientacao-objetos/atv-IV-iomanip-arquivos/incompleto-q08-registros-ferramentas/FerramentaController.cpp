@@ -4,6 +4,17 @@
 #include <iomanip>
 using std::fixed, std::setprecision;
 
+int FerramentaController::findFerramenta(const Ferramenta& f) {
+   for (int i = 0; i < this->len; i++) {
+      Ferramenta& fRef = this->ferramentas[i];
+      if (f.getNumRegistro() == fRef.getNumRegistro()) {
+         return i;
+      }
+   }
+
+   return -1;
+}
+
 FerramentaController::FerramentaController(int quant) : ferramentas(nullptr), len(0), max(quant) {
    if (quant > 0)
       this->ferramentas = new Ferramenta [quant];
@@ -22,6 +33,25 @@ void FerramentaController::inserirFerramenta(const Ferramenta& f) {
       return;
 
    this->ferramentas[this->len++] = f;
+}
+
+void FerramentaController::removeFerramenta(const Ferramenta& f) {
+   int index = findFerramenta(f);
+   removeFerramenta(index);
+}
+
+void FerramentaController::removeFerramenta(int index) {
+   if (index < 0 || index >= this->len)
+      return;
+
+   for (int i = index; i < this->len - 1; i++)
+      this->ferramentas[i] = this->ferramentas[i+1];
+
+   this->len--;
+}
+
+void FerramentaController::updateFerramenta(const Ferramenta& f) {
+   
 }
 
 ostream& operator<<(ostream& cout, FerramentaController& fc) {

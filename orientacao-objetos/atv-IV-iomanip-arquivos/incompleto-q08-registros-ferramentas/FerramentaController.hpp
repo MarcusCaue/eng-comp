@@ -14,12 +14,13 @@ class FerramentaController
       int len;
       int max;
 
+      int findFerramenta(const Ferramenta& f);
+
    public:
       FerramentaController(int quant);
       ~FerramentaController();
 
       void inserirFerramenta(const Ferramenta& f);
-      void showFerramentas();
       void removeFerramenta(const Ferramenta& f);
       void removeFerramenta(int index);
       void updateFerramenta(const Ferramenta& f);
