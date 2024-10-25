@@ -2,3 +2,5 @@
 *.exe
 */output/*
 venv/
+atividades_grafos/
+__pycache__/
