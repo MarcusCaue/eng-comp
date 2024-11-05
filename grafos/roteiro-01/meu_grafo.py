@@ -1,4 +1,4 @@
-from bibgrafo.grafo_lista_adjacencia import GrafoListaAdjacencia
+from bibgrafo.grafo_lista_adjacencia import GrafoListaAdjacencia, Aresta, Vertice
 from bibgrafo.grafo_errors import *
 
 
@@ -11,6 +11,22 @@ class MeuGrafo(GrafoListaAdjacencia):
         Onde X, Z e W são vértices no grafo que não tem uma aresta entre eles.
         :return: Um objeto do tipo set que contém os pares de vértices não adjacentes
         '''
+
+        verticesNaoAdj = set()
+        vertices = self.vertices
+        arestas = self.arestas
+
+        print(arestas['a1'].v1)
+
+        # for v in vertices:                
+        #     verticesNaoAdj.add(f"{str(v)[0]}-{str(v)[0]}")
+        
+        # print(verticesNaoAdj)
+
+        
+
+
+
         pass # Apague essa instrução e inicie seu código aqui
 
     def ha_laco(self):
