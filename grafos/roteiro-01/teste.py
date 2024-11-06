@@ -52,7 +52,7 @@ paraiba = MeuGrafo()
 paraiba = init(paraiba)
 
 # Grafo Padrão
-print(paraiba)
+# print(paraiba)
 
 # Verificando a existência de laços
 # ha_laco_test(paraiba)
@@ -60,4 +60,5 @@ print(paraiba)
 # Verificando o grau de um vértice
 # grau_vertice_test(paraiba)
 
+paraiba.ha_paralelas()
 

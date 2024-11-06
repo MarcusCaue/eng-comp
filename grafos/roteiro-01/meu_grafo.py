@@ -1,7 +1,6 @@
 from bibgrafo.grafo_lista_adjacencia import GrafoListaAdjacencia, Aresta, Vertice
 from bibgrafo.grafo_errors import *
 
-
 class MeuGrafo(GrafoListaAdjacencia):
 
     def vertices_nao_adjacentes(self):
@@ -27,7 +26,7 @@ class MeuGrafo(GrafoListaAdjacencia):
 
         pass # Apague essa instrução e inicie seu código aqui
 
-    # Tá PRONTO
+    # Tá PRONTO e está TESTADO
     def ha_laco(self):
         '''
         Verifica se existe algum laço no grafo.
@@ -41,7 +40,7 @@ class MeuGrafo(GrafoListaAdjacencia):
         
         return False
     
-    # Tá PRONTO
+    # Tá PRONTO e está TESTADO
     def grau(self, V=''):
         '''
         Provê o grau do vértice passado como parâmetro
@@ -55,7 +54,10 @@ class MeuGrafo(GrafoListaAdjacencia):
         grau = 0
         for a in arestas.values():
             if a.eh_ponta(vertice):
-                grau += 1
+                if a.v1 == a.v2: # Quando for laço
+                    grau += 2
+                else:
+                    grau += 1
         
         return grau
               
@@ -65,16 +67,14 @@ class MeuGrafo(GrafoListaAdjacencia):
         Verifica se há arestas paralelas no grafo
         :return: Um valor booleano que indica se existem arestas paralelas no grafo.
         '''
-        arestas = self.arestas
+        arestas = self.arestas.copy()
 
-        for rot in arestas.keys():
-            a1 = arestas[rot]
-            pontasA1 = [ a1.v1, a1.v2 ]
-            
-            for rot2 in arestas.keys():
-                if rot != rot2:
-                    a2 = arestas[rot2]
-                    # if 
+        for a1 in arestas:
+            print(f"Aresta '{a1}' em análise: \nOutras arestas: ")
+            arestas.pop(a1)
+            for a2 in arestas:
+                print(a2, end=" ")
+
 
 
 

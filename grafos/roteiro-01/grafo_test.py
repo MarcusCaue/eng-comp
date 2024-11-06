@@ -3,7 +3,6 @@ from meu_grafo import *
 from bibgrafo.grafo_errors import *
 from bibgrafo.aresta import Aresta
 
-
 class TestGrafo(unittest.TestCase):
 
     def setUp(self):
