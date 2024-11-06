@@ -12,30 +12,36 @@ class MeuGrafo(GrafoListaAdjacencia):
         :return: Um objeto do tipo set que contém os pares de vértices não adjacentes
         '''
 
-        verticesNaoAdj = set()
+        """ verticesNaoAdj = set()
         vertices = self.vertices
         arestas = self.arestas
 
-        print(arestas['a1'].v1)
-
-        # for v in vertices:                
-        #     verticesNaoAdj.add(f"{str(v)[0]}-{str(v)[0]}")
+        for v in vertices:   
+            for a in arestas:
+                if a.ehPonta(v):
+                    
+                           
+            verticesNaoAdj.add(f"{str(v)[0]}-{str(v)[0]}")
         
-        # print(verticesNaoAdj)
-
-        
-
-
+        print(verticesNaoAdj) """
 
         pass # Apague essa instrução e inicie seu código aqui
 
+    # Tá PRONTO
     def ha_laco(self):
         '''
         Verifica se existe algum laço no grafo.
         :return: Um valor booleano que indica se existe algum laço.
         '''
-        pass
+        arestas = self.arestas
 
+        for rot in arestas:
+            if (arestas[rot].v1 == arestas[rot].v2):
+                return True
+        
+        return False
+    
+    # Tá PRONTO
     def grau(self, V=''):
         '''
         Provê o grau do vértice passado como parâmetro
@@ -43,13 +49,37 @@ class MeuGrafo(GrafoListaAdjacencia):
         :return: Um valor inteiro que indica o grau do vértice
         :raises: VerticeInvalidoError se o vértice não existe no grafo
         '''
-        pass
+        vertice = self.get_vertice(V)
+        arestas = self.arestas
 
+        grau = 0
+        for a in arestas.values():
+            if a.eh_ponta(vertice):
+                grau += 1
+        
+        return grau
+              
+    # Continuar a partir daqui
     def ha_paralelas(self):
         '''
         Verifica se há arestas paralelas no grafo
         :return: Um valor booleano que indica se existem arestas paralelas no grafo.
         '''
+        arestas = self.arestas
+
+        for rot in arestas.keys():
+            a1 = arestas[rot]
+            pontasA1 = [ a1.v1, a1.v2 ]
+            
+            for rot2 in arestas.keys():
+                if rot != rot2:
+                    a2 = arestas[rot2]
+                    # if 
+
+
+
+
+
         pass
 
     def arestas_sobre_vertice(self, V):
