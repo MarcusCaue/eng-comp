@@ -4,3 +4,5 @@
 venv/
 atividades_grafos/
 __pycache__/
+*/__pycache__/*
+__pycache__
