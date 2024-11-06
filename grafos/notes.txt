@@ -1,0 +1,13 @@
+-> "Repositório de atividades de Grafos: https://github.com/henriquecunha2/atividades_grafos.git" 
+
+-> Para criar ambiente virtual: "python -m venv ./venv"
+
+-> Para ativar: 
+  - ".\venv\Scripts\activate.bat" (Windows)
+  - "source ./venv/bin/activate" (Linux)
+
+-> Para desativar:
+  - "deactivate"
+
+-> Para rodar os testes:
+  - "python -m unittest <arq>.py || <arq>.<classe>.<funcao>"
