@@ -25,40 +25,17 @@ def init(grafo: MeuGrafo) -> MeuGrafo:
 
   return grafo
 
-def ha_laco_test(grafo: MeuGrafo):
-  copia = MeuGrafo(grafo.vertices, grafo.arestas)
-
-  print("Grafo cópia: ")
-  print(copia)
-
-  print(f"Tem laço? {copia.ha_laco()}") # Antes da adição do laço
-  copia.adiciona_aresta("a10", "J", "J") 
-  print(f"Tem laço? {copia.ha_laco()}") # Depois da adição do laço
-
-def grau_vertice_test(grafo: MeuGrafo):
-  copia = MeuGrafo(grafo.vertices, grafo.arestas)
-
-  print("Grafo cópia: ")
-  print(copia)
-
-  print(f"Grau do vértice O: {copia.grau('O')}") # Vértice inexistente
-  print(f"Grau do vértice P: {copia.grau('P')}") # Vértice de grau > 0
-
-  copia.adiciona_vertice("A")
-  print(f"Grau do vértice A: {copia.grau('A')}") # Vértice de grau 0
-
 # Setup do Grafo
 paraiba = MeuGrafo()
 paraiba = init(paraiba)
 
 # Grafo Padrão
-# print(paraiba)
+print(paraiba)
 
-# Verificando a existência de laços
-# ha_laco_test(paraiba)
+print(paraiba.vertices_nao_adjacentes())
 
-# Verificando o grau de um vértice
-# grau_vertice_test(paraiba)
 
-paraiba.ha_paralelas()
 
+# for vertice in paraiba.vertices:
+#   arestas = paraiba.arestas_sobre_vertice(vertice.rotulo)
+#   print(f"Arestas incidentes sobre '{vertice}': {arestas}\nGrau = {len(arestas)} | Igual? {paraiba.grau(vertice.rotulo) == len(arestas)}\n")
