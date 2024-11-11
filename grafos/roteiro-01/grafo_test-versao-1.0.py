@@ -1,5 +1,5 @@
 import unittest
-from meu_grafo import *
+from meu_grafo_lista_adj_nao_dir import *
 from bibgrafo.grafo_errors import *
 from bibgrafo.aresta import Aresta
 
