@@ -1,5 +1,6 @@
-from bibgrafo.grafo_lista_adjacencia import Aresta, Vertice
-from meu_grafo import MeuGrafo
+from bibgrafo.grafo_lista_adj_nao_dir import Aresta
+from bibgrafo.grafo import Vertice
+from meu_grafo_lista_adj_nao_dir import MeuGrafo
 
 def init(grafo: MeuGrafo) -> MeuGrafo:
   grafo = MeuGrafo(
