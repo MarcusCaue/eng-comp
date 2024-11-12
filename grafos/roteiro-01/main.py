@@ -33,10 +33,9 @@ paraiba = init(paraiba)
 # Grafo Padrão
 print(paraiba)
 
-print(paraiba.vertices_nao_adjacentes())
-
-
-
-# for vertice in paraiba.vertices:
-#   arestas = paraiba.arestas_sobre_vertice(vertice.rotulo)
-#   print(f"Arestas incidentes sobre '{vertice}': {arestas}\nGrau = {len(arestas)} | Igual? {paraiba.grau(vertice.rotulo) == len(arestas)}\n")
+print("Há laços?", paraiba.ha_laco())
+print("Há paralelas?", paraiba.ha_paralelas())
+print("É completo?", paraiba.eh_completo())
+print("Grau do vértice 'C' (Campina Grande):", paraiba.grau("C"))
+print("Arestas sobre o vértice 'C' (Campina Grande):", paraiba.arestas_sobre_vertice('C'))
+print(f"Conjunto de vértices não adjacentes:\n\t - {paraiba.vertices_nao_adjacentes()}")
