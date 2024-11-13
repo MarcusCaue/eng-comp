@@ -3,6 +3,8 @@
 */output/*
 venv/
 atividades_grafos/
+test_json/
 __pycache__/
 */__pycache__/*
 __pycache__
+.idea/
