@@ -1,6 +1,7 @@
 from bibgrafo.grafo_lista_adj_nao_dir import GrafoListaAdjacenciaNaoDirecionado
 from bibgrafo.grafo_errors import *
 from bibgrafo.aresta import Aresta
+from bibgrafo.vertice import Vertice
 from types import NoneType
 
 class MeuGrafo(GrafoListaAdjacenciaNaoDirecionado):
@@ -14,7 +15,7 @@ class MeuGrafo(GrafoListaAdjacenciaNaoDirecionado):
             raise GrafoInvalidoError
         
         if type(arvore_dfs) == NoneType:
-             arvore_dfs = MeuGrafo()
+            arvore_dfs = MeuGrafo()
             
         arvore_dfs.adiciona_vertice(V)
 
@@ -25,16 +26,22 @@ class MeuGrafo(GrafoListaAdjacenciaNaoDirecionado):
             # Aresta
             a = self.arestas[rot]
 
-            if not arvore_dfs.existe_rotulo_aresta(rot):
+            # Quando o vértice não está na árvore
+            if not arvore_dfs.existe_rotulo_vertice(a.v1.rotulo) or not arvore_dfs.existe_rotulo_vertice(a.v2.rotulo):
+
                 # Pegando o vértice oposto
                 if a.v1.rotulo != V:
                     outraPonta = a.v1
                 else:
                     outraPonta = a.v2
                 
+                # Adicionando o vértice quando ele não está na árvore
+                # if not arvore_dfs.existe_rotulo_vertice(outraPonta.rotulo):
+                #     arvore_dfs.adiciona_vertice(outraPonta.rotulo)
+                self.dfs(outraPonta.rotulo, arvore_dfs)
+
                 arvore_dfs.adiciona_aresta(Aresta(rot, self.get_vertice(a.v1.rotulo), self.get_vertice(a.v2.rotulo)))
 
-                self.dfs(outraPonta.rotulo, arvore_dfs)
                     
         return arvore_dfs
         

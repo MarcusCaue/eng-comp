@@ -3,6 +3,7 @@ from bibgrafo.grafo_lista_adj_nao_dir import Aresta
 from bibgrafo.grafo import Vertice
 from bibgrafo.grafo_errors import VerticeInvalidoError
 
+# Setup do grafo da paraíba 
 paraiba = MeuGrafo(
   vertices = [Vertice("Z"), Vertice("M"), Vertice("T"), Vertice("J"), Vertice("C"), Vertice("E"), Vertice("P")],
 )
@@ -19,8 +20,10 @@ paraiba.arestas = {
     'a9': Aresta('a9', paraiba.get_vertice('T'), paraiba.get_vertice('Z')),
 }
 
+print("Grafo da Paraíba")
 print(paraiba)
 
-paraiba.dfs("J")
+print("Árvore DFS: ")
+print(paraiba.dfs("J"))
 
 
