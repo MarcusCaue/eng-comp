@@ -25,8 +25,3 @@ print(paraiba)
 
 print("Árvore DFS: ")
 print(paraiba.dfs("J"))
-
-
-
-
-

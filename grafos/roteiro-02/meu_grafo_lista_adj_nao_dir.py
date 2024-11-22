@@ -10,7 +10,7 @@ class MeuGrafo(GrafoListaAdjacenciaNaoDirecionado):
         if not self.existe_rotulo_vertice(V): 
             raise VerticeInvalidoError
         
-        # Verificando se o grafo é desconexo
+        # Verificando se o grafo contém um vértice com nenhum outro adjacente a ele
         if self.contem_vertice_nao_adjacente():
             raise GrafoInvalidoError
         
