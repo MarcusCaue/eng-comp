@@ -22,8 +22,8 @@ paraiba.arestas = {
 print("Grafo da Paraíba")
 print(paraiba)
 
-# print("Árvore DFS: ")
-# print(paraiba.dfs("J"))
+print("Árvore DFS: ")
+print(paraiba.dfs("J"))
 
-print("Árvore BFS: ")
-print(paraiba.bfs("J"))
+# print("Árvore BFS: ")
+# print(paraiba.bfs("J"))
