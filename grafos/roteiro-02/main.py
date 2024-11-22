@@ -1,7 +1,6 @@
 from meu_grafo_lista_adj_nao_dir import MeuGrafo
 from bibgrafo.grafo_lista_adj_nao_dir import Aresta
 from bibgrafo.grafo import Vertice
-from bibgrafo.grafo_errors import VerticeInvalidoError
 
 # Setup do grafo da paraíba 
 paraiba = MeuGrafo(
@@ -23,5 +22,8 @@ paraiba.arestas = {
 print("Grafo da Paraíba")
 print(paraiba)
 
-print("Árvore DFS: ")
-print(paraiba.dfs("J"))
+# print("Árvore DFS: ")
+# print(paraiba.dfs("J"))
+
+print("Árvore BFS: ")
+print(paraiba.bfs("J"))
