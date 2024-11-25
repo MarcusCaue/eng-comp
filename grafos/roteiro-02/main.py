@@ -1,29 +1,41 @@
+from bibgrafo.grafo_builder import GrafoBuilder
 from meu_grafo_lista_adj_nao_dir import MeuGrafo
 from bibgrafo.grafo_lista_adj_nao_dir import Aresta
 from bibgrafo.grafo import Vertice
 
 # Setup do grafo da paraíba 
-paraiba = MeuGrafo(
-  vertices = [Vertice("Z"), Vertice("M"), Vertice("T"), Vertice("J"), Vertice("C"), Vertice("E"), Vertice("P")],
-)
+paraiba = GrafoBuilder().tipo(MeuGrafo()) \
+  .vertices(["J", "C", "E", "M", "P", "T", "Z"]) \
+  .arestas([
+    Aresta('a1', Vertice('J'), Vertice('C')),
+    Aresta('a2', Vertice('C'), Vertice('E')),
+    Aresta('a3', Vertice('C'), Vertice('E')),
+    Aresta('a4', Vertice('C'), Vertice('P')),
+    Aresta('a5', Vertice('C'), Vertice('P')),
+    Aresta('a6', Vertice('C'), Vertice('M')),
+    Aresta('a7', Vertice('C'), Vertice('T')),
+    Aresta('a8', Vertice('M'), Vertice('T')),
+    Aresta('a9', Vertice('T'), Vertice('Z')),
+  ]) \
+  .build()
 
-paraiba.arestas = {
-  'a1': Aresta('a1', paraiba.get_vertice('J'), paraiba.get_vertice('C')),
-  'a2': Aresta('a2', paraiba.get_vertice('C'), paraiba.get_vertice('E')),
-  'a3': Aresta('a3', paraiba.get_vertice('C'), paraiba.get_vertice('E')),
-  'a4': Aresta('a4', paraiba.get_vertice('C'), paraiba.get_vertice('P')),
-  'a5': Aresta('a5', paraiba.get_vertice('C'), paraiba.get_vertice('P')),
-  'a6': Aresta('a6', paraiba.get_vertice('C'), paraiba.get_vertice('M')),
-  'a7': Aresta('a7', paraiba.get_vertice('C'), paraiba.get_vertice('T')),
-  'a8': Aresta('a8', paraiba.get_vertice('M'), paraiba.get_vertice('T')),
-  'a9': Aresta('a9', paraiba.get_vertice('T'), paraiba.get_vertice('Z')),
-}
+# Todo grafo por padrão é conectado
+# grafo_aleatorio = GrafoBuilder().tipo(MeuGrafo()).vertices(8).arestas(8).build()
 
-print("Grafo da Paraíba")
-print(paraiba)
+# print("Grafo aleatório: ")
+# print(grafo_aleatorio)
 
-print("Árvore DFS: ")
-print(paraiba.dfs("J"))
+# print("Árvores DFS:")
+
+# for i in range(5):
+#   print(f"Árvore {i}")
+#   print(grafo_aleatorio.dfs('A'))
+
+# print("Grafo da Paraíba")
+# print(paraiba)
+
+# print("Árvore DFS: ")
+# print(paraiba.dfs('J'))
 
 # print("Árvore BFS: ")
 # print(paraiba.bfs("J"))

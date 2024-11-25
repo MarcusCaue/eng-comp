@@ -11,7 +11,4 @@
 
 -> Para rodar os testes:
   - "python -m unittest <arq>.py || <arq>.<classe>.<funcao>"
-<<<<<<< HEAD
-=======
 
->>>>>>> 5f917f56e6d57b12feaf549d1e2da0caa592e25f

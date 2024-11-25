@@ -80,13 +80,32 @@ class TestGrafo(unittest.TestCase):
     def test_busca_profundidade_primeiro(self):
         # MeuGrafo().
 
+        # Com o grafo da Paraíba
         self.assertTrue(self.g_p.dfs('J').existe_rotulo_aresta('a1'))
         self.assertTrue(self.g_p.dfs('J').existe_rotulo_aresta('a2') or self.g_p.dfs('J').existe_rotulo_aresta('a3'))
         self.assertTrue(self.g_p.dfs('J').existe_rotulo_aresta('a4') or self.g_p.dfs('J').existe_rotulo_aresta('a5'))
         self.assertFalse(self.g_p.dfs('J').existe_rotulo_aresta('a6') and self.g_p.dfs('J').existe_rotulo_aresta('a7'))
-        
-        # Um grafo dfs é um grafo simples
         self.assertTrue(not self.g_p.dfs('J').ha_paralelas() and not self.g_p.dfs('J').ha_laco())
+
+        # Com vértice inexistente
+        with self.assertRaises(VerticeInvalidoError):
+            self.g_p.dfs('L')
+        
+        # Mas e se esse vértice for de grau 0?
+        self.g_p.adiciona_vertice('L')
+        self.assertEqual(self.g_p.dfs('L'), MeuGrafo())
+
+        # Quando há laços
+        grafo_com_laco = GrafoBuilder().tipo(MeuGrafo()).vertices(6).arestas(4, lacos=4).build()
+        self.assertEqual(grafo_com_laco.dfs('A'), MeuGrafo())
+
+
+
+
+        
+
+
+
 
 
 

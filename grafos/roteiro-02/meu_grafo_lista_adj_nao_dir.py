@@ -12,8 +12,13 @@ class MeuGrafo(GrafoListaAdjacenciaNaoDirecionado):
         
         # Verificando se o grafo contém um vértice com nenhum outro adjacente a ele
         if self.contem_vertice_nao_adjacente():
-            raise GrafoInvalidoError
+            return MeuGrafo()
         
+        # Verificando se tem laços
+        if self.ha_laco():
+            return MeuGrafo()
+
+
         # Criando a árvore DFS quando ela não existe, isto é, na chamada não-recursiva da função
         if type(arvore_dfs) == NoneType:
             arvore_dfs = MeuGrafo()
