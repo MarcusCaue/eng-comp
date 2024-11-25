@@ -1,16 +1,91 @@
 from bibgrafo.grafo_lista_adj_nao_dir import GrafoListaAdjacenciaNaoDirecionado
 from bibgrafo.grafo_errors import *
+from bibgrafo.aresta import Aresta
+from types import NoneType
 
 class MeuGrafo(GrafoListaAdjacenciaNaoDirecionado):
 
-    def dfs(self, V: str = ''):
-        pass
+    def dfs(self, V: str = '', arvore_dfs: GrafoListaAdjacenciaNaoDirecionado = None):
+        # Verificando a existência do vértice no grafo
+        if not self.existe_rotulo_vertice(V): 
+            raise VerticeInvalidoError
+        
+        # Verificando se o grafo contém um vértice com nenhum outro adjacente a ele
+        if self.contem_vertice_nao_adjacente():
+            raise GrafoInvalidoError
+        
+        # Criando a árvore DFS quando ela não existe, isto é, na chamada não-recursiva da função
+        if type(arvore_dfs) == NoneType:
+            arvore_dfs = MeuGrafo()
+        
+        # Sempre que a função é chamada e passou pelas verificações, então o vértice do momento pode entrar na árvore DFS
+        arvore_dfs.adiciona_vertice(V)
 
-    def bfs(self, V: str = ''):
-        pass
+        # Retorna um conjunto de strings contendo os rótulos das arestas incidentes sobre o vértice
+        conexoesDiretas = self.arestas_sobre_vertice(V)
+        
+        for rot in conexoesDiretas:
+            a = self.arestas[rot]
 
+            # Pegando o vértice oposto
+            outraPonta = a.v1 if a.v1.rotulo != V else a.v2
 
+            # Quando o vértice oposto não está na árvore
+            if not arvore_dfs.existe_rotulo_vertice(outraPonta.rotulo):
+                self.dfs(outraPonta.rotulo, arvore_dfs) # Aprofundamento
+                arvore_dfs.adiciona_aresta(a)
+     
+        return arvore_dfs
+        
+        
+    def bfs(self, V: str = '', arvore_bfs: GrafoListaAdjacenciaNaoDirecionado = None):
+        # Verificando a existência do vértice no grafo
+        if not self.existe_rotulo_vertice(V): 
+            raise VerticeInvalidoError
+        
+        # Verificando se o grafo contém um vértice com nenhum outro adjacente a ele
+        if self.contem_vertice_nao_adjacente():
+            raise GrafoInvalidoError
+        
+        # Criando a árvore BFS quando ela não existe, isto é, na chamada não-recursiva da função
+        if type(arvore_bfs) == NoneType:
+            arvore_bfs = MeuGrafo()
+        
+        # Marca o vértice do momento como visitado quando ele não estiver na árvore
+        if not arvore_bfs.existe_rotulo_vertice(V):
+            arvore_bfs.adiciona_vertice(V)
 
+        # Arestas ligadas aos vértices vizinhos
+        conexoesDiretas = self.arestas_sobre_vertice(V)
+
+        # Adicionando os vértices vizinhos
+        for rot in conexoesDiretas:
+            a = self.arestas[rot]
+
+            # Pegando o vértice oposto
+            outraPonta = a.v1 if a.v1.rotulo != V else a.v2
+
+            if not arvore_bfs.existe_rotulo_vertice(outraPonta.rotulo):
+                arvore_bfs.adiciona_vertice(outraPonta.rotulo)
+                arvore_bfs.adiciona_aresta(a)
+                self.bfs(outraPonta.rotulo, arvore_bfs) # Aprofundando-se nas camadas
+                
+        return arvore_bfs
+
+    
+    def contem_vertice_nao_adjacente(self):
+        """
+        Verifica se um grafo contém pelo menos um vértice sem outros vértices adjacentes.
+        :return: um valor booleano indicando se o grafo contém ou não um vértice adjacente a nenhum outro.
+        """
+        vertices = self.vertices
+
+        for v in vertices:
+            if self.grau(v.rotulo) == 0:
+                return True
+        
+        return False
+        
     def vertices_nao_adjacentes(self):
         '''
         Provê um conjunto de vértices não adjacentes no grafo.
