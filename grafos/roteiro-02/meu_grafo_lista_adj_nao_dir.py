@@ -43,14 +43,19 @@ class MeuGrafo(GrafoListaAdjacenciaNaoDirecionado):
         return arvore_dfs
         
         
+    # Tente adicionar o array de arestas não visitadas na hora de se aprofundar
     def bfs(self, V: str = '', arvore_bfs: GrafoListaAdjacenciaNaoDirecionado = None):
-        # Verificando a existência do vértice no grafo
+         # Verificando a existência do vértice no grafo
         if not self.existe_rotulo_vertice(V): 
             raise VerticeInvalidoError
         
         # Verificando se o grafo contém um vértice com nenhum outro adjacente a ele
         if self.contem_vertice_nao_adjacente():
-            raise GrafoInvalidoError
+            return MeuGrafo()
+        
+        # Verificando se tem laços
+        if self.ha_laco():
+            return MeuGrafo()
         
         # Criando a árvore BFS quando ela não existe, isto é, na chamada não-recursiva da função
         if type(arvore_bfs) == NoneType:
@@ -73,7 +78,16 @@ class MeuGrafo(GrafoListaAdjacenciaNaoDirecionado):
             if not arvore_bfs.existe_rotulo_vertice(outraPonta.rotulo):
                 arvore_bfs.adiciona_vertice(outraPonta.rotulo)
                 arvore_bfs.adiciona_aresta(a)
-                self.bfs(outraPonta.rotulo, arvore_bfs) # Aprofundando-se nas camadas
+        
+        # Se aprofundando
+        for rot in conexoesDiretas:
+            a = self.arestas[rot]
+
+            if not arvore_bfs.existe_rotulo_aresta(rot):
+                # Pegando o vértice oposto
+                outraPonta = a.v1 if a.v1.rotulo != V else a.v2
+
+                self.bfs(outraPonta.rotulo, arvore_bfs) 
                 
         return arvore_bfs
 

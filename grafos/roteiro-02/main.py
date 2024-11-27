@@ -1,5 +1,5 @@
-import networkx as nx
-import matplotlib.pyplot as plt
+# import networkx as nx
+# import matplotlib.pyplot as plt
 
 from bibgrafo.grafo_builder import GrafoBuilder
 from meu_grafo_lista_adj_nao_dir import MeuGrafo
@@ -34,17 +34,18 @@ paraiba = GrafoBuilder().tipo(MeuGrafo()) \
 
 
 # Todo grafo por padrão é conectado
-grafo_aleatorio = GrafoBuilder().tipo(MeuGrafo()).vertices(8).arestas(12).build()
+grafo_aleatorio = GrafoBuilder().tipo(MeuGrafo()).vertices(6).arestas(8).build()
+grafo_conexo = GrafoBuilder().tipo(MeuGrafo()).vertices(4).arestas(True).build()
 
-print("Grafo aleatório: ")
+print("Grafo Aleatório: ")
 print(grafo_aleatorio)
-plotarGrafo(grafo_aleatorio)
+# plotarGrafo(grafo_aleatorio)
 
-print("Árvores DFS:")
+print("Árvores BFS:")
 
 for i in range(5):
-  dfs = grafo_aleatorio.dfs('A')
+  bfs = grafo_aleatorio.bfs('A')
   print(f"Árvore {i}")
-  print(dfs)
-  plotarGrafo(dfs)
+  print(bfs)
+  # plotarGrafo(bfs)
 
