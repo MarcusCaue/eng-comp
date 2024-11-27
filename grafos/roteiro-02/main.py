@@ -1,7 +1,20 @@
+import networkx as nx
+import matplotlib.pyplot as plt
+
 from bibgrafo.grafo_builder import GrafoBuilder
 from meu_grafo_lista_adj_nao_dir import MeuGrafo
 from bibgrafo.grafo_lista_adj_nao_dir import Aresta
 from bibgrafo.grafo import Vertice
+
+def plotarGrafo(grafo: MeuGrafo):
+  g = nx.Graph()
+
+  g.add_nodes_from( [ v.rotulo for v in grafo.vertices ] )
+  g.add_edges_from([ (grafo.arestas[a].v1.rotulo, grafo.arestas[a].v2.rotulo) for a in grafo.arestas ])
+
+  nx.draw(g, with_labels=True, arrows=True)
+  plt.show()
+
 
 # Setup do grafo da paraíba 
 paraiba = GrafoBuilder().tipo(MeuGrafo()) \
@@ -19,23 +32,19 @@ paraiba = GrafoBuilder().tipo(MeuGrafo()) \
   ]) \
   .build()
 
+
 # Todo grafo por padrão é conectado
-# grafo_aleatorio = GrafoBuilder().tipo(MeuGrafo()).vertices(8).arestas(8).build()
+grafo_aleatorio = GrafoBuilder().tipo(MeuGrafo()).vertices(8).arestas(12).build()
 
-# print("Grafo aleatório: ")
-# print(grafo_aleatorio)
+print("Grafo aleatório: ")
+print(grafo_aleatorio)
+plotarGrafo(grafo_aleatorio)
 
-# print("Árvores DFS:")
+print("Árvores DFS:")
 
-# for i in range(5):
-#   print(f"Árvore {i}")
-#   print(grafo_aleatorio.dfs('A'))
+for i in range(5):
+  dfs = grafo_aleatorio.dfs('A')
+  print(f"Árvore {i}")
+  print(dfs)
+  plotarGrafo(dfs)
 
-# print("Grafo da Paraíba")
-# print(paraiba)
-
-# print("Árvore DFS: ")
-# print(paraiba.dfs('J'))
-
-# print("Árvore BFS: ")
-# print(paraiba.bfs("J"))
