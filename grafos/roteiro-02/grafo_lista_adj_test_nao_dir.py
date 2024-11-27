@@ -99,17 +99,13 @@ class TestGrafo(unittest.TestCase):
         grafo_com_laco = GrafoBuilder().tipo(MeuGrafo()).vertices(6).arestas(4, lacos=4).build()
         self.assertEqual(grafo_com_laco.dfs('A'), MeuGrafo())
 
+        # Com Grafos Conexos
+        grafo_conexo = GrafoBuilder().tipo(MeuGrafo()).vertices(4).arestas(True).build()
+        verticesConexo = sorted([ v.rotulo for v in grafo_conexo.vertices ])
+        verticesDfs = sorted([ v.rotulo for v in grafo_conexo.dfs("B").vertices ])
 
-
-
-        
-
-
-
-
-
-
-
+        # Se o grafo é conexo, então a árvore DFS deve conter todos os vértices do grafo original
+        self.assertEqual(verticesConexo, verticesDfs)
 
 
 
