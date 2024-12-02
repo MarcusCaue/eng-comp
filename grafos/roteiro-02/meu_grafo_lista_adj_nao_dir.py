@@ -43,9 +43,14 @@ class MeuGrafo(GrafoListaAdjacenciaNaoDirecionado):
         return arvore_dfs
         
         
-    # Tente adicionar o array de arestas não visitadas na hora de se aprofundar
-    def bfs(self, V: str = '', arvore_bfs: GrafoListaAdjacenciaNaoDirecionado = None):
-         # Verificando a existência do vértice no grafo
+    def bfs(self, V: str = ''):
+        """
+        Não consegui implementar a função por conta própria, então busquei um código pronto e o adaptei para funcionar com a biblioteca.
+        Fonte do código base: https://youtu.be/mFb8WwI98b0?si=buxbZQZkRczjCRLj
+        Autora: Hemili Beatriz Alves Trindade
+        """
+
+        # Verificando a existência do vértice no grafo
         if not self.existe_rotulo_vertice(V): 
             raise VerticeInvalidoError
         
@@ -57,18 +62,39 @@ class MeuGrafo(GrafoListaAdjacenciaNaoDirecionado):
         if self.ha_laco():
             return MeuGrafo()
         
-        # Criando a árvore BFS quando ela não existe, isto é, na chamada não-recursiva da função
-        if type(arvore_bfs) == NoneType:
-            arvore_bfs = MeuGrafo()
+        arvore_bfs = MeuGrafo()
+
+        # Marcando todos os vértices do grafo como não visitados
+        verticesNaoVisitados = dict()
+        for v in self.vertices:
+            verticesNaoVisitados[v.rotulo] = False
+
+        # Fila de visitas, inserindo o nó raiz como o primeiro a ser visitado
+        filaVisitas = [V]
+        verticesNaoVisitados[V] = True # Marcando o nó raiz como visitado
+        
+        # Percorrendo a fila
+        while len(filaVisitas) != 0:
+
+            # Removendo o vértice que está sendo visitado
+            visitado = filaVisitas.pop(0)
+
+            adjacentesVisitado = self.arestas_sobre_vertice(visitado)
+
+
+
+
+
+
         
         # Marca o vértice do momento como visitado quando ele não estiver na árvore
-        if not arvore_bfs.existe_rotulo_vertice(V):
+        """ if not arvore_bfs.existe_rotulo_vertice(V):
             arvore_bfs.adiciona_vertice(V)
 
         # Arestas ligadas aos vértices vizinhos
         conexoesDiretas = self.arestas_sobre_vertice(V)
 
-        # Adicionando os vértices vizinhos com suas respectivas aresstas
+        # Adicionando as arestas que ligam aos vértices vizinhos
         for rot in conexoesDiretas:
             a = self.arestas[rot]
 
@@ -81,14 +107,18 @@ class MeuGrafo(GrafoListaAdjacenciaNaoDirecionado):
 
 
         # Se aprofundando
-        for rot in arvore_bfs.arestas_sobre_vertice(V):
-            a = arvore_bfs.arestas[rot]
+        verticesNaoVisitados = [ v.rotulo for v in arvore_bfs.vertices ]
+        verticesNaoVisitados.remove(V)
+
+        for rot in conexoesDiretas:
+            a = self.arestas[rot]
 
             # Pegando o vértice oposto
             outraPonta = a.v1 if a.v1.rotulo != V else a.v2
 
-            if not arvore_bfs.existe_rotulo_vertice(outraPonta.rotulo):
+            if outraPonta.rotulo in verticesNaoVisitados:
                 self.bfs(outraPonta.rotulo, arvore_bfs)
+                verticesNaoVisitados.remove(outraPonta.rotulo) """
                 
         return arvore_bfs
 
@@ -143,6 +173,17 @@ class MeuGrafo(GrafoListaAdjacenciaNaoDirecionado):
                     naoAdjacentesGrafo.add(f"{v.rotulo}-{vNaoAdj}")
 
         return naoAdjacentesGrafo
+
+    def vertices_adjacentes(self, V: str = ''):
+        arestasIncidentes = self.arestas_sobre_vertice(V)
+        verticesAdj = list()
+            
+        for rot in arestasIncidentes:
+            a = self.arestas[rot]
+            outraPonta = a.v1 if a.v1.rotulo != V else a.v2
+            verticesAdj.append(outraPonta.rotulo)
+        
+        return verticesAdj
 
     def ha_laco(self):
         '''
