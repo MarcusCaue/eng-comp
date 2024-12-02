@@ -37,15 +37,11 @@ grafo_conexo = GrafoBuilder().tipo(MeuGrafo()).vertices(4).arestas(True).build()
 
 print("Grafo Aleatório: ")
 print(grafo_aleatorio)
-
-vertice = input("Escolha um vértice: ")
-print(f"Vértices adjacentes a '{vertice}': {grafo_aleatorio.vertices_adjacentes(vertice)}")
-
 # plotarGrafo(grafo_aleatorio)
 
-# print("Árvores BFS:")
-# bfs = grafo_aleatorio.bfs('A')
-# print(bfs)
+print("Árvores BFS:")
+bfs = grafo_aleatorio.bfs('A')
+print(bfs)
 
 # for i in range(5):
 #   bfs = grafo_aleatorio.bfs('A')

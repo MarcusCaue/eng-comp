@@ -68,6 +68,7 @@ class MeuGrafo(GrafoListaAdjacenciaNaoDirecionado):
         verticesNaoVisitados = dict()
         for v in self.vertices:
             verticesNaoVisitados[v.rotulo] = False
+            arvore_bfs.adiciona_vertice(v.rotulo)
 
         # Fila de visitas, inserindo o nó raiz como o primeiro a ser visitado
         filaVisitas = [V]
@@ -79,46 +80,14 @@ class MeuGrafo(GrafoListaAdjacenciaNaoDirecionado):
             # Removendo o vértice que está sendo visitado
             visitado = filaVisitas.pop(0)
 
-            adjacentesVisitado = self.arestas_sobre_vertice(visitado)
+            adjacentesVisitado = self.vertices_adjacentes(visitado)
+            arestasVizinhos = self.arestas_sobre_vertice(visitado)
 
-
-
-
-
-
-        
-        # Marca o vértice do momento como visitado quando ele não estiver na árvore
-        """ if not arvore_bfs.existe_rotulo_vertice(V):
-            arvore_bfs.adiciona_vertice(V)
-
-        # Arestas ligadas aos vértices vizinhos
-        conexoesDiretas = self.arestas_sobre_vertice(V)
-
-        # Adicionando as arestas que ligam aos vértices vizinhos
-        for rot in conexoesDiretas:
-            a = self.arestas[rot]
-
-            # Pegando o vértice oposto
-            outraPonta = a.v1 if a.v1.rotulo != V else a.v2
-
-            if not arvore_bfs.existe_rotulo_vertice(outraPonta.rotulo):
-                arvore_bfs.adiciona_vertice(outraPonta.rotulo)
-                arvore_bfs.adiciona_aresta(a)
-
-
-        # Se aprofundando
-        verticesNaoVisitados = [ v.rotulo for v in arvore_bfs.vertices ]
-        verticesNaoVisitados.remove(V)
-
-        for rot in conexoesDiretas:
-            a = self.arestas[rot]
-
-            # Pegando o vértice oposto
-            outraPonta = a.v1 if a.v1.rotulo != V else a.v2
-
-            if outraPonta.rotulo in verticesNaoVisitados:
-                self.bfs(outraPonta.rotulo, arvore_bfs)
-                verticesNaoVisitados.remove(outraPonta.rotulo) """
+            for v in adjacentesVisitado:
+                # Visitando os vizinhos e adicionando os seus vizinhos na fila de visitas
+                if verticesNaoVisitados[v] == False:
+                    filaVisitas.append(v)
+                    verticesNaoVisitados[v] = True
                 
         return arvore_bfs
 
