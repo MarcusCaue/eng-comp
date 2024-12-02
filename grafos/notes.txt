@@ -12,3 +12,8 @@
 -> Para rodar os testes:
   - "python -m unittest <arq>.py || <arq>.<classe>.<funcao>"
 
+-> Dependências:
+	- Bibgrafo: pip install bibgrafo
+	- Bibliotecas de Exibição de grafos:
+		- pip install networkx
+		- pip install matplotlib	

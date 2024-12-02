@@ -68,7 +68,7 @@ class MeuGrafo(GrafoListaAdjacenciaNaoDirecionado):
         # Arestas ligadas aos vértices vizinhos
         conexoesDiretas = self.arestas_sobre_vertice(V)
 
-        # Adicionando os vértices vizinhos
+        # Adicionando os vértices vizinhos com suas respectivas aresstas
         for rot in conexoesDiretas:
             a = self.arestas[rot]
 
@@ -78,16 +78,17 @@ class MeuGrafo(GrafoListaAdjacenciaNaoDirecionado):
             if not arvore_bfs.existe_rotulo_vertice(outraPonta.rotulo):
                 arvore_bfs.adiciona_vertice(outraPonta.rotulo)
                 arvore_bfs.adiciona_aresta(a)
-        
+
+
         # Se aprofundando
-        for rot in conexoesDiretas:
-            a = self.arestas[rot]
+        for rot in arvore_bfs.arestas_sobre_vertice(V):
+            a = arvore_bfs.arestas[rot]
 
-            if not arvore_bfs.existe_rotulo_aresta(rot):
-                # Pegando o vértice oposto
-                outraPonta = a.v1 if a.v1.rotulo != V else a.v2
+            # Pegando o vértice oposto
+            outraPonta = a.v1 if a.v1.rotulo != V else a.v2
 
-                self.bfs(outraPonta.rotulo, arvore_bfs) 
+            if not arvore_bfs.existe_rotulo_vertice(outraPonta.rotulo):
+                self.bfs(outraPonta.rotulo, arvore_bfs)
                 
         return arvore_bfs
 
