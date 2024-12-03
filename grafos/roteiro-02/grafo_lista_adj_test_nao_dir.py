@@ -78,7 +78,6 @@ class TestGrafo(unittest.TestCase):
 
     # Teste do DFS
     def test_busca_profundidade_primeiro(self):
-        # MeuGrafo().
 
         # Com o grafo da Paraíba
         self.assertTrue(self.g_p.dfs('J').existe_rotulo_aresta('a1'))
@@ -107,6 +106,35 @@ class TestGrafo(unittest.TestCase):
         # Se o grafo é conexo, então a árvore DFS deve conter todos os vértices do grafo original
         self.assertEqual(verticesConexo, verticesDfs)
 
+    # Testes do BFS
+    def test_busca_largura_primeiro(self):
+        with self.assertRaises(VerticeInvalidoError):
+            self.g_p.bfs('H')
+        
+        grafo_com_ilha = GrafoBuilder().tipo(MeuGrafo()) \
+            .vertices([ 'IFCG', 'UEPB', 'UFCG', 'IFSP' ]) \
+            .arestas([ 
+                Aresta("a1", Vertice('IFCG'), Vertice('UEPB')),
+                Aresta("a2", Vertice('IFCG'), Vertice('UFCG')),
+                Aresta("a3", Vertice('UFCG'), Vertice('UEPB')),
+            ]).build()
+        self.assertEqual(grafo_com_ilha.bfs('IFSP'), MeuGrafo())
+
+        grafo_com_laco = GrafoBuilder().tipo(MeuGrafo()).vertices(5).arestas(6, lacos=3).build()
+        self.assertEqual(grafo_com_laco.bfs('B'), MeuGrafo())
+
+        # Considerando o grafo da Paraíba dos slides, foi necessário mudar a configuração das arestas no arquivo "gerar_grafos_teste.py"
+        rotulos_arestas_bfs_grafo_paraiba = self.g_p.bfs('M').arestas_sobre_vertice('M')
+        self.assertTrue('a8' in rotulos_arestas_bfs_grafo_paraiba and 'a6' in rotulos_arestas_bfs_grafo_paraiba)
+
+        # Grafos completos geram árvores de altura 1
+        k6 = GrafoBuilder().tipo(MeuGrafo()).vertices(6).arestas(True).build()
+        bfs_k6_gabarito = GrafoBuilder().tipo(MeuGrafo()) \
+            .vertices([ 'A', 'B', 'C', 'D', 'E', 'F' ]) \
+            .arestas([
+                k6.get_aresta('a1'), k6.get_aresta('a2'), k6.get_aresta('a3'), k6.get_aresta('a4'), k6.get_aresta('a5')
+            ]).build()
+        self.assertEqual(bfs_k6_gabarito, k6.bfs('A'))
 
 
     def test_adiciona_aresta(self):

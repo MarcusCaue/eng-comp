@@ -1,6 +1,5 @@
 from bibgrafo.grafo_lista_adj_nao_dir import GrafoListaAdjacenciaNaoDirecionado
 from bibgrafo.grafo_errors import *
-from bibgrafo.aresta import Aresta
 from types import NoneType
 
 class MeuGrafo(GrafoListaAdjacenciaNaoDirecionado):
@@ -41,7 +40,6 @@ class MeuGrafo(GrafoListaAdjacenciaNaoDirecionado):
                 arvore_dfs.adiciona_aresta(a)
      
         return arvore_dfs
-        
         
     def bfs(self, V: str = ''):
         """
@@ -98,7 +96,7 @@ class MeuGrafo(GrafoListaAdjacenciaNaoDirecionado):
 
         return arvore_bfs
 
-    
+
     def contem_vertice_nao_adjacente(self):
         """
         Verifica se um grafo contém pelo menos um vértice sem outros vértices adjacentes.

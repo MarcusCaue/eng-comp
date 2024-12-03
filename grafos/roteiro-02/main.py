@@ -32,14 +32,28 @@ paraiba = GrafoBuilder().tipo(MeuGrafo()) \
   ]) \
   .build()
 
+# print(paraiba.bfs('C'))
+
 grafo_aleatorio = GrafoBuilder().tipo(MeuGrafo()).vertices(6).arestas(8).build()
-grafo_conexo = GrafoBuilder().tipo(MeuGrafo()).vertices(4).arestas(True).build()
 
-print("Grafo Aleatório: ")
-plotarGrafo(grafo_aleatorio)
+k6 = GrafoBuilder().tipo(MeuGrafo()).vertices(6).arestas(True).build()
+bfs_k6_gabarito = GrafoBuilder().tipo(MeuGrafo()) \
+    .vertices([ 'A', 'B', 'C', 'D', 'E', 'F' ]) \
+    .arestas([
+      k6.get_aresta('a1'), k6.get_aresta('a2'), k6.get_aresta('a3'), k6.get_aresta('a4'), k6.get_aresta('a5')
+    ]).build()
 
-print("Árvores BFS:")
+print(k6)
+print(bfs_k6_gabarito)
+print(k6.bfs('A'))
 
-for v in grafo_aleatorio.vertices:
-  bfs = grafo_aleatorio.bfs(v.rotulo)
-  plotarGrafo(bfs)
+
+
+# print("Grafo Aleatório: ")
+# plotarGrafo(grafo_aleatorio)
+
+# print("Árvores BFS:")
+
+# for v in grafo_aleatorio.vertices:
+#   bfs = grafo_aleatorio.bfs(v.rotulo)
+#   plotarGrafo(bfs)
