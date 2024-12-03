@@ -36,15 +36,10 @@ grafo_aleatorio = GrafoBuilder().tipo(MeuGrafo()).vertices(6).arestas(8).build()
 grafo_conexo = GrafoBuilder().tipo(MeuGrafo()).vertices(4).arestas(True).build()
 
 print("Grafo Aleatório: ")
-print(grafo_aleatorio)
-# plotarGrafo(grafo_aleatorio)
+plotarGrafo(grafo_aleatorio)
 
 print("Árvores BFS:")
-bfs = grafo_aleatorio.bfs('A')
-print(bfs)
 
-# for i in range(5):
-#   bfs = grafo_aleatorio.bfs('A')
-#   print(f"Árvore {i}")
-#   print(bfs)
-  # plotarGrafo(bfs)
+for v in grafo_aleatorio.vertices:
+  bfs = grafo_aleatorio.bfs(v.rotulo)
+  plotarGrafo(bfs)

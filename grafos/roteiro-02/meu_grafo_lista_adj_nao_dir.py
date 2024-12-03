@@ -88,7 +88,14 @@ class MeuGrafo(GrafoListaAdjacenciaNaoDirecionado):
                 if verticesNaoVisitados[v] == False:
                     filaVisitas.append(v)
                     verticesNaoVisitados[v] = True
-                
+
+                    for rot in arestasVizinhos:
+                        a = self.get_aresta(rot)
+                        pontas = [ a.v1.rotulo, a.v2.rotulo ]
+
+                        if (v in pontas and visitado in pontas):
+                            arvore_bfs.adiciona_aresta(self.get_aresta(rot))
+
         return arvore_bfs
 
     
