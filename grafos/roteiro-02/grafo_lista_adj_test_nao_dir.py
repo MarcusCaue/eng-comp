@@ -123,9 +123,8 @@ class TestGrafo(unittest.TestCase):
         grafo_com_laco = GrafoBuilder().tipo(MeuGrafo()).vertices(5).arestas(6, lacos=3).build()
         self.assertEqual(grafo_com_laco.bfs('B'), MeuGrafo())
 
-        # Considerando o grafo da Paraíba dos slides, foi necessário mudar a configuração das arestas no arquivo "gerar_grafos_teste.py"
         rotulos_arestas_bfs_grafo_paraiba = self.g_p.bfs('M').arestas_sobre_vertice('M')
-        self.assertTrue('a8' in rotulos_arestas_bfs_grafo_paraiba and 'a6' in rotulos_arestas_bfs_grafo_paraiba)
+        self.assertTrue('a8' in rotulos_arestas_bfs_grafo_paraiba and 'a7' in rotulos_arestas_bfs_grafo_paraiba)
 
         # Grafos completos geram árvores de altura 1
         k6 = GrafoBuilder().tipo(MeuGrafo()).vertices(6).arestas(True).build()
