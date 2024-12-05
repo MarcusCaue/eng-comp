@@ -1,6 +1,8 @@
 from bibgrafo.grafo_lista_adj_nao_dir import GrafoListaAdjacenciaNaoDirecionado
 from bibgrafo.grafo_errors import *
 from types import NoneType
+from bibgrafo.aresta import Aresta
+from bibgrafo.vertice import Vertice
 
 class MeuGrafo(GrafoListaAdjacenciaNaoDirecionado):
 
@@ -9,8 +11,13 @@ class MeuGrafo(GrafoListaAdjacenciaNaoDirecionado):
             return False
 
         ciclo = list()
-        for v in self.get_rotulos_vertices():
-            dfsTree = self.dfs_busca_ciclo(v)
+        
+        # dfsTree = self.
+        # print(dfsTree)
+
+        # for v in self.get_rotulos_vertices():
+        #     dfsTree = self.dfs_busca_ciclo(V=v, raiz=self.get_vertice(v), arvore_dfs=MeuGrafo(vertices=[Vertice(v)]))
+        #     print(f"Com raíz em {v}:", dfsTree)
 
 
 
@@ -19,42 +26,7 @@ class MeuGrafo(GrafoListaAdjacenciaNaoDirecionado):
 
 
 
-    def dfs_busca_ciclo(self, V: str = '', arvore_dfs: GrafoListaAdjacenciaNaoDirecionado = None):
-        # Verificando a existência do vértice no grafo
-        if not self.existe_rotulo_vertice(V):
-            raise VerticeInvalidoError
 
-        # Verificando se o grafo contém um vértice com nenhum outro adjacente a ele
-        if self.contem_vertice_nao_adjacente():
-            return MeuGrafo()
-
-        # Verificando se tem laços
-        if self.ha_laco():
-            return MeuGrafo()
-
-
-        # Criando a árvore DFS quando ela não existe, isto é, na chamada não-recursiva da função
-        if type(arvore_dfs) == NoneType:
-            arvore_dfs = MeuGrafo()
-
-        # Sempre que a função é chamada e passou pelas verificações, então o vértice do momento pode entrar na árvore DFS
-        arvore_dfs.adiciona_vertice(V)
-
-        # Retorna um conjunto de strings contendo os rótulos das arestas incidentes sobre o vértice
-        conexoesDiretas = self.arestas_sobre_vertice(V)
-
-        for rot in conexoesDiretas:
-            a = self.arestas[rot]
-
-            # Pegando o vértice oposto
-            outraPonta = a.v1 if a.v1.rotulo != V else a.v2
-
-            # Quando o vértice oposto não está na árvore
-            if not arvore_dfs.existe_rotulo_vertice(outraPonta.rotulo):
-                self.dfs(outraPonta.rotulo, arvore_dfs) # Aprofundamento
-                arvore_dfs.adiciona_aresta(a)
-
-        return arvore_dfs
 
 
 

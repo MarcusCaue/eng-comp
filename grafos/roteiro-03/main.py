@@ -31,4 +31,24 @@ paraiba = GrafoBuilder().tipo(MeuGrafo()) \
   ]) \
   .build()
 
-print(plotarGrafo(paraiba))
+# Ciclos do Grafo da Paraíba
+"""
+
+Notas:
+  - Todo vértice que tem somente uma aresta não possui um ciclo partindo dele e ele não pode estar no meio do caminho.
+    - É o caso de 'J' e 'Z'
+  
+  - Um vértice cujas arestas são todas paralelas a um mesmo vértice não possui ciclo e não pode estar no meio do caminho
+    - É o caso de 'E' e 'P'
+
+T a7 C a6 M a8 T
+T a8 M a6 C a7 T
+
+T a8 M a6 C a2 E a3 C a7 T (ERRO, 'C' se repete)
+T a8 M a6 C a4 P a5 C a7 T (ERRO, 'C' se repete)
+
+"""
+
+for v in paraiba.get_rotulos_vertices():
+  plotarGrafo(paraiba.bfs(v))
+
