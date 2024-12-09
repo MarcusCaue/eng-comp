@@ -42,7 +42,7 @@ class MeuGrafo(GrafoListaAdjacenciaNaoDirecionado):
     def monta_ciclo(self, vertice: str, vertices_visitados: list):
         if self.grau(vertice) == 1: # Verificando se o vértice é de grau 1 -> não há como voltar para ele
             return MeuGrafo()
-        elif 
+        # elif
 
 
         
