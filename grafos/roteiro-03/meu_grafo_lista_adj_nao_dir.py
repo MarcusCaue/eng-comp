@@ -7,21 +7,46 @@ from bibgrafo.vertice import Vertice
 class MeuGrafo(GrafoListaAdjacenciaNaoDirecionado):
 
     def ha_ciclo(self):
-        if self.contem_vertice_nao_adjacente() or self.ha_laco():
-            return False
+        # Para saber se há um ciclo no grafo, preciso saber se há um ciclo partindo de cada vértice
+        # Preciso controlar os vértices visitados
+        vertices_visitados = []
 
-        ciclo = list()
+        for v in self.get_rotulos_vertices():
+            ciclo = self.monta_ciclo(v, vertices_visitados)
+
+
+            pass
+
+
+
+        """
+        - Todo vértice que tem somente uma aresta não possui um ciclo partindo dele e ele não pode estar no meio do caminho.
+            - É o caso de 'J' e 'Z'
         
-        # dfsTree = self.
-        # print(dfsTree)
+        - Um vértice cujas arestas são todas paralelas a um mesmo vértice não possui ciclo e não pode estar no meio do caminho
+            - É o caso de 'E' e 'P'
 
-        # for v in self.get_rotulos_vertices():
-        #     dfsTree = self.dfs_busca_ciclo(V=v, raiz=self.get_vertice(v), arvore_dfs=MeuGrafo(vertices=[Vertice(v)]))
-        #     print(f"Com raíz em {v}:", dfsTree)
+        T a7 C a6 M a8 T
+        T a8 M a6 C a7 T
+
+        T a8 M a6 C a2 E a3 C a7 T (ERRO, 'C' se repete)
+        T a8 M a6 C a4 P a5 C a7 T (ERRO, 'C' se repete)
+
+        - Preciso saber de alguma forma, na função recursiva, quais foram os vértices visitados
+        - Preciso criar uma função que monta o ciclo a partir de um vértice de referência (esse pode ser recursivo)
+
+        """
+        
+    
+
+    def monta_ciclo(self, vertice: str, vertices_visitados: list):
+        if self.grau(vertice) == 1: # Verificando se o vértice é de grau 1 -> não há como voltar para ele
+            return MeuGrafo()
+        elif 
 
 
-
-
+        
+        pass
 
 
 
@@ -125,6 +150,20 @@ class MeuGrafo(GrafoListaAdjacenciaNaoDirecionado):
                             arvore_bfs.adiciona_aresta(self.get_aresta(rot))
 
         return arvore_bfs
+
+    def arestas_mesmo_ponto(self, V: str = ''):
+        arestas = self.arestas_sobre_vertice(V)
+        pontas = []
+        for rot in arestas:
+            a = self.arestas[rot]
+            if len(pontas) == 0:
+                pontas.append(a.v1.rotulo)
+                pontas.append(a.v2.rotulo)
+            
+            if a.v1.rotulo not in pontas or a.v2.rotulo not in pontas:
+                return False
+        
+        return True
 
     def contem_vertice_nao_adjacente(self):
         """
