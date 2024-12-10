@@ -13,6 +13,4 @@ grafo = GrafoBuilder().tipo(MeuGrafo()) \
         Aresta('a5', Vertice('A'), Vertice('B')),
     ]) \
     .build()
-grafo.vertices_nao_adjacentes()
-
 

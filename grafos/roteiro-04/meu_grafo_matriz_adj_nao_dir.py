@@ -11,38 +11,30 @@ class MeuGrafo(GrafoMatrizAdjacenciaNaoDirecionado):
         Onde X, Z e W são vértices no grafo que não tem uma aresta entre eles.
         :return: Um conjunto (set) com os pares de vértices não adjacentes
         '''
-        print(self)
-        # print(self.matriz[0])
-        # print(self.matriz[0][1]['a1'].v2)
-
         vertices_nao_adj = set()
 
-        for i in range(len(self.vertices)):
-            for j in range(len(self.matriz)):
+        for i in range(len(self.vertices)): 
+            for j in range(i+1, len(self.matriz)):
                 dict_arestas = self.matriz[i][j]
                 if dict_arestas == dict():
                     vertices = f"{self.vertices[i]}-{self.vertices[j]}"
-                    inverso = vertices[::-1]
-
-                    if (vertices not in vertices_nao_adj) and (inverso in )
-
-                    vertices_nao_adj.add()
-
-        print(vertices_nao_adj)
-
-
-
-
-
-        pass
+                    
+                    if i != j:
+                        vertices_nao_adj.add(vertices)
+        
+        return vertices_nao_adj
 
     def ha_laco(self):
         '''
         Verifica se existe algum laço no grafo.
         :return: Um valor booleano que indica se existe algum laço.
         '''
-        pass
-
+        for i in range(len(self.vertices)):
+            arestas = self.matriz[i][i]
+            if arestas != dict():
+                return True
+        
+        return False
 
     def grau(self, V=''):
         '''
@@ -51,14 +43,38 @@ class MeuGrafo(GrafoMatrizAdjacenciaNaoDirecionado):
         :return: Um valor inteiro que indica o grau do vértice
         :raises: VerticeInvalidoError se o vértice não existe no grafo
         '''
-        pass
+        if not self.existe_rotulo_vertice(V):
+            raise VerticeInvalidoError
+    
+        index_vertice = self.indice_do_vertice(self.get_vertice(V))
+        adjacencias = self.matriz[index_vertice]
 
+        grau = 0
+        for cel in adjacencias:
+            index_cel = adjacencias.index(cel)
+            quant_arestas = len(cel.keys())
+
+            if index_cel == index_vertice:
+                grau += quant_arestas * 2
+            else:
+                grau += quant_arestas
+        
+        return grau
+        
     def ha_paralelas(self):
         '''
         Verifica se há arestas paralelas no grafo
         :return: Um valor booleano que indica se existem arestas paralelas no grafo.
         '''
-        pass
+        for i in range(len(self.vertices)):
+            for j in range(i, len(self.vertices)):
+                arestas = self.matriz[i][j]
+                quant_arestas = len(arestas.keys())
+
+                if quant_arestas > 1:
+                    return True
+                
+        return False
 
     def arestas_sobre_vertice(self, V):
         '''
@@ -68,11 +84,40 @@ class MeuGrafo(GrafoMatrizAdjacenciaNaoDirecionado):
         :return: Um conjunto com os rótulos das arestas que incidem sobre o vértice
         :raises: VerticeInvalidoError se o vértice não existe no grafo
         '''
-        pass
+        if not self.existe_rotulo_vertice(V):
+            raise VerticeInvalidoError
+        
+        index_vertice = self.indice_do_vertice(self.get_vertice(V))
+        adjacencias = self.matriz[index_vertice]
+        rotulos_arestas = set()
+
+        for adj in adjacencias:
+            if adj != dict():
+                rotulos = adj.keys()
+                for r in rotulos:
+                    rotulos_arestas.add(r) 
+        
+        return rotulos_arestas
 
     def eh_completo(self):
         '''
         Verifica se o grafo é completo.
         :return: Um valor booleano que indica se o grafo é completo
         '''
-        pass
+        if self.ha_laco() or self.ha_paralelas():
+            return False
+        
+        quant_vertices = len(self.vertices)
+        
+        for i in range(quant_vertices):
+            quant_adjacencias = 0
+            adjacencias = self.matriz[i]
+
+            for adj in adjacencias:
+                if adj != dict():
+                    quant_adjacencias += 1
+            
+            if quant_adjacencias != (quant_vertices - 1):
+                return False
+        
+        return True
