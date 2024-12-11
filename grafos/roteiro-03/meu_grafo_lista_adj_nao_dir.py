@@ -7,19 +7,23 @@ from bibgrafo.vertice import Vertice
 class MeuGrafo(GrafoListaAdjacenciaNaoDirecionado):
 
     def ha_ciclo(self):
-        # Para saber se há um ciclo no grafo, preciso saber se há um ciclo partindo de cada vértice
-        # Preciso controlar os vértices visitados
+        if len(self.vertices) < 3 or len(self.arestas) < 3:
+            return False
+        
         vertices_visitados = []
 
         for v in self.get_rotulos_vertices():
-            ciclo = self.monta_ciclo(v, vertices_visitados)
+            if v not in vertices_visitados:
+                vertices_visitados.append(v)    
+                ciclo = self.monta_ciclo([], v, vertices_visitados)
 
-
-            pass
-
-
+                if ciclo != list() and ciclo[0] == ciclo[-1]:
+                    return ciclo
+        
+        return False
 
         """
+        - Para que haja um ciclo, é preciso de no mínimo 3 vértices 
         - Todo vértice que tem somente uma aresta não possui um ciclo partindo dele e ele não pode estar no meio do caminho.
             - É o caso de 'J' e 'Z'
         
@@ -32,30 +36,39 @@ class MeuGrafo(GrafoListaAdjacenciaNaoDirecionado):
         T a8 M a6 C a2 E a3 C a7 T (ERRO, 'C' se repete)
         T a8 M a6 C a4 P a5 C a7 T (ERRO, 'C' se repete)
 
+        
         - Preciso saber de alguma forma, na função recursiva, quais foram os vértices visitados
         - Preciso criar uma função que monta o ciclo a partir de um vértice de referência (esse pode ser recursivo)
 
         """
         
-    
-
-    def monta_ciclo(self, vertice: str, vertices_visitados: list):
+    def monta_ciclo(self, ciclo: list, vertice: str, vertices_visitados: list):
         if self.grau(vertice) == 1: # Verificando se o vértice é de grau 1 -> não há como voltar para ele
-            return MeuGrafo()
-        # elif
-
-
+            return ciclo
+        elif self.arestas_mesmo_ponto(vertice): # Verificando se o vértice contém arestas que dão em apenas um outro vértice
+            return ciclo
         
-        pass
+        if len(ciclo) == 0:
+            ciclo.append(vertice)
+        elif len(ciclo) == 1:
+            aresta = self.get_aresta_entre(vertice, ciclo[-1])
+            ciclo += [aresta.rotulo, vertice]
+        elif ciclo[0] != ciclo[-1]:
+            aresta = self.get_aresta_entre(vertice, ciclo[-1])
+            ciclo += [aresta.rotulo, vertice]
 
+        vizinhos = self.vertices_adjacentes(vertice)
 
-
-
-
-
-
-
-
+        for v in vizinhos:
+            if v not in vertices_visitados:
+                vertices_visitados.append(v)
+                self.monta_ciclo(ciclo, v, vertices_visitados)
+            elif len(ciclo) > 3 and v == ciclo[0] and ciclo[0] != ciclo[-1]:
+                aresta = self.get_aresta_entre(vertice, v)
+                ciclo += [aresta.rotulo, v]
+                return ciclo 
+        
+        return ciclo
 
 
 
@@ -151,7 +164,7 @@ class MeuGrafo(GrafoListaAdjacenciaNaoDirecionado):
 
         return arvore_bfs
 
-    def arestas_mesmo_ponto(self, V: str = ''):
+    def arestas_mesmo_ponto(self, V: str):
         arestas = self.arestas_sobre_vertice(V)
         pontas = []
         for rot in arestas:
@@ -216,14 +229,14 @@ class MeuGrafo(GrafoListaAdjacenciaNaoDirecionado):
 
         return naoAdjacentesGrafo
 
-    def vertices_adjacentes(self, V: str = ''):
+    def vertices_adjacentes(self, V: str) -> set:
         arestasIncidentes = self.arestas_sobre_vertice(V)
-        verticesAdj = list()
+        verticesAdj = set()
             
         for rot in arestasIncidentes:
             a = self.arestas[rot]
             outraPonta = a.v1 if a.v1.rotulo != V else a.v2
-            verticesAdj.append(outraPonta.rotulo)
+            verticesAdj.add(outraPonta.rotulo)
         
         return verticesAdj
 
@@ -317,3 +330,15 @@ class MeuGrafo(GrafoListaAdjacenciaNaoDirecionado):
 
     def get_rotulos_vertices(self):
         return [ v.rotulo for v in self.vertices ]
+
+    def get_aresta_entre(self, ponta1: str, ponta2: str):
+        """ Retorna o uma aresta que conecta os dois vértices passados como parâmetro """
+        arestas = self.arestas
+
+        for rot in arestas:
+            a = arestas[rot]
+            pontas = sorted([ a.v1.rotulo, a.v2.rotulo ])
+            if pontas == sorted([ ponta1, ponta2 ]):
+                return a
+        
+        raise ArestaInvalidaError
