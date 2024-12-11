@@ -21,10 +21,3 @@ paraiba = GrafoBuilder().tipo(MeuGrafo()) \
 grafo_k5 = GrafoBuilder().tipo(MeuGrafo()).vertices(5).arestas(True).build()
 grafo_k2 = GrafoBuilder().tipo(MeuGrafo()).vertices(2).arestas(True).build()
 grafo_k3 = GrafoBuilder().tipo(MeuGrafo()).vertices(3).arestas(True).build()
-
-print(grafo_k5)
-print(grafo_k5.ha_ciclo())
-print(paraiba.ha_ciclo())
-
-print(grafo_k3)
-print(grafo_k3.ha_ciclo())

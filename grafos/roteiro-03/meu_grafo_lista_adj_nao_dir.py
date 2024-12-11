@@ -183,9 +183,7 @@ class MeuGrafo(GrafoListaAdjacenciaNaoDirecionado):
         Verifica se um grafo contém pelo menos um vértice sem outros vértices adjacentes.
         :return: um valor booleano indicando se o grafo contém ou não um vértice adjacente a nenhum outro.
         """
-        vertices = self.vertices
-
-        for v in vertices:
+        for v in self.vertices:
             if self.grau(v.rotulo) == 0:
                 return True
         
