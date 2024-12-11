@@ -1,18 +1,16 @@
 from bibgrafo.grafo_lista_adj_nao_dir import GrafoListaAdjacenciaNaoDirecionado
 from bibgrafo.grafo_errors import *
 from types import NoneType
-from bibgrafo.aresta import Aresta
-from bibgrafo.vertice import Vertice
 
 class MeuGrafo(GrafoListaAdjacenciaNaoDirecionado):
 
     def ha_ciclo(self):
+        # Não é possível formar um ciclo em um grafo que não tenha pelo menos 3 vértices e 3 arestas
         if len(self.vertices) < 3 or len(self.arestas) < 3:
             return False
         
         vertices_visitados = []
-
-        for v in self.get_rotulos_vertices():
+        for v in self.get_rotulos_vertices(): # Tentando montar um ciclo partindo de cada vértice do grafo
             if v not in vertices_visitados:
                 vertices_visitados.append(v)    
                 ciclo = self.monta_ciclo([], v, vertices_visitados)
@@ -43,17 +41,18 @@ class MeuGrafo(GrafoListaAdjacenciaNaoDirecionado):
         """
         
     def monta_ciclo(self, ciclo: list, vertice: str, vertices_visitados: list):
-        if self.grau(vertice) == 1: # Verificando se o vértice é de grau 1 -> não há como voltar para ele
+        # Se o vértice é de grau 1 então não tem como ir para outro vértice por outra aresta
+        # Se todas as arestas do vértice incidem no mesmo vértice então não tem como ir para outro vértice por uma aresta não paralela
+        if self.grau(vertice) == 1 or self.arestas_incidem_mesmo_vertice(vertice): 
             return ciclo
-        elif self.arestas_mesmo_ponto(vertice): # Verificando se o vértice contém arestas que dão em apenas um outro vértice
+        
+        # Se o ciclo já está pronto, então deve ser retornado
+        if len(ciclo) > 6 and ciclo[0] == ciclo[-1]:
             return ciclo
         
         if len(ciclo) == 0:
             ciclo.append(vertice)
-        elif len(ciclo) == 1:
-            aresta = self.get_aresta_entre(vertice, ciclo[-1])
-            ciclo += [aresta.rotulo, vertice]
-        elif ciclo[0] != ciclo[-1]:
+        else:
             aresta = self.get_aresta_entre(vertice, ciclo[-1])
             ciclo += [aresta.rotulo, vertice]
 
@@ -63,6 +62,7 @@ class MeuGrafo(GrafoListaAdjacenciaNaoDirecionado):
             if v not in vertices_visitados:
                 vertices_visitados.append(v)
                 self.monta_ciclo(ciclo, v, vertices_visitados)
+
             elif len(ciclo) > 3 and v == ciclo[0] and ciclo[0] != ciclo[-1]:
                 aresta = self.get_aresta_entre(vertice, v)
                 ciclo += [aresta.rotulo, v]
@@ -164,7 +164,7 @@ class MeuGrafo(GrafoListaAdjacenciaNaoDirecionado):
 
         return arvore_bfs
 
-    def arestas_mesmo_ponto(self, V: str):
+    def arestas_incidem_mesmo_vertice(self, V: str):
         arestas = self.arestas_sobre_vertice(V)
         pontas = []
         for rot in arestas:
