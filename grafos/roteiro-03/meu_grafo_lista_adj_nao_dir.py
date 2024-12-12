@@ -70,6 +70,39 @@ class MeuGrafo(GrafoListaAdjacenciaNaoDirecionado):
         
         return ciclo
 
+    def caminho(self, comprimento: int, v: str):
+        # E quando caminho é um ciclo?
+        caminho = list()
+
+        return self.monta_caminho(v, comprimento, 0, MeuGrafo())
+        
+
+    def monta_caminho(self, V: str, comp_ref: int, comp_atual: int, arvore_dfs: GrafoListaAdjacenciaNaoDirecionado):
+        if not self.existe_rotulo_vertice(V): 
+            raise VerticeInvalidoError
+        
+        if self.contem_vertice_nao_adjacente() or self.ha_laco():
+            return MeuGrafo()
+    
+        # Tente adicionar o vértice e a aresta ao grafo antes da árvore se aprofundar
+        arvore_dfs.adiciona_vertice(V)
+
+        if comp_atual == comp_ref:
+            return arvore_dfs
+        
+        for rot in self.arestas_sobre_vertice(V):
+            a = self.arestas[rot]
+            outraPonta = a.v1 if a.v1.rotulo != V else a.v2
+
+            if len(arvore_dfs.arestas) == comp_ref:
+                return arvore_dfs
+
+            if not arvore_dfs.existe_rotulo_vertice(outraPonta.rotulo):
+                comp_atual += 1
+                self.monta_caminho(outraPonta.rotulo, comp_ref, comp_atual, arvore_dfs) 
+                arvore_dfs.adiciona_aresta(a)
+     
+        return arvore_dfs
 
 
     def dfs(self, V: str = '', arvore_dfs: GrafoListaAdjacenciaNaoDirecionado = None):
@@ -78,13 +111,8 @@ class MeuGrafo(GrafoListaAdjacenciaNaoDirecionado):
             raise VerticeInvalidoError
         
         # Verificando se o grafo contém um vértice com nenhum outro adjacente a ele
-        if self.contem_vertice_nao_adjacente():
+        if self.contem_vertice_nao_adjacente() or self.ha_laco():
             return MeuGrafo()
-        
-        # Verificando se tem laços
-        if self.ha_laco():
-            return MeuGrafo()
-
 
         # Criando a árvore DFS quando ela não existe, isto é, na chamada não-recursiva da função
         if type(arvore_dfs) == NoneType:
@@ -121,11 +149,7 @@ class MeuGrafo(GrafoListaAdjacenciaNaoDirecionado):
             raise VerticeInvalidoError
         
         # Verificando se o grafo contém um vértice com nenhum outro adjacente a ele
-        if self.contem_vertice_nao_adjacente():
-            return MeuGrafo()
-        
-        # Verificando se tem laços
-        if self.ha_laco():
+        if self.contem_vertice_nao_adjacente() or self.ha_laco():
             return MeuGrafo()
         
         arvore_bfs = MeuGrafo()
