@@ -34,7 +34,7 @@ grafo_k5 = GrafoBuilder().tipo(MeuGrafo()).vertices(5).arestas(True).build()
 grafo_k2 = GrafoBuilder().tipo(MeuGrafo()).vertices(2).arestas(True).build()
 grafo_k3 = GrafoBuilder().tipo(MeuGrafo()).vertices(3).arestas(True).build()
 
-# for i in range(5, 0, -1):
-caminho = grafo_k5.caminho(3, 'A')
-plotarGrafo(caminho)
+print(paraiba.caminho(2, 'C'))
+
+# plotarGrafo(paraiba.caminho(4, 'J'))
 

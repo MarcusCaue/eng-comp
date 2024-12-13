@@ -71,39 +71,99 @@ class MeuGrafo(GrafoListaAdjacenciaNaoDirecionado):
         return ciclo
 
     def caminho(self, comprimento: int, v: str):
+        if self.contem_vertice_nao_adjacente() or self.ha_laco():
+            return False
+        
         # E quando caminho é um ciclo?
         caminho = list()
 
-        return self.monta_caminho(v, comprimento, 0, MeuGrafo())
+        return self.monta_caminho_iterativo(v, comprimento)
+
+        # return self.monta_caminho(v, comprimento, 0, MeuGrafo())
         
+
+    def monta_caminho_iterativo(self, V: str, comp: int):
+        if not self.existe_rotulo_vertice(V): 
+            raise VerticeInvalidoError
+        
+        # Lista com as rotas que ele pode seguir
+        rotas = self.arestas_sobre_vertice(V)
+
+        caminho = [V]
+        for r in rotas:
+            outraPonta = self.outra_ponta(r, V)
+
+            if comp == 1: # Quando o comprimento é 1
+                caminho += [ r, outraPonta ]
+                return caminho
+            
+            # Desconsiderando vértices que apontam para o mesmo vértice
+            if self.arestas_incidem_mesmo_vertice(outraPonta):
+                continue
+
+            # Se ele passou pelos testes anteriores, então esta rota pode ser viável
+            copia_caminho = caminho.copy()
+
+            # Como faço para seguir uma determinada rota?
+
+
+        pass
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     def monta_caminho(self, V: str, comp_ref: int, comp_atual: int, arvore_dfs: GrafoListaAdjacenciaNaoDirecionado):
         if not self.existe_rotulo_vertice(V): 
             raise VerticeInvalidoError
         
-        if self.contem_vertice_nao_adjacente() or self.ha_laco():
-            return MeuGrafo()
-    
-        # Tente adicionar o vértice e a aresta ao grafo antes da árvore se aprofundar
-        arvore_dfs.adiciona_vertice(V)
-
         if comp_atual == comp_ref:
             return arvore_dfs
         
+        if len(arvore_dfs.vertices) == 0:
+            arvore_dfs.adiciona_vertice(V)
+
+        
+
+
+
+
+
+
+
+
+
+        
         for rot in self.arestas_sobre_vertice(V):
             a = self.arestas[rot]
-            outraPonta = a.v1 if a.v1.rotulo != V else a.v2
+            outraPonta = (a.v1 if a.v1.rotulo != V else a.v2).rotulo
 
             if len(arvore_dfs.arestas) == comp_ref:
                 return arvore_dfs
 
-            if not arvore_dfs.existe_rotulo_vertice(outraPonta.rotulo):
-                comp_atual += 1
-                self.monta_caminho(outraPonta.rotulo, comp_ref, comp_atual, arvore_dfs) 
-                arvore_dfs.adiciona_aresta(a)
+            if not arvore_dfs.existe_rotulo_vertice(outraPonta):
+                if self.grau(outraPonta) != 1 and self.arestas_incidem_mesmo_vertice(outraPonta):
+                    pass
+                else:
+                    comp_atual += 1
+                    arvore_dfs.adiciona_vertice(outraPonta)
+                    arvore_dfs.adiciona_aresta(a)
+                    self.monta_caminho(outraPonta, comp_ref, comp_atual, arvore_dfs) 
      
         return arvore_dfs
-
 
     def dfs(self, V: str = '', arvore_dfs: GrafoListaAdjacenciaNaoDirecionado = None):
         # Verificando a existência do vértice no grafo
@@ -364,3 +424,16 @@ class MeuGrafo(GrafoListaAdjacenciaNaoDirecionado):
                 return a
         
         raise ArestaInvalidaError
+
+    def outra_ponta(self, rot_aresta: str, v: str):
+        if not self.existe_rotulo_vertice(v):
+            raise VerticeInvalidoError
+        elif not self.existe_rotulo_aresta(rot_aresta):
+            raise ArestaInvalidaError
+        elif not self.arestas[rot_aresta].eh_ponta(self.get_vertice(v)):
+            raise ArestaInvalidaError
+        
+        aresta = self.arestas[rot_aresta]
+        outraPonta = (aresta.v1 if aresta.v1.rotulo != v else aresta.v2).rotulo
+
+        return outraPonta
