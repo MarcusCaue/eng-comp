@@ -1,0 +1,16 @@
+-> Usar meu_grafo_matriz_adj_dir.py (DIRECIONADO)
+-> A leitura é feita da seguinte forma:
+
+  A B C
+A 0 1 1
+B 1 0 0
+C 1 1 1
+
+-> "B (coluna) é alcançável a partir de A (linha)".
+
+-> Para copiar uma matriz, use o "deepcopy":
+	- from copy import deepcopy
+	- deepcopy(matriz)
+
+-> Fazer um pré-processamento da matriz para substituir os dicionários das arestas por True/False ou 1/0 (Alcançável/Não-alcançável).
+	- Para aplicar o algoritmo de Warshall com os 0's e 1's
