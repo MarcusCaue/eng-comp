@@ -1,14 +1,13 @@
-from bibgrafo.grafo_matriz_adj_nao_dir import GrafoMatrizAdjacenciaNaoDirecionado
+from bibgrafo.grafo_matriz_adj_dir import *
 from bibgrafo.grafo_errors import *
 
-class MeuGrafoNaoDir(GrafoMatrizAdjacenciaNaoDirecionado):
+class MeuGrafoDir(GrafoMatrizAdjacenciaDirecionado):
 
     def vertices_nao_adjacentes(self):
         '''
-        Provê um conjunto (set) de vértices não adjacentes no grafo.
-        O conjunto terá o seguinte formato: {X-Z, X-W, ...}
+        Provê uma lista de vértices não adjacentes no grafo. A lista terá o seguinte formato: [X-Z, X-W, ...]
         Onde X, Z e W são vértices no grafo que não tem uma aresta entre eles.
-        :return: Um conjunto (set) com os pares de vértices não adjacentes
+        :return: Uma lista com os pares de vértices não adjacentes
         '''
         vertices_nao_adj = set()
 
@@ -35,39 +34,32 @@ class MeuGrafoNaoDir(GrafoMatrizAdjacenciaNaoDirecionado):
         
         return False
 
-    def grau(self, V=''):
+    def grau_entrada(self, V=''):
         '''
         Provê o grau do vértice passado como parâmetro
         :param V: O rótulo do vértice a ser analisado
         :return: Um valor inteiro que indica o grau do vértice
-        :raises: VerticeInvalidoError se o vértice não existe no grafo
+        :raises: VerticeInvalidoException se o vértice não existe no grafo
         '''
-        if not self.existe_rotulo_vertice(V):
-            raise VerticeInvalidoError
-    
-        index_vertice = self.indice_do_vertice(self.get_vertice(V))
-        adjacencias = self.matriz[index_vertice]
+        pass
 
-        grau = 0
-        for cel in adjacencias:
-            index_cel = adjacencias.index(cel)
-            quant_arestas = len(cel.keys())
+    def grau_saida(self, V=''):
+        '''
+        Provê o grau do vértice passado como parâmetro
+        :param V: O rótulo do vértice a ser analisado
+        :return: Um valor inteiro que indica o grau do vértice
+        :raises: VerticeInvalidoException se o vértice não existe no grafo
+        '''
+        pass
 
-            if index_cel == index_vertice:
-                grau += quant_arestas * 2
-            else:
-                grau += quant_arestas
-        
-        return grau
-        
     def ha_paralelas(self):
         '''
         Verifica se há arestas paralelas no grafo
         :return: Um valor booleano que indica se existem arestas paralelas no grafo.
         '''
-        for i in range(len(self.vertices)):
-            for j in range(i, len(self.vertices)):
-                arestas = self.matriz[i][j]
+        for linha in range(len(self.vertices)):
+            for coluna in range(len(self.vertices)):
+                arestas = self.matriz[linha][coluna]
                 quant_arestas = len(arestas.keys())
 
                 if quant_arestas > 1:
@@ -77,25 +69,30 @@ class MeuGrafoNaoDir(GrafoMatrizAdjacenciaNaoDirecionado):
 
     def arestas_sobre_vertice(self, V):
         '''
-        Provê um conjunto (set) que contém os rótulos das arestas que
-        incidem sobre o vértice passado como parâmetro
+        Provê uma lista que contém os rótulos das arestas que incidem sobre o vértice passado como parâmetro
+        Deve-se considerar tanto a entrada quanto a saída
         :param V: O vértice a ser analisado
-        :return: Um conjunto com os rótulos das arestas que incidem sobre o vértice
-        :raises: VerticeInvalidoError se o vértice não existe no grafo
+        :return: Uma lista os rótulos das arestas que incidem sobre o vértice
+        :raises: VerticeInvalidoException se o vértice não existe no grafo
         '''
         if not self.existe_rotulo_vertice(V):
             raise VerticeInvalidoError
         
         index_vertice = self.indice_do_vertice(self.get_vertice(V))
-        adjacencias = self.matriz[index_vertice]
+        arestas_saida = self.matriz[index_vertice]
         rotulos_arestas = set()
 
-        for adj in adjacencias:
-            if adj != dict():
-                rotulos = adj.keys()
+        for a in arestas_saida:
+            if a != dict():
+                rotulos = a.keys()
                 for r in rotulos:
                     rotulos_arestas.add(r) 
         
+        for linha in range(len(self.vertices)):
+            arestas_entrada = self.matriz[linha][index_vertice]
+            for r in arestas_entrada.keys():
+                rotulos_arestas.add(r)
+
         return rotulos_arestas
 
     def eh_completo(self):
@@ -103,20 +100,11 @@ class MeuGrafoNaoDir(GrafoMatrizAdjacenciaNaoDirecionado):
         Verifica se o grafo é completo.
         :return: Um valor booleano que indica se o grafo é completo
         '''
-        if self.ha_laco() or self.ha_paralelas():
-            return False
-        
-        quant_vertices = len(self.vertices)
-        
-        for i in range(quant_vertices):
-            quant_adjacencias = 0
-            adjacencias = self.matriz[i]
+        pass
 
-            for adj in adjacencias:
-                if adj != dict():
-                    quant_adjacencias += 1
-            
-            if quant_adjacencias != (quant_vertices - 1):
-                return False
-        
-        return True
+    def warshall(self):
+        '''
+        Provê a matriz de alcançabilidade de Warshall do grafo
+        :return: Uma lista de listas que representa a matriz de alcançabilidade de Warshall associada ao grafo
+        '''
+        pass
