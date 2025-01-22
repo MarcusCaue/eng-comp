@@ -36,21 +36,43 @@ class MeuGrafoDir(GrafoMatrizAdjacenciaDirecionado):
 
     def grau_entrada(self, V=''):
         '''
-        Provê o grau do vértice passado como parâmetro
+        Provê o grau de entrada do vértice passado como parâmetro, ou seja, a quantidade de as arestas cujo vértice de origem não é 'V'
         :param V: O rótulo do vértice a ser analisado
         :return: Um valor inteiro que indica o grau do vértice
         :raises: VerticeInvalidoException se o vértice não existe no grafo
         '''
-        pass
+        if not self.existe_rotulo_vertice(V):
+            raise VerticeInvalidoError
+
+        index_vertice = self.indice_do_vertice(self.get_vertice(V))
+
+        grau = 0
+        for linha in range(len(self.vertices)):
+            arestas_entrada = self.matriz[linha][index_vertice]
+            grau += len(arestas_entrada.keys())
+        
+        return grau
 
     def grau_saida(self, V=''):
         '''
-        Provê o grau do vértice passado como parâmetro
+        Provê o grau de saída do vértice passado como parâmetro, isto é, a quantidade de arestas cujo vértice de origem é 'V'
         :param V: O rótulo do vértice a ser analisado
         :return: Um valor inteiro que indica o grau do vértice
         :raises: VerticeInvalidoException se o vértice não existe no grafo
         '''
-        pass
+        if not self.existe_rotulo_vertice(V):
+            raise VerticeInvalidoError
+        
+        index_vertice = self.indice_do_vertice(self.get_vertice(V))
+        adjacencias = self.matriz[index_vertice]
+
+        grau = 0
+
+        for a in adjacencias:
+            if a != dict():
+                grau += len(a.keys())
+        
+        return grau
 
     def ha_paralelas(self):
         '''
@@ -100,7 +122,23 @@ class MeuGrafoDir(GrafoMatrizAdjacenciaDirecionado):
         Verifica se o grafo é completo.
         :return: Um valor booleano que indica se o grafo é completo
         '''
-        pass
+        if self.ha_laco() or self.ha_paralelas():
+            return False
+        
+        quant_vertices = len(self.vertices)
+        
+        for i in range(quant_vertices):
+            quant_adjacencias = 0
+            adjacencias = self.matriz[i]
+
+            for adj in adjacencias:
+                if adj != dict():
+                    quant_adjacencias += 1
+            
+            if quant_adjacencias != (quant_vertices - 1):
+                return False
+        
+        return True
 
     def warshall(self):
         '''
