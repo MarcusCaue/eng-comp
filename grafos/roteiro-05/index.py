@@ -16,3 +16,6 @@ def createGraphDir():
 
   return deepcopy(grafo)
 
+grafo = createGraphDir()
+
+grafo.warshall()

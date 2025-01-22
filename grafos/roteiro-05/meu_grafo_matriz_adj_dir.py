@@ -1,5 +1,6 @@
 from bibgrafo.grafo_matriz_adj_dir import *
 from bibgrafo.grafo_errors import *
+from copy import deepcopy
 
 class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
 
@@ -145,4 +146,30 @@ class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
         Provê a matriz de alcançabilidade de Warshall do grafo
         :return: Uma lista de listas que representa a matriz de alcançabilidade de Warshall associada ao grafo
         '''
-        pass
+
+        def arestasToNumbers(grafo: GrafoMatrizAdjacenciaDirecionado):
+            matrizNovoGrafo = deepcopy(grafo.matriz)
+
+            for linha in range(len(matrizNovoGrafo)):
+                for coluna in range(len(matrizNovoGrafo[linha])):
+                    arestas = matrizNovoGrafo[linha][coluna]
+                    matrizNovoGrafo[linha][coluna] = 0 if len(arestas.keys()) == 0 else 1
+
+            return matrizNovoGrafo                            
+
+        grafoPreProcessado = arestasToNumbers(self)
+        print(self)
+        print("Grafo pré-processado: ", grafoPreProcessado)
+
+        n = len(grafoPreProcessado)
+
+        for linha in range(n):
+            for coluna in range(n):
+                if grafoPreProcessado[coluna][linha] == 1: # Se há caminho (ou seja, uma ligação)
+                    for k in range(n):
+                        # grafoPreProcessado[coluna][k] = 1 if grafoPreProcessado[linha][k] == 1 else 0
+                        grafoPreProcessado[coluna][k] = max(grafoPreProcessado[coluna][k], grafoPreProcessado[linha][k])
+
+        
+        print("Matriz de alcançabilidade: ", grafoPreProcessado)
+    
