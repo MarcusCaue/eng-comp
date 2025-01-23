@@ -26,7 +26,7 @@ class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
         vertices_nao_adj = set()
 
         for i in range(len(self.vertices)): 
-            for j in range(i+1, len(self.matriz)):
+            for j in range(len(self.matriz)):
                 dict_arestas = self.matriz[i][j]
                 if dict_arestas == dict():
                     vertices = f"{self.vertices[i]}-{self.vertices[j]}"
