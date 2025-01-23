@@ -18,14 +18,6 @@ def createGraphDir():
 
   return deepcopy(grafo)
 
-grafoParaiba = GrafoJSON.json_to_grafo('test_json/grafo_pb.json', MeuGrafo())
+grafo = createGraphDir()
 
-print(grafoParaiba)
-print(grafoParaiba.vertices_nao_adjacentes())
-caso_correto = {
-  'J-E', 'J-P', 'J-M', 'J-T', 'J-Z', 'C-J', 'C-T', 'C-Z', 'C-M', 'C-P', 'E-C', 'E-J', 'E-P',
-  'E-M', 'E-T', 'E-Z', 'P-J', 'P-E', 'P-M', 'P-T', 'P-Z', 'M-J', 'M-E', 'M-P', 'M-Z', 'T-J',
-  'T-M', 'T-E', 'T-P', 'Z-J', 'Z-C', 'Z-E', 'Z-P', 'Z-M', 'Z-T'
- }
-
-print (caso_correto)
+print(grafo)
