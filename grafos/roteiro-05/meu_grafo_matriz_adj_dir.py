@@ -4,6 +4,19 @@ from copy import deepcopy
 
 class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
 
+    def get_arestas(self):
+        arestas = list()
+
+        for linha in range(len(self.matriz)):
+            for coluna in range(len(self.matriz)):
+                arestas_dict = self.matriz[linha][coluna]
+                if arestas_dict != dict():
+                    valores = arestas_dict.values()
+                    for v in valores:
+                        arestas.append(v)
+        
+        return arestas
+
     def vertices_nao_adjacentes(self):
         '''
         Provê uma lista de vértices não adjacentes no grafo. A lista terá o seguinte formato: [X-Z, X-W, ...]
@@ -158,8 +171,6 @@ class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
             return matrizNovoGrafo                            
 
         grafoPreProcessado = arestasToNumbers(self)
-        print(self)
-        print("Grafo pré-processado: ", grafoPreProcessado)
 
         n = len(grafoPreProcessado)
 
@@ -167,9 +178,8 @@ class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
             for coluna in range(n):
                 if grafoPreProcessado[coluna][linha] == 1: # Se há caminho (ou seja, uma ligação)
                     for k in range(n):
-                        # grafoPreProcessado[coluna][k] = 1 if grafoPreProcessado[linha][k] == 1 else 0
-                        grafoPreProcessado[coluna][k] = max(grafoPreProcessado[coluna][k], grafoPreProcessado[linha][k])
-
+                        if grafoPreProcessado[linha][k] == 1 or grafoPreProcessado[coluna][k] == 1:
+                            grafoPreProcessado[coluna][k] = 1
         
-        print("Matriz de alcançabilidade: ", grafoPreProcessado)
+        return grafoPreProcessado
     
