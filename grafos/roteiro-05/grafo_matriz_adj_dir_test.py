@@ -23,19 +23,37 @@ class TestGrafo(unittest.TestCase):
 
             return [deepcopy(grafo), [[0, 0, 1, 1, 1], [1, 0, 1, 1, 1], [0, 0, 0, 1, 1], [0, 0, 0, 0, 0], [0, 0, 0, 1, 0]]]
         
+        # Grafo aleatório
         graph, gabarito = createGraphAndGabarito()
+        self.assertEqual(graph.warshall(), gabarito)
 
-        self.assertEqual(graph.warshall(), gabarito) # Grafo aleatório
-        self.assertEqual(self.g_p.warshall(), # Grafo da Paraíba
+        # Grafo da Paraíba
+        self.assertEqual(self.g_p.warshall(), 
                          [[0, 1, 1, 0, 0, 0, 0], [0, 0, 1, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 1, 1, 0, 0, 0, 0], [0, 1, 1, 0, 0, 1, 1], [0, 1, 1, 0, 0, 0, 1], [0, 0, 0, 0, 0, 0, 0]]
         ) 
-        self.assertEqual(MeuGrafo().warshall(), []) # Grafo vazio
-        
 
+        # Grafo vazio
+        self.assertEqual(MeuGrafo().warshall(), [])
 
+        # Grafo desconexo
+        self.assertEqual(self.g_d2.warshall(), [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]])
+        self.assertEqual(GrafoBuilder().tipo(MeuGrafo()).vertices(3).build().warshall(), [[0, 0, 0], [0, 0, 0], [0, 0, 0]])
+        self.assertEqual(GrafoBuilder().tipo(MeuGrafo()).vertices(5).build().warshall(), [[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0]])
 
+        # Grafo com laço
+        self.assertTrue(self.g_e.warshall()[3][0] == 1)
 
-        pass
+        # Grafo completo K4
+        k4 = GrafoBuilder().tipo(MeuGrafo()).vertices(4).arestas(True).build()
+        k4.adiciona_aresta(ArestaDirecionada('a7', k4.get_vertice('B'), k4.get_vertice('A')))
+        k4.adiciona_aresta(ArestaDirecionada('a8', k4.get_vertice('C'), k4.get_vertice('A')))
+        k4.adiciona_aresta(ArestaDirecionada('a9', k4.get_vertice('C'), k4.get_vertice('B')))
+        k4.adiciona_aresta(ArestaDirecionada('a10', k4.get_vertice('D'), k4.get_vertice('A')))
+        k4.adiciona_aresta(ArestaDirecionada('a11', k4.get_vertice('D'), k4.get_vertice('B')))
+        k4.adiciona_aresta(ArestaDirecionada('a12', k4.get_vertice('D'), k4.get_vertice('C')))
+
+        self.assertEqual(k4.warshall(), [[1,1,1,1], [1,1,1,1], [1,1,1,1], [1,1,1,1]])
+    
 
     def setUp(self):
         # Grafo da Paraíba

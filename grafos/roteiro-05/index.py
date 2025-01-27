@@ -1,6 +1,7 @@
 from meu_grafo_matriz_adj_dir import MeuGrafo
 from bibgrafo.vertice import Vertice
 from bibgrafo.aresta import ArestaDirecionada
+from bibgrafo.grafo_builder import GrafoBuilder
 from copy import deepcopy
 from bibgrafo.grafo_json import GrafoJSON
 
@@ -24,5 +25,23 @@ grafoParaiba.adiciona_aresta(ArestaDirecionada("a10", grafoParaiba.get_vertice('
 grafoParaiba.adiciona_aresta(ArestaDirecionada("a12", grafoParaiba.get_vertice('J'), grafoParaiba.get_vertice('C')))
 grafoParaiba.adiciona_aresta(ArestaDirecionada("a11", grafoParaiba.get_vertice('J'), grafoParaiba.get_vertice('C')))
 
-print(grafoParaiba)
-print(grafoParaiba.warshall())
+g_e = MeuGrafo()
+g_e.adiciona_vertice("A")
+g_e.adiciona_vertice("B")
+g_e.adiciona_vertice("C")
+g_e.adiciona_vertice("D")
+g_e.adiciona_vertice("E")
+g_e.adiciona_aresta('1', 'A', 'B')
+g_e.adiciona_aresta('2', 'A', 'C')
+g_e.adiciona_aresta('3', 'C', 'A')
+g_e.adiciona_aresta('4', 'C', 'B')
+g_e.adiciona_aresta('10', 'C', 'B')
+g_e.adiciona_aresta('5', 'C', 'D')
+g_e.adiciona_aresta('6', 'D', 'D')
+g_e.adiciona_aresta('7', 'D', 'B')
+g_e.adiciona_aresta('8', 'D', 'E')
+g_e.adiciona_aresta('9', 'E', 'A')
+g_e.adiciona_aresta('11', 'E', 'B')
+
+print(g_e.warshall())
+
