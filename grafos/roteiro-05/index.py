@@ -19,5 +19,10 @@ def createGraphDir():
   return deepcopy(grafo)
 
 grafo = createGraphDir()
+grafoParaiba = GrafoJSON.json_to_grafo('test_json/grafo_pb.json', MeuGrafo())
+grafoParaiba.adiciona_aresta(ArestaDirecionada("a10", grafoParaiba.get_vertice('J'), grafoParaiba.get_vertice('C')))
+grafoParaiba.adiciona_aresta(ArestaDirecionada("a12", grafoParaiba.get_vertice('J'), grafoParaiba.get_vertice('C')))
+grafoParaiba.adiciona_aresta(ArestaDirecionada("a11", grafoParaiba.get_vertice('J'), grafoParaiba.get_vertice('C')))
 
-print(grafo)
+print(grafoParaiba)
+print(grafoParaiba.warshall())

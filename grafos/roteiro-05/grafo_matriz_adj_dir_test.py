@@ -8,6 +8,35 @@ from atividades_grafos import gerar_grafos_teste
 
 class TestGrafo(unittest.TestCase):
 
+    def test_warhsall(self):
+        def createGraphAndGabarito():
+            vertices = [ Vertice('A'), Vertice('B'), Vertice('C'), Vertice('D'), Vertice('E') ]
+            grafo = MeuGrafo(
+                vertices=vertices,
+            )
+
+            grafo.adiciona_aresta(ArestaDirecionada('a0', vertices[2], vertices[4]))
+            grafo.adiciona_aresta(ArestaDirecionada('a1', vertices[1], vertices[3]))
+            grafo.adiciona_aresta(ArestaDirecionada('a2', vertices[4], vertices[3]))
+            grafo.adiciona_aresta(ArestaDirecionada('a3', vertices[1], vertices[0]))
+            grafo.adiciona_aresta(ArestaDirecionada('a4', vertices[0], vertices[2]))
+
+            return [deepcopy(grafo), [[0, 0, 1, 1, 1], [1, 0, 1, 1, 1], [0, 0, 0, 1, 1], [0, 0, 0, 0, 0], [0, 0, 0, 1, 0]]]
+        
+        graph, gabarito = createGraphAndGabarito()
+
+        self.assertEqual(graph.warshall(), gabarito) # Grafo aleatório
+        self.assertEqual(self.g_p.warshall(), # Grafo da Paraíba
+                         [[0, 1, 1, 0, 0, 0, 0], [0, 0, 1, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 1, 1, 0, 0, 0, 0], [0, 1, 1, 0, 0, 1, 1], [0, 1, 1, 0, 0, 0, 1], [0, 0, 0, 0, 0, 0, 0]]
+        ) 
+        self.assertEqual(MeuGrafo().warshall(), []) # Grafo vazio
+        
+
+
+
+
+        pass
+
     def setUp(self):
         # Grafo da Paraíba
         self.g_p = GrafoJSON.json_to_grafo('test_json/grafo_pb.json', MeuGrafo())
