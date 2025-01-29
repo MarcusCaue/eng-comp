@@ -93,6 +93,7 @@ class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
             index_menor_beta = get_index_menor_beta(betas, gamas)
             w = self.vertices[index_menor_beta].rotulo
 
+        # Montando o caminho
         caminho = []
         w = v_src
         while v != w:
@@ -101,6 +102,16 @@ class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
             v = pis[index_v]
         
         caminho.insert(0, w)
+
+        # TÁ ERRADO, FALTA ADICIONAR AS ARESTAS AINDA
+        for w in caminho:
+            index_w = self.indice_do_vertice(self.get_vertice(w))
+            arestas_saida = self.matriz[index_w]
+            for a in arestas_saida:
+                if a != dict():
+                    arco = list(a.values())[0]
+                    if arco.eh_ponta(self.vertices[index_w + 1]):
+                        caminho.insert(index_w + 1, arco.rotulo)
 
         return caminho
 
@@ -111,7 +122,6 @@ class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
             return aresta.v2.rotulo
         else:
             return aresta.v1.rotulo
-
 
     def get_aresta(self, rotulo=""):
         for a in self.get_todas_arestas():
