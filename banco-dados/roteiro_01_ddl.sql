@@ -62,8 +62,67 @@ DESC Candidato;
 DESC Inscricao;
 
 # Exibição das tabelas presentes na base de dados
-
 SHOW TABLES;
+
+# Alteração de tabelas existentes 
+
+# 1 - Adição de chave primária
+# ALTER TABLE <nome_tabela> ADD CONSTRAINT <nome_pk> PRIMARY KEY (<colunas...>)
+ALTER TABLE Funcionario ADD CONSTRAINT Pk_func PRIMARY KEY (id_func);
+ALTER TABLE Candidato ADD CONSTRAINT Pk_candidato PRIMARY KEY (id_candidato);
+ALTER TABLE Candidato_funcionario ADD CONSTRAINT Pk_cand_func PRIMARY KEY (candidato, funcionario); # Tabela de um relacionamento N:N
+ALTER TABLE Inscricao ADD CONSTRAINT Pk_inscricao PRIMARY KEY (id_inscricao);
+ALTER TABLE Cargo ADD CONSTRAINT Pk_cargo PRIMARY KEY (id_cargo);
+ALTER TABLE Teste ADD CONSTRAINT Pk_Teste PRIMARY KEY (id_teste);
+ALTER TABLE Processo_seletivo ADD CONSTRAINT Pk_processo PRIMARY KEY (id_processo);
+ALTER TABLE Departamento ADD CONSTRAINT Pk_depto PRIMARY KEY (id_depto);
+
+# 2 - Adição de novas colunas a uma tabela
+# ALTER TABLE <nome_tabela> ADD <nome_coluna> <tipo>;
+ALTER TABLE Teste ADD cargo integer;
+
+# 3 - Adição de chave estrangeira
+# Obs.: É preciso que as chaves primárias já estejam criadas
+# ALTER TABLE <nome_tabela> ADD CONSTRAINT <nome_fk> FOREIGN KEY (<nome_coluna>) REFERENCES <nome_tabela> (<nome_coluna>)
+ALTER TABLE Candidato_funcionario ADD CONSTRAINT Fk_cand_func_cand
+	FOREIGN KEY (candidato) REFERENCES Candidato (id_candidato);
+ALTER TABLE Candidato_funcionario ADD CONSTRAINT Fk_cand_func
+	FOREIGN KEY (funcionario) REFERENCES Funcionario (id_func);
+
+ALTER TABLE Inscricao ADD CONSTRAINT FK_INSC_candidato
+	FOREIGN KEY (candidato) REFERENCES Candidato (id_candidato);
+ALTER TABLE Inscricao ADD CONSTRAINT FK_INSC_cargo
+	FOREIGN KEY (cargo) REFERENCES Cargo (id_cargo);
+
+ALTER TABLE Teste ADD CONSTRAINT Fk_teste_processo
+	FOREIGN KEY (processo) REFERENCES Processo_seletivo (id_processo);
+ALTER TABLE Teste ADD CONSTRAINT Fk_teste_cargo
+	FOREIGN KEY (cargo) REFERENCES Cargo (id_cargo);
+ALTER TABLE Teste ADD CONSTRAINT Fk_teste_inscricao
+	FOREIGN KEY (inscricao) REFERENCES Inscricao (id_inscricao);
+
+ALTER TABLE Funcionario ADD CONSTRAINT Fk_func_depto
+	FOREIGN KEY (depto) REFERENCES Departamento (id_depto);
+ALTER TABLE Funcionario ADD CONSTRAINT Fk_func_cargo
+	FOREIGN KEY (cargo) REFERENCES Cargo (id_cargo);
+
+# 4 - Modificação do tipo da coluna
+# ALTER TABLE <tabela> MODIFY COLUMN <coluna> <novo tipo e constraints>
+# É uma reescrita da coluna, uma redefinição
+ALTER TABLE Candidato_funcionario MODIFY COLUMN dt_indicacao DATE NOT NULL;
+
+ALTER TABLE Candidato MODIFY COLUMN nome varchar(60) NOT NULL;
+ALTER TABLE Candidato MODIFY COLUMN cpf varchar(14) NOT NULL;
+ALTER TABLE Inscricao MODIFY COLUMN dt_inscricao DATE NOT NULL;
+
+
+
+
+
+
+
+
+
 
 
 
