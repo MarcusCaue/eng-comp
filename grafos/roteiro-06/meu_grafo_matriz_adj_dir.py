@@ -22,14 +22,26 @@ class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
             if matrizAlcancabilidade[index_src][index_dest] == 0:
                 return MeuGrafo()
 
-        def get_index_menor_beta(betas, ipsilons):
-            menor = betas[1]
-            index = 1
-            for i in range(2, len(betas)):
+        def get_index_menor_beta(betas: list, ipsilons: list):
+
+            betas_vertices_nao_visitados = []
+            for i in range(len(ipsilons)):
                 b = betas[i]
-                if b < menor and ipsilons[i] == 0:
+                y = ipsilons[i]
+
+                if y == 0:
+                    betas_vertices_nao_visitados.append({
+                        "index": i,
+                        "valor": b
+                    })
+        
+            menor = betas_vertices_nao_visitados[0]["valor"]
+            index = betas_vertices_nao_visitados[0]["index"]
+            for i in range(1, len(betas_vertices_nao_visitados)):
+                b = betas_vertices_nao_visitados[i]["valor"]
+                if b < menor:
                     menor = b
-                    index = i
+                    index = betas_vertices_nao_visitados[i]["index"]
             
             return index
 
@@ -72,7 +84,7 @@ class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
                     outra_ponta = self.outra_ponta_aresta(arco.rotulo, w)
                     index_outra_ponta = self.indice_do_vertice(self.get_vertice(outra_ponta))
 
-                    betas[index_outra_ponta] = arco.peso
+                    betas[index_outra_ponta] = arco.peso + betas[index_w]
                     
                     index_menor_beta = get_index_menor_beta(betas, ipsilons)
 

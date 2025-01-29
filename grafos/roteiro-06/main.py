@@ -19,4 +19,4 @@ arestas = [
 grafo = GrafoBuilder().tipo(MeuGrafo()).vertices(vertices).arestas(arestas).build()
 
 print(grafo)
-grafo.dijkstra('A', 'E')
+grafo.dijkstra('A', 'G')
