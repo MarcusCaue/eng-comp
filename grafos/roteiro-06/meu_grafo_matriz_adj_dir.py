@@ -1,4 +1,3 @@
-from asyncio.windows_events import NULL
 from json.encoder import INFINITY
 from bibgrafo.grafo_matriz_adj_dir import *
 from bibgrafo.grafo_errors import *
@@ -6,6 +5,7 @@ from copy import deepcopy
 
 class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
 
+    # Fazer a função que descobre o próximo vértice, calculando o menor beta dentre os ipsilons não visitados
     def dijkstra(self, v_src="", v_dest=""):
 
         def avalia_grafo():
@@ -22,6 +22,17 @@ class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
             if matrizAlcancabilidade[index_src][index_dest] == 0:
                 return MeuGrafo()
 
+        def get_index_menor_beta(betas, ipsilons):
+            menor = betas[1]
+            index = 1
+            for i in range(2, len(betas)):
+                b = betas[i]
+                if b < menor and ipsilons[i] == 0:
+                    menor = b
+                    index = i
+            
+            return index
+
         def remove_lacos():
             pass
 
@@ -32,6 +43,7 @@ class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
         avalia_grafo()
 
         # Setup #
+        NULL = 0
 
         quant_vertices = len(self.vertices)
         # Pesos dos menores caminhos
@@ -43,23 +55,36 @@ class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
 
         index_v_src = self.indice_do_vertice(self.get_vertice(v_src))
         betas[index_v_src] = 0
-        ipsilons[index_v_src] = 1 
 
         # Início
         w = v_src
         v = v_dest
 
+        print(f"Betas (ANTES) quando w={w}: {betas}")
         while (w != v):
             index_w = self.indice_do_vertice(self.get_vertice(w))
+            ipsilons[index_w] = 1
             arestas_saida = self.matriz[index_w]
 
             for a in arestas_saida:
                 if a != dict():
                     arco = list(a.values())[0]
-                    arco.outraPonta(w)
-                    print(f"Aresta {arco.rotulo} tem peso {arco.peso}")
+                    outra_ponta = self.outra_ponta_aresta(arco.rotulo, w)
+                    index_outra_ponta = self.indice_do_vertice(self.get_vertice(outra_ponta))
+
+                    betas[index_outra_ponta] = arco.peso
+                    
+                    index_menor_beta = get_index_menor_beta(betas, ipsilons)
+
+                    if ipsilons[index_menor_beta] == 0:
+                        pis[index_menor_beta] = w
+                        w = self.vertices[index_menor_beta].rotulo
+                        break
             
-            w = v
+            # w = v
+        
+        print(f"Betas (DEPOIS) quando w={w}: {betas}")
+
 
 
 
@@ -75,6 +100,14 @@ class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
         pass
 
         
+    def outra_ponta_aresta(self, rotulo="", ponta_rot=""):
+        aresta = self.get_aresta(rotulo)
+        if aresta.v1.rotulo == ponta_rot:
+            return aresta.v2.rotulo
+        else:
+            return aresta.v1.rotulo
+
+
     def get_aresta(self, rotulo=""):
         for a in self.get_todas_arestas():
             if rotulo == a.rotulo:
