@@ -5,7 +5,8 @@ from copy import deepcopy
 
 class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
 
-    # Fazer a função que descobre o próximo vértice, calculando o menor beta dentre os ipsilons não visitados
+    # Retorno:
+    # [v1, a1, v2, a2, v2, ..., an, vn]
     def dijkstra(self, v_src="", v_dest=""):
 
         def avalia_grafo():
@@ -22,14 +23,14 @@ class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
             if matrizAlcancabilidade[index_src][index_dest] == 0:
                 return MeuGrafo()
 
-        def get_index_menor_beta(betas: list, ipsilons: list):
+        def get_index_menor_beta(betas: list, gamas: list):
 
             betas_vertices_nao_visitados = []
-            for i in range(len(ipsilons)):
+            for i in range(len(gamas)):
                 b = betas[i]
-                y = ipsilons[i]
+                g = gamas[i]
 
-                if y == 0:
+                if g == 0:
                     betas_vertices_nao_visitados.append({
                         "index": i,
                         "valor": b
@@ -63,53 +64,45 @@ class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
         # Vértices predecessores
         pis      = [NULL for _ in range(quant_vertices)]
         # Vértices visitados (0/1)
-        ipsilons = [0 for _ in range(quant_vertices)]
-
-        index_v_src = self.indice_do_vertice(self.get_vertice(v_src))
-        betas[index_v_src] = 0
+        gamas = [0 for _ in range(quant_vertices)]
 
         # Início
         w = v_src
         v = v_dest
 
-        print(f"Betas (ANTES) quando w={w}: {betas}")
-        while (w != v):
+        while w != v:
             index_w = self.indice_do_vertice(self.get_vertice(w))
-            ipsilons[index_w] = 1
-            arestas_saida = self.matriz[index_w]
+            gamas[index_w] = 1
 
+            if w == v_src:
+                betas[index_w] = 0
+            
+            arestas_saida = self.matriz[index_w]
             for a in arestas_saida:
                 if a != dict():
                     arco = list(a.values())[0]
                     outra_ponta = self.outra_ponta_aresta(arco.rotulo, w)
                     index_outra_ponta = self.indice_do_vertice(self.get_vertice(outra_ponta))
 
-                    betas[index_outra_ponta] = arco.peso + betas[index_w]
-                    
-                    index_menor_beta = get_index_menor_beta(betas, ipsilons)
+                    novo_beta = arco.peso + betas[index_w]
 
-                    if ipsilons[index_menor_beta] == 0:
-                        pis[index_menor_beta] = w
-                        w = self.vertices[index_menor_beta].rotulo
-                        break
+                    if novo_beta < betas[index_outra_ponta]:
+                        betas[index_outra_ponta] = novo_beta
+                        pis[index_outra_ponta] = w
             
-            # w = v
+            index_menor_beta = get_index_menor_beta(betas, gamas)
+            w = self.vertices[index_menor_beta].rotulo
+
+        caminho = []
+        w = v_src
+        while v != w:
+            caminho.insert(0, v)
+            index_v = self.indice_do_vertice(self.get_vertice(v))
+            v = pis[index_v]
         
-        print(f"Betas (DEPOIS) quando w={w}: {betas}")
+        caminho.insert(0, w)
 
-
-
-
-
-
-        
-
-        
-
-
-
-
-        pass
+        return caminho
 
         
     def outra_ponta_aresta(self, rotulo="", ponta_rot=""):
