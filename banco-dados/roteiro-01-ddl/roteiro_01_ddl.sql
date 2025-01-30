@@ -28,7 +28,6 @@ CREATE TABLE Inscricao (
 CREATE TABLE Teste (
 	id_teste integer,
     processo integer,
-    cargo integer,
     inscricao integer,
     dt_teste date
 );
@@ -78,8 +77,8 @@ ALTER TABLE Processo_seletivo ADD CONSTRAINT Pk_processo PRIMARY KEY (id_process
 ALTER TABLE Departamento ADD CONSTRAINT Pk_depto PRIMARY KEY (id_depto);
 
 # 2 - Adição de novas colunas a uma tabela
-# ALTER TABLE <nome_tabela> ADD <nome_coluna> <tipo>;
-ALTER TABLE Teste ADD cargo integer;
+# ALTER TABLE <nome_tabela> ADD COLUMN <nome_coluna> <tipo>;
+ALTER TABLE Teste ADD COLUMN cargo integer;
 
 # 3 - Adição de chave estrangeira
 # Obs.: É preciso que as chaves primárias já estejam criadas
@@ -108,12 +107,34 @@ ALTER TABLE Funcionario ADD CONSTRAINT Fk_func_cargo
 
 # 4 - Modificação do tipo da coluna
 # ALTER TABLE <tabela> MODIFY COLUMN <coluna> <novo tipo e constraints>
-# É uma reescrita da coluna, uma redefinição
+# É uma reescrita da coluna, uma redefinição do seu tipo
 ALTER TABLE Candidato_funcionario MODIFY COLUMN dt_indicacao DATE NOT NULL;
 
 ALTER TABLE Candidato MODIFY COLUMN nome varchar(60) NOT NULL;
 ALTER TABLE Candidato MODIFY COLUMN cpf varchar(14) NOT NULL;
 ALTER TABLE Inscricao MODIFY COLUMN dt_inscricao DATE NOT NULL;
+
+ALTER TABLE Teste ADD COLUMN nota real NOT NULL;
+
+# 5 - Renomeando uma coluna
+# ALTER TABLE <tabela> CHANGE COLUMN <old> <new> <tipo e constraints>
+ALTER TABLE Teste CHANGE COLUMN nota nota_teste real NOT NULL;
+
+# 6 - Restrições semânticas
+ALTER TABLE Teste ADD CONSTRAINT Ck_nota CHECK (nota_teste > 0);
+ALTER TABLE Teste ADD CONSTRAINT Ck_nota_2 CHECK (nota_teste BETWEEN 0 AND 100);
+
+# 7 - Setando um valor padrão
+ALTER TABLE Teste ALTER nota_teste SET DEFAULT 7;
+
+DESCRIBE Candidato;
+DESCRIBE Candidato_funcionario;
+DESCRIBE Inscricao;
+DESCRIBE Teste;
+DESCRIBE Cargo;
+DESCRIBE Funcionario;
+DESCRIBE Processo_seletivo;
+DESCRIBE Departamento;
 
 
 

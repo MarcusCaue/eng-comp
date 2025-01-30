@@ -1,0 +1,11 @@
+1 - Para instalar o mysql:
+    - sudo apt install mysql-server mysql-client
+
+2 - Para configurar o serviço:
+    - 2.1 - Desabilitar a inicialização automática: 
+    	- sudo systemctl disable mysql
+
+3 - Sobre a configuração da senha do root:
+	- Leia https://stackoverflow.com/a/52335791
+
+4 - O arquivo de configurações fica em "/etc/mysql/my.cnf"
