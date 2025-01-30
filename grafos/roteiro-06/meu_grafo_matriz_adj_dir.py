@@ -7,7 +7,11 @@ class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
 
     def dijkstra(self, v_src="", v_dest=""):
 
-        def avalia_grafo():
+        def grafo_viavel():
+            # Grafo vazio ou sem arestas
+            if self == MeuGrafo() or len(self.matriz) == 0:
+                return False
+
             # Verifica a existência dos vértices no grafo
             if not self.existe_rotulo_vertice(v_src) or not self.existe_rotulo_vertice(v_dest):
                 raise VerticeInvalidoError
@@ -19,7 +23,9 @@ class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
 
             # Verificando se é possível alcançar o destino a partir da origem
             if matrizAlcancabilidade[index_src][index_dest] == 0:
-                return []
+                return False
+            
+            return True
 
         def get_index_menor_beta(betas: list, gamas: list):
 
@@ -41,7 +47,8 @@ class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
             
             return index
 
-        avalia_grafo()
+        if not grafo_viavel():
+            return []
 
         # Setup #
         NULL = 0

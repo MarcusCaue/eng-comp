@@ -2,6 +2,7 @@ from meu_grafo_matriz_adj_dir import MeuGrafo
 from bibgrafo.grafo_builder import GrafoBuilder
 from bibgrafo.aresta import ArestaDirecionada
 from bibgrafo.vertice import Vertice
+from bibgrafo.grafo_json import GrafoJSON
 
 def grafoAleatorio1():
   vertices = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
@@ -34,7 +35,9 @@ arestas = [
 ]
 
 # grafo = GrafoBuilder().tipo(MeuGrafo()).vertices(vertices).arestas(arestas).build()
-grafo = grafoAleatorio1()
+# grafo = MeuGrafo()
+grafo = GrafoJSON.json_to_grafo('test_json/grafo_pb.json', MeuGrafo())
+
 
 print(grafo)
-print(grafo.dijkstra('A', 'G'))
+print(grafo.dijkstra('J', 'Z'))
