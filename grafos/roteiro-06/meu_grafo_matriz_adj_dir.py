@@ -5,8 +5,6 @@ from copy import deepcopy
 
 class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
 
-    # Retorno:
-    # [v1, a1, v2, a2, v2, ..., an, vn]
     def dijkstra(self, v_src="", v_dest=""):
 
         def avalia_grafo():
@@ -21,7 +19,7 @@ class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
 
             # Verificando se é possível alcançar o destino a partir da origem
             if matrizAlcancabilidade[index_src][index_dest] == 0:
-                return MeuGrafo()
+                return []
 
         def get_index_menor_beta(betas: list, gamas: list):
 
@@ -31,10 +29,7 @@ class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
                 g = gamas[i]
 
                 if g == 0:
-                    betas_vertices_nao_visitados.append({
-                        "index": i,
-                        "valor": b
-                    })
+                    betas_vertices_nao_visitados.append({ "index": i, "valor": b })
         
             menor = betas_vertices_nao_visitados[0]["valor"]
             index = betas_vertices_nao_visitados[0]["index"]
@@ -45,13 +40,6 @@ class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
                     index = betas_vertices_nao_visitados[i]["index"]
             
             return index
-
-        def remove_lacos():
-            pass
-
-        def remove_paralelas():
-            pass
-        
 
         avalia_grafo()
 
@@ -88,7 +76,7 @@ class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
 
                     if novo_beta < betas[index_outra_ponta]:
                         betas[index_outra_ponta] = novo_beta
-                        pis[index_outra_ponta] = w
+                        pis[index_outra_ponta] = { "vertice": w, "aresta": arco.rotulo }
             
             index_menor_beta = get_index_menor_beta(betas, gamas)
             w = self.vertices[index_menor_beta].rotulo
@@ -99,19 +87,10 @@ class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
         while v != w:
             caminho.insert(0, v)
             index_v = self.indice_do_vertice(self.get_vertice(v))
-            v = pis[index_v]
+            caminho.insert(0, pis[index_v]["aresta"])
+            v = pis[index_v]["vertice"]
         
         caminho.insert(0, w)
-
-        # TÁ ERRADO, FALTA ADICIONAR AS ARESTAS AINDA
-        for w in caminho:
-            index_w = self.indice_do_vertice(self.get_vertice(w))
-            arestas_saida = self.matriz[index_w]
-            for a in arestas_saida:
-                if a != dict():
-                    arco = list(a.values())[0]
-                    if arco.eh_ponta(self.vertices[index_w + 1]):
-                        caminho.insert(index_w + 1, arco.rotulo)
 
         return caminho
 

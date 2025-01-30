@@ -33,7 +33,8 @@ arestas = [
   ArestaDirecionada('a6', Vertice(vertices[4]), Vertice(vertices[5]), 1), 
 ]
 
-grafo = GrafoBuilder().tipo(MeuGrafo()).vertices(vertices).arestas(arestas).build()
+# grafo = GrafoBuilder().tipo(MeuGrafo()).vertices(vertices).arestas(arestas).build()
+grafo = grafoAleatorio1()
 
 print(grafo)
-print(grafo.dijkstra('A', 'F'))
+print(grafo.dijkstra('A', 'G'))
