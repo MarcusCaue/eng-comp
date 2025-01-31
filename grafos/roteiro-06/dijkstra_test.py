@@ -53,13 +53,32 @@ class TestGrafo(unittest.TestCase):
         with self.assertRaises(VerticeInvalidoError):
             self.g_p.dijkstra('O', 'Y')
 
+        # Grafos completos
+        k3 = GrafoBuilder().tipo(MeuGrafo()).vertices(3).arestas(True).build()
+        k4 = GrafoBuilder().tipo(MeuGrafo()).vertices(4).arestas(True).build()
+        k7 = GrafoBuilder().tipo(MeuGrafo()).vertices(7).arestas(True).build()
+        k10 = GrafoBuilder().tipo(MeuGrafo()).vertices(10).arestas(True).build()
+        self.assertEqual(len(k3.dijkstra('A', 'C')), 3)
+        self.assertEqual(len(k4.dijkstra('A', 'C')), 3)
+        self.assertEqual(len(k7.dijkstra('A', 'C')), 3)
+        self.assertEqual(len(k10.dijkstra('A', 'C')), 3)
+
         # Quando não é possível alcançar, descoberto por Warshall
-        self.assertEqual(self)
+        # Adicionando vértices desconexos no grafo Aleatorio 2
+        grafo.adiciona_vertice("H")
+        grafo.adiciona_vertice("I")
+        grafo.adiciona_vertice("J")
+        grafo.adiciona_vertice("K")
 
+        grafo.adiciona_aresta(ArestaDirecionada("b1", Vertice('H'), Vertice('I'), 4))
+        grafo.adiciona_aresta(ArestaDirecionada("b2", Vertice('H'), Vertice('J'), 2))
+        grafo.adiciona_aresta(ArestaDirecionada("b3", Vertice('I'), Vertice('J')))
+        grafo.adiciona_aresta(ArestaDirecionada("b4", Vertice('J'), Vertice('K'), 2))
 
+        self.assertEqual(grafo.dijkstra('A', 'H'), [])
+        self.assertEqual(grafo.dijkstra('K', 'C'), [])
+        self.assertEqual(grafo.dijkstra('H', 'K'), ['H', 'b2', 'J', 'b4', 'K'])
 
-
-        pass
 
     def setUp(self):
         # Grafo da Paraíba
