@@ -136,15 +136,23 @@ DESCRIBE Funcionario;
 DESCRIBE Processo_seletivo;
 DESCRIBE Departamento;
 
+# 8 - Renomeando uma tabela
+RENAME TABLE Processo_seletivo TO Processo;
 
+# 9 - Removendo uma coluna
+ALTER TABLE Candidato ADD COLUMN email varchar(60) NOT NULL;
+DESCRIBE Candidato;
+ALTER TABLE Candidato DROP COLUMN email;
 
+# 10 - Excluindo uma tabela
+CREATE TABLE Instituicao (
+    id_inst integer NOT NULL,
+    nome varchar(60),
+    endereco varchar(60),
+    ano_fundacao integer
+);
 
-
-
-
-
-
-
-
-
-
+ALTER TABLE Instituicao ADD CONSTRAINT Pk_inst PRIMARY KEY (id_inst);
+DESCRIBE Instituicao;
+DROP TABLE Instituicao;
+SHOW TABLES;
