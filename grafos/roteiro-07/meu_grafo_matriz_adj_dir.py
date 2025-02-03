@@ -5,6 +5,38 @@ from copy import deepcopy
 
 class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
 
+
+    def bellman_ford(self):
+        """
+        Também retorna uma lista com os vértices e os pesos dos menores caminhos até eles
+        """
+        NULL = 0
+
+        weights_min_ways = [0] + [ INFINITY for _ in range(len(self.vertices) - 1) ]
+        antecessores = [ NULL for _ in range(len(self.vertices)) ]
+        
+        for i in range(len(self.vertices) - 1):
+            for v in self.vertices:
+                arestas_saida = self.get_arestas_saida(v)
+
+
+
+        
+        
+
+        
+
+
+
+
+
+    def get_arestas_saida(self, v: Vertice):
+        arestas_saida = self.matriz[self.indice_do_vertice(v)]
+        for _ in range(arestas_saida.count(dict())):
+            arestas_saida.remove(dict())
+        
+        return arestas_saida
+
     def dijkstra(self, v_src="", v_dest=""):
 
         def grafo_viavel():
@@ -101,7 +133,6 @@ class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
 
         return caminho
 
-        
     def outra_ponta_aresta(self, rotulo="", ponta_rot=""):
         aresta = self.get_aresta(rotulo)
         if aresta.v1.rotulo == ponta_rot:
