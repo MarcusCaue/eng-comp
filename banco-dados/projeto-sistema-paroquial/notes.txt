@@ -1,0 +1,64 @@
+→ Batistério:
+	- sacerdoteCelebrante
+	- pessoa
+	- data
+	- igreja
+	- padrinhos
+	- missa
+
+→ Missas:
+	- presidente
+	- concelebrantes
+	- data
+	- igreja
+	- ofertas
+	- categoria
+	- nome
+	- batisterio
+
+→ Pessoa:
+	- nome
+	- idade
+	- batistério
+	
+    • Fiel:
+    	- comunidade
+    	- pastoral
+    	- turmaCatequese
+    	
+    • Padre:
+    	- dataOrdenacao
+    	- ordemReligiosa
+    	- cargo
+    	- bispo
+    	
+    • Bispo:
+    	- diocese
+    	- dataOrdenacao
+    	- padres
+
+→ Comunidades:
+	- nome
+	- dataFundacao
+	- fieis
+	- padroeiro
+	- igrejas
+	- dizimo
+	- bairro/sitio
+
+→ Pastoral:
+	- nome
+	- fieis
+
+→ Turma de Catequese:
+	- comunidade
+	- fieis
+	- padroeiro
+
+→ Igrejas:
+	- nome
+	- padroeiro e copadroeiros
+	- comunidade
+	- endereco
+	- dataErecao
+	- matriz (sede)
