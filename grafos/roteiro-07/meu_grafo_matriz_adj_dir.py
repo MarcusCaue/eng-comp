@@ -1,5 +1,4 @@
 from json.encoder import INFINITY
-from operator import index
 from bibgrafo.grafo_matriz_adj_dir import *
 from bibgrafo.grafo_errors import *
 from copy import deepcopy
@@ -7,16 +6,39 @@ from copy import deepcopy
 class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
 
 
-    def bellman_ford(self):
+    def bellman_ford(self, v_src="", v_dest=""):
         """
         Também retorna uma lista com os vértices e os pesos dos menores caminhos até eles
         """
+        def grafo_viavel():
+            # Grafo vazio ou sem arestas
+            if self == MeuGrafo() or len(self.matriz) == 0:
+                return False
+
+            # Verifica a existência dos vértices no grafo
+            if not self.existe_rotulo_vertice(v_src) or not self.existe_rotulo_vertice(v_dest):
+                raise VerticeInvalidoError
+
+            matrizAlcancabilidade = self.warshall()
+
+            index_src = self.indice_do_vertice(self.get_vertice(v_src))
+            index_dest = self.indice_do_vertice(self.get_vertice(v_dest))
+
+            # Verificando se é possível alcançar o destino a partir da origem
+            if matrizAlcancabilidade[index_src][index_dest] == 0:
+                return False
+            
+            return True
+
+        if not grafo_viavel():
+            return []
+
         NULL = 0
 
         weights_min_ways = [[0] + [ INFINITY for _ in range(len(self.vertices) - 1) ]]
-        antecessores = [ NULL for _ in range(len(self.vertices)) ]
+        menores_caminhos = [ NULL for _ in range(len(self.vertices)) ]
 
-        for i in range(len(self.vertices) - 1):
+        for _ in range(len(self.vertices) - 1):
             if len(weights_min_ways) > 1 and weights_min_ways[-1] == weights_min_ways[-2]:
                 break
 
@@ -37,21 +59,27 @@ class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
 
                     if novo_peso < min_ways_i[index_outra_ponta]:
                         min_ways_i[index_outra_ponta] = novo_peso
+                        menores_caminhos[index_outra_ponta] = {"peso": novo_peso, "antecessor": v.rotulo, "aresta": a.rotulo}
             
             weights_min_ways.append(min_ways_i)
-
-                
-
-
-
-
         
-        
+        caminho = []
+        w = v_dest
+        while w != v_src:
+            for i, m in enumerate(menores_caminhos):
+                vertice = self.vertices[i].rotulo
 
-        
+                if w == vertice:
+                    if w == v_src:
+                        break
 
+                    caminho.insert(0, w)
+                    caminho.insert(0, m['aresta'])
+                    w = m['antecessor']
 
-
+        caminho.insert(0, v_src)
+    
+        return caminho
 
 
     def get_arestas_saida(self, v: Vertice) -> list[ArestaDirecionada]:

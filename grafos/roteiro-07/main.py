@@ -17,5 +17,5 @@ grafo = GrafoBuilder().tipo(MeuGrafo()) \
     ]).build()
 
 
-grafo.bellman_ford()
-# print(grafo.get_arestas_saida(grafo.vertices[0]))
+print(grafo)
+print(grafo.bellman_ford('A', 'E'))
