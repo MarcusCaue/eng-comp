@@ -63,6 +63,9 @@ class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
             
             weights_min_ways.append(min_ways_i)
         
+        # No caso de ciclo com peso negativo
+        # if  
+
         caminho = []
         w = v_dest
         while w != v_src:
@@ -78,8 +81,8 @@ class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
                     w = m['antecessor']
 
         caminho.insert(0, v_src)
-    
-        return caminho
+
+        return weights_min_ways
 
 
     def get_arestas_saida(self, v: Vertice) -> list[ArestaDirecionada]:

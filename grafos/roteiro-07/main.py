@@ -18,4 +18,4 @@ grafo = GrafoBuilder().tipo(MeuGrafo()) \
 
 
 print(grafo)
-print(grafo.bellman_ford('A', 'E'))
+print(grafo.bellman_ford('I', 'A'))
