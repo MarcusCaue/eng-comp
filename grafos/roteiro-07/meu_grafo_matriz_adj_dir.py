@@ -1,4 +1,5 @@
 from json.encoder import INFINITY
+from operator import index
 from bibgrafo.grafo_matriz_adj_dir import *
 from bibgrafo.grafo_errors import *
 from copy import deepcopy
@@ -12,12 +13,35 @@ class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
         """
         NULL = 0
 
-        weights_min_ways = [0] + [ INFINITY for _ in range(len(self.vertices) - 1) ]
+        weights_min_ways = [[0] + [ INFINITY for _ in range(len(self.vertices) - 1) ]]
         antecessores = [ NULL for _ in range(len(self.vertices)) ]
-        
+
         for i in range(len(self.vertices) - 1):
+            if len(weights_min_ways) > 1 and weights_min_ways[-1] == weights_min_ways[-2]:
+                break
+
+            min_ways_i = weights_min_ways[-1].copy()
+
             for v in self.vertices:
+                index_v = self.indice_do_vertice(v)
+
+                if (min_ways_i[index_v] == INFINITY):
+                    continue
+
                 arestas_saida = self.get_arestas_saida(v)
+                for a in arestas_saida:
+                    outra_ponta = self.outra_ponta_aresta(a.rotulo, v.rotulo)
+                    index_outra_ponta = self.indice_do_vertice(self.get_vertice(outra_ponta))
+
+                    novo_peso = min_ways_i[index_v] + a.peso
+
+                    if novo_peso < min_ways_i[index_outra_ponta]:
+                        min_ways_i[index_outra_ponta] = novo_peso
+            
+            weights_min_ways.append(min_ways_i)
+
+                
+
 
 
 
@@ -30,14 +54,17 @@ class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
 
 
 
-    def get_arestas_saida(self, v: Vertice):
+    def get_arestas_saida(self, v: Vertice) -> list[ArestaDirecionada]:
         arestas_saida = self.matriz[self.indice_do_vertice(v)]
-        for _ in range(arestas_saida.count(dict())):
-            arestas_saida.remove(dict())
-        
-        return arestas_saida
+        retorno = []
 
-    def dijkstra(self, v_src="", v_dest=""):
+        for a in arestas_saida:
+            if a != dict():
+                retorno.append(*list(a.values()))
+                
+        return retorno
+
+    def dijkstra(self, v_src="", v_dest="") -> list[str]:
 
         def grafo_viavel():
             # Grafo vazio ou sem arestas
@@ -133,21 +160,21 @@ class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
 
         return caminho
 
-    def outra_ponta_aresta(self, rotulo="", ponta_rot=""):
+    def outra_ponta_aresta(self, rotulo="", ponta_rot="") -> str:
         aresta = self.get_aresta(rotulo)
         if aresta.v1.rotulo == ponta_rot:
             return aresta.v2.rotulo
         else:
             return aresta.v1.rotulo
 
-    def get_aresta(self, rotulo=""):
+    def get_aresta(self, rotulo="") -> ArestaDirecionada:
         for a in self.get_todas_arestas():
             if rotulo == a.rotulo:
                 return a
 
         raise ArestaInvalidaError
 
-    def get_todas_arestas(self):
+    def get_todas_arestas(self) -> list[ArestaDirecionada]:
         arestas = list()
 
         for linha in range(len(self.matriz)):
@@ -160,7 +187,7 @@ class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
         
         return arestas
 
-    def vertices_nao_adjacentes(self):
+    def vertices_nao_adjacentes(self) -> set[str]:
         '''
         Provê uma lista de vértices não adjacentes no grafo. A lista terá o seguinte formato: [X-Z, X-W, ...]
         Onde X, Z e W são vértices no grafo que não tem uma aresta entre eles.
@@ -179,7 +206,7 @@ class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
         
         return vertices_nao_adj
 
-    def ha_laco(self):
+    def ha_laco(self) -> bool:
         '''
         Verifica se existe algum laço no grafo.
         :return: Um valor booleano que indica se existe algum laço.
@@ -191,7 +218,7 @@ class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
         
         return False
 
-    def grau_entrada(self, V=''):
+    def grau_entrada(self, V='') -> int:
         '''
         Provê o grau de entrada do vértice passado como parâmetro, ou seja, a quantidade de as arestas cujo vértice de origem não é 'V'
         :param V: O rótulo do vértice a ser analisado
@@ -210,7 +237,7 @@ class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
         
         return grau
 
-    def grau_saida(self, V=''):
+    def grau_saida(self, V='') -> int:
         '''
         Provê o grau de saída do vértice passado como parâmetro, isto é, a quantidade de arestas cujo vértice de origem é 'V'
         :param V: O rótulo do vértice a ser analisado
@@ -231,7 +258,7 @@ class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
         
         return grau
 
-    def ha_paralelas(self):
+    def ha_paralelas(self) -> bool:
         '''
         Verifica se há arestas paralelas no grafo
         :return: Um valor booleano que indica se existem arestas paralelas no grafo.
@@ -246,7 +273,7 @@ class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
                 
         return False
 
-    def arestas_sobre_vertice(self, V):
+    def arestas_sobre_vertice(self, V) -> set[str]:
         '''
         Provê uma lista que contém os rótulos das arestas que incidem sobre o vértice passado como parâmetro
         Deve-se considerar tanto a entrada quanto a saída
@@ -274,7 +301,7 @@ class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
 
         return rotulos_arestas
 
-    def eh_completo(self):
+    def eh_completo(self) -> bool:
         '''
         Verifica se o grafo é completo.
         :return: Um valor booleano que indica se o grafo é completo
@@ -297,7 +324,7 @@ class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
         
         return True
 
-    def warshall(self):
+    def warshall(self) -> list[list[int]] :
         '''
         Provê a matriz de alcançabilidade de Warshall do grafo
         :return: Uma lista de listas que representa a matriz de alcançabilidade de Warshall associada ao grafo
