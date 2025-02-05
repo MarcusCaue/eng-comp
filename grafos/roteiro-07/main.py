@@ -31,19 +31,7 @@ grafoAleatorio2 = GrafoBuilder().tipo(MeuGrafo()) \
         ArestaDirecionada('e2', Vertice('E'), Vertice('A'), 2),
     ]).build()
 
-# Com ciclo negativo
 grafoAleatorio3 = GrafoBuilder().tipo(MeuGrafo()) \
-    .vertices(['I', 'A', 'B', 'C', 'F']) \
-    .arestas([
-        ArestaDirecionada('a1', Vertice('I'), Vertice('A'), 1),
-        ArestaDirecionada('a2', Vertice('A'), Vertice('B'), -2),
-        ArestaDirecionada('a3', Vertice('B'), Vertice('C'), -3),
-        ArestaDirecionada('a4', Vertice('C'), Vertice('A'), 4),
-        ArestaDirecionada('a5', Vertice('C'), Vertice('F'), 1),
-    ]).build()
-
-
-grafo = GrafoBuilder().tipo(MeuGrafo()) \
     .vertices(['S', 'T', 'X', 'Y', 'Z']) \
     .arestas([
         ArestaDirecionada('s1', Vertice('S'), Vertice('T'), 6),
@@ -58,5 +46,55 @@ grafo = GrafoBuilder().tipo(MeuGrafo()) \
         ArestaDirecionada('z2', Vertice('Z'), Vertice('S'), 2),
     ]).build()
 
-print(grafo)
-print(grafoAleatorio2.bellman_ford('A', 'B'))
+# Com ciclo negativo
+grafoNegativo1 = GrafoBuilder().tipo(MeuGrafo()) \
+    .vertices(['I', 'A', 'B', 'C', 'F']) \
+    .arestas([
+        ArestaDirecionada('a1', Vertice('I'), Vertice('A'), 1),
+        ArestaDirecionada('a2', Vertice('A'), Vertice('B'), -2),
+        ArestaDirecionada('a3', Vertice('B'), Vertice('C'), -3),
+        ArestaDirecionada('a4', Vertice('C'), Vertice('A'), 4),
+        ArestaDirecionada('a5', Vertice('C'), Vertice('F'), 1),
+    ]).build()
+
+grafoNegativo2 = GrafoBuilder().tipo(MeuGrafo()) \
+    .vertices(4) \
+    .arestas([
+        ArestaDirecionada('a1', Vertice('A'), Vertice('B'), 2),
+        ArestaDirecionada('a2', Vertice('B'), Vertice('C'), -1),
+        ArestaDirecionada('a3', Vertice('B'), Vertice('D'), 3),
+        ArestaDirecionada('a4', Vertice('C'), Vertice('D'), -1),
+        ArestaDirecionada('a5', Vertice('C'), Vertice('A'), -3),
+    ]).build()
+
+grafoNegativo3 = GrafoBuilder().tipo(MeuGrafo()) \
+    .vertices(5) \
+    .arestas([
+        ArestaDirecionada('a1', Vertice('A'), Vertice('B'), 5),
+        ArestaDirecionada('a2', Vertice('A'), Vertice('C'), 4),
+        ArestaDirecionada('b1', Vertice('B'), Vertice('C'), -3),
+        ArestaDirecionada('c1', Vertice('C'), Vertice('D'), -1),
+        ArestaDirecionada('c2', Vertice('C'), Vertice('E'), 1),
+        ArestaDirecionada('d1', Vertice('D'), Vertice('B'), 6),
+        ArestaDirecionada('d2', Vertice('D'), Vertice('E'), -5),
+        ArestaDirecionada('e1', Vertice('E'), Vertice('A'), 2),
+    ]).build()
+
+grafoNegativo4 = GrafoBuilder().tipo(MeuGrafo()) \
+    .vertices(['S', 'A', 'B', 'C', 'D', 'E', 'F', 'G']) \
+    .arestas([
+        ArestaDirecionada('s1', Vertice('S'), Vertice('A'), 3),
+        ArestaDirecionada('s2', Vertice('S'), Vertice('C'), 5),
+        ArestaDirecionada('s3', Vertice('S'), Vertice('E'), 2),
+        ArestaDirecionada('a1', Vertice('A'), Vertice('B'), -4),
+        ArestaDirecionada('b1', Vertice('B'), Vertice('G'), 4),
+        ArestaDirecionada('c1', Vertice('C'), Vertice('D'), 6),
+        ArestaDirecionada('d1', Vertice('D'), Vertice('C'), -3),
+        ArestaDirecionada('d2', Vertice('D'), Vertice('G'), 8),
+        ArestaDirecionada('e1', Vertice('E'), Vertice('F'), 3),
+        ArestaDirecionada('f1', Vertice('F'), Vertice('E'), -6),
+        ArestaDirecionada('f2', Vertice('F'), Vertice('G'), 7),
+    ]).build()
+
+# print(grafo)
+print(grafoNegativo3.bellman_ford('A', 'A'))
