@@ -9,6 +9,9 @@ class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
     def bellman_ford(self, v_src="", v_dest=""):
         """
         Também retorna uma lista com os vértices e os pesos dos menores caminhos até eles
+        -> Para verificar se ele tem ciclo negativo, considere:
+            - O algoritmo precisa rodar em "v - 1" iterações
+            - Se houver diferenças entre as linhas da iteração "v - 1" e da "v", então existe um ciclo com peso negativo no grafo.
         """
         def grafo_viavel():
             # Grafo vazio ou sem arestas
@@ -38,10 +41,7 @@ class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
         weights_min_ways = [[0] + [ INFINITY for _ in range(len(self.vertices) - 1) ]]
         menores_caminhos = [ NULL for _ in range(len(self.vertices)) ]
 
-        for _ in range(len(self.vertices) - 1):
-            if len(weights_min_ways) > 1 and weights_min_ways[-1] == weights_min_ways[-2]:
-                break
-
+        for _ in range(len(self.vertices)):
             min_ways_i = weights_min_ways[-1].copy()
 
             for v in self.vertices:
@@ -63,8 +63,12 @@ class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
             
             weights_min_ways.append(min_ways_i)
         
-        # No caso de ciclo com peso negativo
-        # if  
+        # Verificando se o caminho passou por um ciclo negativo
+        ultimo = weights_min_ways[-1]
+        penultimo = weights_min_ways[-2]
+        index_v_dest = self.indice_do_vertice(self.get_vertice(v_dest))
+        if ultimo != penultimo and ultimo[index_v_dest] < penultimo[index_v_dest]:
+            return []
 
         caminho = []
         w = v_dest
@@ -82,7 +86,7 @@ class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
 
         caminho.insert(0, v_src)
 
-        return weights_min_ways
+        return caminho
 
 
     def get_arestas_saida(self, v: Vertice) -> list[ArestaDirecionada]:
