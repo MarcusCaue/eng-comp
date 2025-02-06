@@ -43,21 +43,28 @@
 	- fieis
 	- padroeiro
 	- igrejas
-	- dizimo
 	- bairro/sitio
+	- dizimo
+	
+-> Dizimo:
+	- data
+	- valor
+	- comunidade
 
 → Pastoral:
 	- nome
+	- coordenador
 	- fieis
 
 → Turma de Catequese:
 	- comunidade
 	- fieis
 	- padroeiro
+	- catequista
 
 → Igrejas:
 	- nome
-	- padroeiro e copadroeiros
+	- padroeiro
 	- comunidade
 	- endereco
 	- dataErecao
