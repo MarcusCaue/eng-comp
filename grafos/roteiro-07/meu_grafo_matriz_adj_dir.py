@@ -7,12 +7,6 @@ class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
 
 
     def bellman_ford(self, v_src="", v_dest="") -> list[str]:
-        """
-        Também retorna uma lista com os vértices e os pesos dos menores caminhos até eles
-        -> Para verificar se ele tem ciclo negativo, considere:
-            - O algoritmo precisa rodar em "v - 1" iterações
-            - Se houver diferenças entre as linhas da iteração "v - 1" e da "v", então existe um ciclo com peso negativo no grafo.
-        """
         def grafo_viavel():
             # Grafo vazio ou sem arestas
             if self == MeuGrafo() or len(self.matriz) == 0:
