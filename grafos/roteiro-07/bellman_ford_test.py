@@ -9,8 +9,67 @@ from atividades_grafos import gerar_grafos_teste
 class TestGrafo(unittest.TestCase):
 
     def test_bellman_ford(self):
-        pass
+        #Em um momento oportuno, gostaria de testar a seguinte hipótese: Se um caminho entre dois vértices não passar por um ciclo negativo, mesmo que o grafo o tenha, então o algoritmo ainda soluciona o problema
 
+        # Grafos aleatórios
+        grafo_aleat1 = GrafoJSON.json_to_grafo("test_json/grafo_aleat1.json", MeuGrafo())
+        grafo_aleat2 = GrafoJSON.json_to_grafo("test_json/grafo_aleat2.json", MeuGrafo())
+        grafo_aleat3 = GrafoJSON.json_to_grafo("test_json/grafo_aleat3.json", MeuGrafo())
+        
+        self.assertEqual(grafo_aleat1.bellman_ford('I', 'B'), ['I', 'a2', 'E', 'a3', 'D', 'a6', 'A', 'a4', 'C', 'a7', 'B'])
+        self.assertNotEqual(grafo_aleat1.bellman_ford('I', 'A'), ['I', 'a2', 'E', 'a3', 'D', 'a5', 'C', 'a7', 'B', 'a8', 'A'])
+        self.assertEqual(grafo_aleat2.bellman_ford('A', 'E'), ['A', 'a2', 'C', 'c1', 'D', 'd1', 'B', 'b2', 'E'])
+        self.assertEqual(grafo_aleat2.bellman_ford('E', 'D'), ['E', 'e2', 'A', 'a2', 'C', 'c1', 'D'])
+        self.assertEqual(grafo_aleat3.bellman_ford('S', 'Z'), ['S', 's2', 'Y', 'y2', 'X', 'x1', 'T', 't3', 'Z'])
+        self.assertEqual(grafo_aleat3.bellman_ford('Z', 'Y'), ['Z', 'z2', 'S', 's2', 'Y'])
+    
+        # Grafos com ciclos de peso negativo
+        grafo_neg1 = GrafoJSON.json_to_grafo("test_json/grafo_neg1.json", MeuGrafo())
+        grafo_neg2 = GrafoJSON.json_to_grafo("test_json/grafo_neg2.json", MeuGrafo())
+        grafo_neg3 = GrafoJSON.json_to_grafo("test_json/grafo_neg3.json", MeuGrafo())
+        grafo_neg4 = GrafoJSON.json_to_grafo("test_json/grafo_neg4.json", MeuGrafo())
+
+        self.assertEqual(grafo_neg1.bellman_ford('I', 'F'), [])
+        self.assertEqual(grafo_neg1.bellman_ford('A', 'C'), [])
+        self.assertEqual(grafo_neg2.bellman_ford('A', 'D'), [])
+        self.assertEqual(grafo_neg2.bellman_ford('D', 'A'), [])
+        self.assertEqual(grafo_neg3.bellman_ford('A', 'E'), [])
+        self.assertEqual(grafo_neg3.bellman_ford('C', 'D'), [])
+        self.assertEqual(grafo_neg4.bellman_ford('S', 'G'), [])
+        self.assertEqual(grafo_neg4.bellman_ford('S', 'F'), [])
+
+        # Grafo vazio
+        self.assertEqual(MeuGrafo().bellman_ford(), [])
+
+        # Vértices inexistentes
+        with self.assertRaises(VerticeInvalidoError):
+            grafo_aleat1.bellman_ford('X', 'J')
+        with self.assertRaises(VerticeInvalidoError):
+            grafo_aleat2.bellman_ford('W', 'R')
+        with self.assertRaises(VerticeInvalidoError):
+            grafo_neg4.bellman_ford('Z', 'Y')
+        
+        # Testando os resultados do algoritmo em relação ao de Dijkstra
+        k10 = GrafoBuilder().tipo(MeuGrafo()).vertices(10).arestas(True).build()
+    
+        self.assertEqual(k10.dijkstra('A', 'C'), k10.bellman_ford('A', 'C'))
+        self.assertEqual(self.g_p.dijkstra('J', 'Z'), self.g_p.bellman_ford('J', 'Z'))
+
+        # Outro grafo aleatório
+        vertices = ['A', 'B', 'C', 'D', 'E', 'F']
+        arestas = [
+            ArestaDirecionada('a0', Vertice(vertices[0]), Vertice(vertices[3]), 2),
+            ArestaDirecionada('a1', Vertice(vertices[0]), Vertice(vertices[1]), 3), 
+            ArestaDirecionada('a2', Vertice(vertices[1]), Vertice(vertices[2]), 1), 
+            ArestaDirecionada('a3', Vertice(vertices[2]), Vertice(vertices[4]), 1), 
+            ArestaDirecionada('a4', Vertice(vertices[3]), Vertice(vertices[4]), 4), 
+            ArestaDirecionada('a5', Vertice(vertices[3]), Vertice(vertices[5]), 5), 
+            ArestaDirecionada('a6', Vertice(vertices[4]), Vertice(vertices[5]), 1), 
+        ]
+
+        grafo = GrafoBuilder().tipo(MeuGrafo()).vertices(vertices).arestas(arestas).build()
+        self.assertEqual(grafo.dijkstra('A', 'F'), grafo.bellman_ford('A', 'F'))
+        
     def test_dijkstra(self):
         # Grafos aleatórios
         vertices = ['A', 'B', 'C', 'D', 'E', 'F']

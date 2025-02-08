@@ -2,8 +2,9 @@ from bibgrafo.grafo_builder import GrafoBuilder
 from meu_grafo_matriz_adj_dir import MeuGrafo
 from bibgrafo.aresta import ArestaDirecionada
 from bibgrafo.vertice import Vertice
+from bibgrafo.grafo_json import GrafoJSON
 
-grafoAleatorio1 = GrafoBuilder().tipo(MeuGrafo()) \
+grafo_aleat1 = GrafoBuilder().tipo(MeuGrafo()) \
     .vertices(['I', 'A', 'B', 'C', 'D', 'E']) \
     .arestas([
         ArestaDirecionada('a1', Vertice('I'), Vertice('A'), 10),
@@ -16,7 +17,7 @@ grafoAleatorio1 = GrafoBuilder().tipo(MeuGrafo()) \
         ArestaDirecionada('a8', Vertice('B'), Vertice('A'), 1),
     ]).build()
 
-grafoAleatorio2 = GrafoBuilder().tipo(MeuGrafo()) \
+grafo_aleat2 = GrafoBuilder().tipo(MeuGrafo()) \
     .vertices(5) \
     .arestas([
         ArestaDirecionada('a1', Vertice('A'), Vertice('B'), 6),
@@ -31,7 +32,7 @@ grafoAleatorio2 = GrafoBuilder().tipo(MeuGrafo()) \
         ArestaDirecionada('e2', Vertice('E'), Vertice('A'), 2),
     ]).build()
 
-grafoAleatorio3 = GrafoBuilder().tipo(MeuGrafo()) \
+grafo_aleat3 = GrafoBuilder().tipo(MeuGrafo()) \
     .vertices(['S', 'T', 'X', 'Y', 'Z']) \
     .arestas([
         ArestaDirecionada('s1', Vertice('S'), Vertice('T'), 6),
@@ -47,7 +48,7 @@ grafoAleatorio3 = GrafoBuilder().tipo(MeuGrafo()) \
     ]).build()
 
 # Com ciclo negativo
-grafoNegativo1 = GrafoBuilder().tipo(MeuGrafo()) \
+grafo_neg1 = GrafoBuilder().tipo(MeuGrafo()) \
     .vertices(['I', 'A', 'B', 'C', 'F']) \
     .arestas([
         ArestaDirecionada('a1', Vertice('I'), Vertice('A'), 1),
@@ -57,7 +58,7 @@ grafoNegativo1 = GrafoBuilder().tipo(MeuGrafo()) \
         ArestaDirecionada('a5', Vertice('C'), Vertice('F'), 1),
     ]).build()
 
-grafoNegativo2 = GrafoBuilder().tipo(MeuGrafo()) \
+grafo_neg2 = GrafoBuilder().tipo(MeuGrafo()) \
     .vertices(4) \
     .arestas([
         ArestaDirecionada('a1', Vertice('A'), Vertice('B'), 2),
@@ -67,7 +68,7 @@ grafoNegativo2 = GrafoBuilder().tipo(MeuGrafo()) \
         ArestaDirecionada('a5', Vertice('C'), Vertice('A'), -3),
     ]).build()
 
-grafoNegativo3 = GrafoBuilder().tipo(MeuGrafo()) \
+grafo_neg3 = GrafoBuilder().tipo(MeuGrafo()) \
     .vertices(5) \
     .arestas([
         ArestaDirecionada('a1', Vertice('A'), Vertice('B'), 5),
@@ -80,7 +81,7 @@ grafoNegativo3 = GrafoBuilder().tipo(MeuGrafo()) \
         ArestaDirecionada('e1', Vertice('E'), Vertice('A'), 2),
     ]).build()
 
-grafoNegativo4 = GrafoBuilder().tipo(MeuGrafo()) \
+grafo_neg4 = GrafoBuilder().tipo(MeuGrafo()) \
     .vertices(['S', 'A', 'B', 'C', 'D', 'E', 'F', 'G']) \
     .arestas([
         ArestaDirecionada('s1', Vertice('S'), Vertice('A'), 3),
@@ -96,5 +97,16 @@ grafoNegativo4 = GrafoBuilder().tipo(MeuGrafo()) \
         ArestaDirecionada('f2', Vertice('F'), Vertice('G'), 7),
     ]).build()
 
-# print(grafo)
-print(grafoNegativo3.bellman_ford('A', 'A'))
+grafos = [
+    {"nome": "grafo_aleat1", "valor": grafo_aleat1},
+    {"nome": "grafo_aleat2", "valor": grafo_aleat2},
+    {"nome": "grafo_aleat3", "valor": grafo_aleat3},
+
+    {"nome": "grafo_neg1", "valor": grafo_neg1},
+    {"nome": "grafo_neg2", "valor": grafo_neg2},
+    {"nome": "grafo_neg3", "valor": grafo_neg3},
+    {"nome": "grafo_neg4", "valor": grafo_neg4}
+]
+
+for g in grafos:
+    GrafoJSON.grafo_to_json(g["valor"], f'test_json/{g["nome"]}.json')

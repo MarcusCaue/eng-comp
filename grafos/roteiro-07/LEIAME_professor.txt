@@ -1,0 +1,1 @@
+Neste arquivo compactado também está contido o arquivo "main.py" porque ele contém o código que gera os arquivos .json dos grafos que serão utilizados nos testes do algoritmo de Bellman-Ford. Sendo assim, é preciso ter a pasta "test_json" criada antecipadamente

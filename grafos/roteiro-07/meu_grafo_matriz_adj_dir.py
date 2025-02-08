@@ -6,7 +6,7 @@ from copy import deepcopy
 class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
 
 
-    def bellman_ford(self, v_src="", v_dest=""):
+    def bellman_ford(self, v_src="", v_dest="") -> list[str]:
         """
         Também retorna uma lista com os vértices e os pesos dos menores caminhos até eles
         -> Para verificar se ele tem ciclo negativo, considere:
@@ -39,13 +39,20 @@ class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
         NULL = 0
 
         weights_min_ways = [[0] + [ INFINITY for _ in range(len(self.vertices) - 1) ]]
-        menores_caminhos = [ NULL for _ in range(len(self.vertices)) ]
 
-        for _ in range(len(self.vertices)):
+        # Rearranjando os vértices na tabela para que o vértice de origem tenha peso 0 para chegar nele
+        vertices = [self.vertices[self.indice_do_vertice(self.get_vertice(v_src))]]
+        for v in self.vertices:
+            if v != vertices[0]:
+                vertices.append(v)
+
+        menores_caminhos = [ NULL for _ in range(len(vertices)) ]
+
+        for _ in range(len(vertices)):
             min_ways_i = weights_min_ways[-1].copy()
 
-            for v in self.vertices:
-                index_v = self.indice_do_vertice(v)
+            for v in vertices:
+                index_v = vertices.index(v)
 
                 if (min_ways_i[index_v] == INFINITY):
                     continue
@@ -53,7 +60,7 @@ class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
                 arestas_saida = self.get_arestas_saida(v)
                 for a in arestas_saida:
                     outra_ponta = self.outra_ponta_aresta(a.rotulo, v.rotulo)
-                    index_outra_ponta = self.indice_do_vertice(self.get_vertice(outra_ponta))
+                    index_outra_ponta = vertices.index(self.get_vertice(outra_ponta))
 
                     novo_peso = min_ways_i[index_v] + a.peso
 
@@ -66,7 +73,8 @@ class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
         # Verificando se o caminho passou por um ciclo negativo
         ultimo = weights_min_ways[-1]
         penultimo = weights_min_ways[-2]
-        index_v_dest = self.indice_do_vertice(self.get_vertice(v_dest))
+        index_v_dest = vertices.index(self.get_vertice(v_dest))
+
         if ultimo != penultimo and ultimo[index_v_dest] < penultimo[index_v_dest]:
             return []
 
@@ -74,7 +82,7 @@ class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
         w = v_dest
         while w != v_src:
             for i, m in enumerate(menores_caminhos):
-                vertice = self.vertices[i].rotulo
+                vertice = vertices[i].rotulo
 
                 if w == vertice:
                     if w == v_src:
