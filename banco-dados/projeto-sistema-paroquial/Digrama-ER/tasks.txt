@@ -1,0 +1,73 @@
+-> Discutir o relacionamento entre comunidade e dizimo
+
+
+Hierarquia Pessoa {
+  - id: integer PRIMARY KEY
+  - nome: string,
+  - idade: integer,
+  - batisterio: integer (RELACIONAMENTO)
+
+  Fiel {
+    - comunidade: integer (RELACIONAMENTO)
+    - pastoral: integer (RELACIONAMENTO)
+    - turmaCatequese: integer (RELACIONAMENTO)
+  }
+
+  Padre {
+    - cargo: string
+    - dataOrdenacao: date
+    - ordemReligiosa: string
+    - bispo: integer (RELACIONAMENTO)
+  }
+
+  Bispo {
+    - diocese: string
+    - dataOrdEpis: date
+    - padres: integer (RELACIONAMENTO)
+  }
+}
+
+Igreja {
+  - id: integer
+  - nome: string
+  - padroeiro: string
+  - comunidade: integer (RELACIONAMENTO)
+  - endereco: string 
+  - dataErecaoCanonica: date
+  - ehMatriz: boolean
+}
+
+TurmaCatequese {
+  - id: integer
+  - padroeiro: string
+  - comunidade: integer (RELACIONAMENTO)
+  - fieis: integer (RELACIONAMENTO)
+  - catequista: integer (RELACIONAMENTO)
+}
+
+Pastoral {
+  - id: integer
+  - nome: string
+  - coordenador: integer (RELACIONAMENTO)
+  - fieis: integer (RELACIONAMENTO)
+}
+
+Comunidade {
+  - id: integer
+  - localizacao: string
+  - nome: string
+  - padroeiro: string
+  - dataFundacao: date
+  - fieis: integer (RELACIONAMENTO)
+  - igrejas: integer (RELACIONAMENTO)
+  - dízimo: ??????
+}
+
+Dizimo {
+  - id: integer
+  - comunidade: integer (RELACIONAMENTO)
+  - data: date
+  - valor: real
+}
+
+
