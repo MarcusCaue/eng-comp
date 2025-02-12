@@ -1,3 +1,25 @@
+-> Toda Missa deve ter um celebrante principal, seja padre ou bispo
+
+Batisterio {
+  - celebrante (RELACIONAMENTO) (X)
+  - pessoaBatizada (RELACIONAMENTO) (X)
+  - data
+  - igreja (RELACIONAMENTO) (X)
+  - padrinhos (RELACIONAMENTO) (X)
+  - missa (RELACIONAMENTO) (X)
+}
+
+Missa {
+  - celebrantePrincipal (RELACIONAMENTO) (X)
+  - concelebrantes (RELACIONAMENTO) (X)
+  - data
+  - igreja (RELACIONAMENTO) (X)
+  - ofertas
+  - categoriaLiturgica
+  - nome
+  - batisterios (RELACIONAMENTO)
+}
+
 Hierarquia Pessoa {
   - id: integer PRIMARY KEY
   - nome: string,
