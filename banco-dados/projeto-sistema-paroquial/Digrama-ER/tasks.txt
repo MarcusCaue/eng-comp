@@ -1,6 +1,3 @@
--> Discutir o relacionamento entre comunidade e dizimo
-
-
 Hierarquia Pessoa {
   - id: integer PRIMARY KEY
   - nome: string,
@@ -8,9 +5,9 @@ Hierarquia Pessoa {
   - batisterio: integer (RELACIONAMENTO)
 
   Fiel {
-    - comunidade: integer (RELACIONAMENTO)
-    - pastoral: integer (RELACIONAMENTO)
-    - turmaCatequese: integer (RELACIONAMENTO)
+    - comunidade: integer (RELACIONAMENTO) (X)
+    - pastoral: integer (RELACIONAMENTO) (X)
+    - turmaCatequese: integer (RELACIONAMENTO) (X)
   }
 
   Padre {
@@ -31,7 +28,7 @@ Igreja {
   - id: integer
   - nome: string
   - padroeiro: string
-  - comunidade: integer (RELACIONAMENTO)
+  - comunidade: integer (RELACIONAMENTO) (X)
   - endereco: string 
   - dataErecaoCanonica: date
   - ehMatriz: boolean
@@ -40,16 +37,16 @@ Igreja {
 TurmaCatequese {
   - id: integer
   - padroeiro: string
-  - comunidade: integer (RELACIONAMENTO)
-  - fieis: integer (RELACIONAMENTO)
-  - catequista: integer (RELACIONAMENTO)
+  - comunidade: integer (RELACIONAMENTO) (X)
+  - fieis: integer (RELACIONAMENTO) (X)
+  - catequista: integer (RELACIONAMENTO) (X)
 }
 
 Pastoral {
   - id: integer
   - nome: string
-  - coordenador: integer (RELACIONAMENTO)
-  - fieis: integer (RELACIONAMENTO)
+  - coordenador: integer (RELACIONAMENTO) (X)
+  - fieis: integer (RELACIONAMENTO) (X)
 }
 
 Comunidade {
@@ -58,14 +55,13 @@ Comunidade {
   - nome: string
   - padroeiro: string
   - dataFundacao: date
-  - fieis: integer (RELACIONAMENTO)
-  - igrejas: integer (RELACIONAMENTO)
-  - dízimo: ??????
+  - fieis: integer (RELACIONAMENTO) (X)
+  - igrejas: integer (RELACIONAMENTO) (X)
 }
 
 Dizimo {
   - id: integer
-  - comunidade: integer (RELACIONAMENTO)
+  - comunidade: integer (RELACIONAMENTO) (X)
   - data: date
   - valor: real
 }
