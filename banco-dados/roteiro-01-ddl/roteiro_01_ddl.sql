@@ -1,6 +1,6 @@
 # Criação e seleção da base de dados
-CREATE DATABASE bdselecao202421250026;
-USE bdselecao202421250026;
+CREATE DATABASE bdselecao202321250026;
+USE bdselecao202321250026;
 
 # Exibição das bases de dados do servidor
 SHOW DATABASES;
