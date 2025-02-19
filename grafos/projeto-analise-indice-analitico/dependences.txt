@@ -1,0 +1,10 @@
+-> Crie um ambiente virtual primeiro:
+    - python -m venv ./venv
+    - .\venv\Scripts\activate ou source venv/bin/activate
+    - deactivate
+
+-> Instale o programa de visualização de grafos "Gephi"
+
+pip install requests
+pip install bibgrafo
+pip install beatifulsoup4
