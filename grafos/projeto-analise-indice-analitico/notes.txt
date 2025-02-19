@@ -1,0 +1,4 @@
+-> Vou tentar fazer uma análise (não sei aonde isso vai dar) entre as questões e os assuntos presentes no "Índice Analítico do Compêndio do Catecismo da Igreja Católica".
+-> Site com os dados: https://angelgireh.tripod.com/a-b.html
+
+-> 1 - Fazer um webscrapping para pegar os dados do site.
