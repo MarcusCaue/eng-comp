@@ -30,7 +30,7 @@ CREATE TABLE TurmaCatequese (
 
 CREATE TABLE Comunidade (
   id integer NOT NULL PRIMARY KEY,
-  nome varchar(120) NOT NULL,
+  nome varchar(120) UNIQUE NOT NULL,
   localizacao varchar(60) NOT NULL,
   padroeiro varchar(60) NOT NULL,
   dataFundacao date NOT NULL
