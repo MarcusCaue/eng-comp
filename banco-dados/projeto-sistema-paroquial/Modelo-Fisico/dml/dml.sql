@@ -172,3 +172,53 @@ INSERT INTO FielParticipaPastoral (pastoral_fk, fiel_fk) VALUES
   -- Pastoral do Crisma
   (10, 1), (10, 13), (10, 15);
 
+INSERT INTO PadreConcelebraMissa (padre_fk, missa_fk) VALUES
+  -- 1º Domingo da Quaresma
+  (2, 9),
+  (3, 9),
+  (4, 9),
+  -- 2º Domingo da Quaresma
+  (1, 10),
+  (3, 10),
+  -- 3º Domingo da Quaresma
+  (2, 11),
+  (4, 11),
+  -- 4º Domingo da Quaresma
+  (1, 12),
+  -- 5º Domingo da Quaresma
+  (3, 13),
+  (4, 13),
+  -- Domingo de Ramos
+  (1, 14),
+  (2, 14),
+  (3, 14),
+  (4, 14),
+  -- Ceia do Senhor
+  (2, 15),
+  -- Vigília Pascal
+  (1, 17),
+  (3, 17),
+  (4, 17),
+  -- Domingo de Páscoa
+  (2, 18),
+  (4, 18),
+  -- Pentecostes
+  (1, 19),
+  (3, 19),
+  (4, 19),
+  -- Sagrado Coração de Jesus
+  (2, 20),
+  -- Assunção de Nossa Senhora
+  (3, 21),
+  (4, 21),
+  -- Nossa Senhora Aparecida
+  (1, 23),
+  (2, 23),
+  -- Natal do Senhor
+  (3, 24),
+  (4, 24);
+
+INSERT INTO PessoaEhPadrinho (pessoa_fk, batismo_fk) VALUES
+  (2, 1), (4, 1), (4, 3), (5, 3), (8, 4), (9, 4),
+  (10, 4), (22, 14), (15, 13), (11, 14), (13, 15), (23, 13),
+  (20, 7), (20, 16), (21, 9), (21, 8), (17, 10), (14, 10);
