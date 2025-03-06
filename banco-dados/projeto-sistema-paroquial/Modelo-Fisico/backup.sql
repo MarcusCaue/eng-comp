@@ -1,3 +1,48 @@
+INSERT INTO Fiel (id, comunidade_fk) VALUES
+  (1, 1), (2, 3), (3, 3),  (4, 5),  (5, 8),  (6, 5),  (7, 8),  (8, 5),  (9, 2),  (10, 2),  (11, 2),  (12, 4),  (13, 6),  (14, 4),  (15, 7);
+
+INSERT INTO Bispo VALUES (1, "Diocese de Campina Grande", "2011-03-07"), (2, "Diocese da Administração Apostólica", "2003-05-31"), (3, "Arquidiocese de Cartago", "2020-08-10");
+
+INSERT INTO Padre VALUES 
+  (1, "2000-01-01", NULL, "Visitante", 1), 
+  (2, "2010-11-21", "Ordem de São Bento", "Visitante", 1), 
+  (3, "2022-10-11", "Ordem de São Francisco de Assis", "Visitante", 1), 
+  (4, "2015-07-03", NULL, "Pároco", 1), 
+  (5, "2016-02-04", NULL, "Vigário", 1), 
+  (6, "2024-12-16", NULL, "Vigário", 1);
+
+INSERT INTO Sacerdote VALUES 
+  (1, 1, NULL), (2, 2, NULL), (3, 3, NULL), (4, 4, NULL), (5, 5, NULL), (6, 6, NULL), 
+  (7, NULL, 1), (8, NULL, 2), (9, NULL, 3);
+
+INSERT INTO Pessoa (id, nome, idade, fiel_fk, sacerdote_fk) VALUES 
+  -- Fiéis 
+  (1, "José Guilherme", 19, 1, NULL),
+  (2, "Artur Ramalho", 20, 2, NULL),
+  (3, "Ricardo Sousa", 32, 3, NULL),
+  (4, "Marianna Silva", 16, 4, NULL),
+  (5, "Yasmim Ferreira", 23, 5, NULL),
+  (6, "Josefa Gonçalves", 58, 6, NULL),
+  (7, "José Costa", 61, 7, NULL),
+  (8, "Severina Ramos", 66, 8, NULL),
+  (9, "Pedro Monteiro", 43, 9, NULL),
+  (10, "Pedro Silva", 21, 10, NULL),
+  (11, "José Sousa", 29, 11, NULL),
+  (12, "José Faustino", 75, 12, NULL),
+  (13, "Anástica Lopes", 55, 13, NULL),
+  (14, "Adriana Ferreira", 33, 14, NULL),
+  (15, "Gabriel Dias", 26, 15, NULL),
+  -- Sacerdotes
+  (16, "Paulo Junior", 58, NULL, 2),
+  (17, "Pedro Silva", 30, NULL, 3),
+  (18, "Bruno Medeiros", 41, NULL, 5),
+  (19, "Tobias Diniz", 40, NULL, 6),
+  (20, "Adriel David", 27, NULL, 1),
+  (21, "Carlos Antônio", 60, NULL, 4),
+  (22, "Dulcênio Matos", 63, NULL, 7),
+  (23, "Fernando Falcão", 58, NULL, 8),
+  (24, "José Romano", 68, NULL, 9);
+
 -- Alimentação do Banco de Dados
 INSERT INTO Comunidade VALUES 
   (1, "Sagrado Coração de Jesus - Aníbal Teixeira", "Bairro Aníbal Teixeira", "Nosso Senhor Jesus Cristo", "1995-01-19"),
@@ -108,27 +153,27 @@ INSERT INTO Missa VALUES
   (5, "Nossa Senhora das Dores", "Memória", 200, "2019-09-15", 7, 6),
   (6, "São Pedro e São Paulo", "Solenidade", 800, "2018-06-29", 7, 2),
   (7, "Missa Votiva ao Sagrado Coração de Jesus", "Memória", 100, "2019-02-07", 2, 1),
-  (8, 'Quarta-feira de Cinzas', 'Memória', 250.00, '2023-02-22', 4, 3),
-  (9, '1º Domingo da Quaresma', 'Solenidade', 180.00, '2022-03-06', 5, 5),
-  (10, '2º Domingo da Quaresma', 'Solenidade', 200.50, '2021-02-28', 1, 2),
-  (11, '3º Domingo da Quaresma', 'Solenidade', 175.30, '2024-03-03', 6, 6),
-  (12, '4º Domingo da Quaresma', 'Solenidade', 210.75, '2020-03-22', 4, 7),
-  (13, '5º Domingo da Quaresma', 'Solenidade', 195.20, '2023-03-26', 5, 1),
-  (14, 'Domingo de Ramos', 'Solenidade', 300.00, '2024-03-24', 2, 3),
-  (15, 'Ceia do Senhor', 'Solenidade', 450.50, '2021-04-01', 1, 8),
-  (16, 'Segunda-feira da Semana Santa', 'Memória', 120.00, '2022-04-11', 3, 6),
-  (17, 'Vigília Pascal', 'Solenidade', 500.00, '2020-04-11', 7, 3),
-  (18, 'Domingo de Páscoa', 'Solenidade', 400.25, '2023-04-09', 5, 4),
-  (19, 'Pentecostes', 'Solenidade', 275.00, '2022-06-05', 2, 7),
-  (20, 'Sagrado Coração de Jesus', 'Solenidade', 320.75, '2020-06-19', 4, 3),
-  (21, 'Assunção de Nossa Senhora', 'Solenidade', 310.50, '2021-08-15', 5, 8),
-  (22, 'São Francisco de Assis', 'Memória', 180.00, '2023-10-04', 3, 2),
-  (23, 'Nossa Senhora Aparecida', 'Solenidade', 290.00, '2024-10-12', 1, 5),
-  (24, 'Natal do Senhor', 'Solenidade', 600.00, '2022-12-25', 6, 3),
-  (25, 'Santos Anjos da Guarda', 'Memória', 350.00, '2020-10-02', 8, 5),
-  (26, 'Domingo da Misericórdia', 'Solenidade', 280.00, '2023-04-16', 9, 6),
-  (27, 'Santo Antônio', 'Memória', 230.00, '2021-06-13', 7, 1),
-  (28, 'Imaculada Conceição', 'Solenidade', 400.00, '2022-12-08', 8, 2);
+  (8, 'Quarta-feira de Cinzas', 'memória', 250.00, '2023-02-22', 4, 3),
+  (9, '1º Domingo da Quaresma', 'solenidade', 180.00, '2022-03-06', 5, 5),
+  (10, '2º Domingo da Quaresma', 'solenidade', 200.50, '2021-02-28', 1, 2),
+  (11, '3º Domingo da Quaresma', 'solenidade', 175.30, '2024-03-03', 6, 6),
+  (12, '4º Domingo da Quaresma', 'solenidade', 210.75, '2020-03-22', 4, 7),
+  (13, '5º Domingo da Quaresma', 'solenidade', 195.20, '2023-03-26', 5, 1),
+  (14, 'Domingo de Ramos', 'solenidade', 300.00, '2024-03-24', 2, 3),
+  (15, 'Ceia do Senhor', 'solenidade', 450.50, '2021-04-01', 1, 8),
+  (16, 'Segunda-feira da Semana Santa', 'memória', 120.00, '2022-04-11', 3, 6),
+  (17, 'Vigília Pascal', 'solenidade', 500.00, '2020-04-11', 7, 3),
+  (18, 'Domingo de Páscoa', 'solenidade', 400.25, '2023-04-09', 5, 4),
+  (19, 'Pentecostes', 'solenidade', 275.00, '2022-06-05', 2, 7),
+  (20, 'Sagrado Coração de Jesus', 'solenidade', 320.75, '2020-06-19', 4, 3),
+  (21, 'Assunção de Nossa Senhora', 'solenidade', 310.50, '2021-08-15', 5, 8),
+  (22, 'São Francisco de Assis', 'memória', 180.00, '2023-10-04', 3, 2),
+  (23, 'Nossa Senhora Aparecida', 'solenidade', 290.00, '2024-10-12', 1, 5),
+  (24, 'Natal do Senhor', 'solenidade', 600.00, '2022-12-25', 6, 3),
+  (25, 'Santos Anjos da Guarda', 'memória', 350.00, '2020-10-02', 8, 5),
+  (26, 'Domingo da Misericórdia', 'solenidade', 280.00, '2023-04-16', 9, 6),
+  (27, 'Santo Antônio', 'memória', 230.00, '2021-06-13', 7, 1),
+  (28, 'Imaculada Conceição', 'solenidade', 400.00, '2022-12-08', 8, 2);
 
 INSERT INTO Batismo (id, data, pessoa_batizada_fk, igreja_fk, sacerdote_fk, missa_fk) VALUES
   (1, '2023-04-09', 1, 1, 4, 8),
