@@ -42,29 +42,29 @@ INSERT INTO Dizimo VALUES
   (22, 225.00, "2023-07-03", 8); 
 
 INSERT INTO Igreja VALUES
-  -- Comunidade "Matriz São Pedro e São Paulo"
+  -- Matriz São Pedro e São Paulo
   (1, "Igreja São Pedro e São Paulo", "São Pedro", "Rua das Palmeiras, 120, Bairro Vila", "1980-05-15", 1, 3),
   (2, "Igreja São Francisco de Assis", "São Francisco de Assis", "Rua dos Pássaros, 22, Bairro Vila", "1970-10-04", 0, 3),
   (3, "Capela São Paulo Apóstolo", "São Paulo", "Rua das Acácias, 55, Bairro Vila", "1995-06-29", 0, 3),
-  -- Comunidade "Nossa Senhora de Guadalupe - Capim de Planta" (Padroeira: Bem-aventurada Virgem Maria)
+  -- Nossa Senhora de Guadalupe - Capim de Planta
   (4, "Igreja Nossa Senhora Aparecida", "Bem-aventurada Virgem Maria", "Avenida Central, 300, Sítio Capim de Planta", "1975-09-22", 0, 8),
   (5, "Capela Nossa Senhora de Guadalupe", "Bem-aventurada Virgem Maria", "Rua das Flores, 77, Sítio Capim de Planta", "2020-12-12", 0, 8),
-  -- Comunidade "São José - Cruzeiro"
+  -- São José - Cruzeiro
   (6, "Capela Santo Antônio", "Santo Antônio", "Praça da Matriz, 50, Bairro Cruzeiro", "1990-11-30", 0, 5),
   (7, "Igreja Santa Rita de Cássia", "Santa Rita de Cássia", "Praça do Rosário, 12, Bairro Cruzeiro", "2005-08-22", 0, 5),
   (8, "Capela São José", "São José", "Rua Esperança, 98, Bairro Cruzeiro", "2000-03-19", 0, 5),
-  -- Comunidade "Santa Clara de Assis - Olho d'Água" (Padroeira: Santa Clara)
+  -- Santa Clara de Assis - Olho d'Água
   (9, "Capela Santa Clara", "Santa Clara", "Rua do Sol, 75, Sítio Olho d'Água", "2000-07-10", 0, 4),
-  -- Comunidade "São José - Verdes"
+  -- São José - Verdes
   (10, "Igreja São José", "São José", "Travessa Esperança, 200, Sítio Verdes", "2010-03-25", 0, 6),
   (11, "Capela Nossa Senhora das Graças", "Bem-aventurada Virgem Maria", "Rua da Fé, 88, Sítio Verdes", "1998-05-13", 0, 6),
-  -- Comunidade "Imaculado Coração de Maria - Nova Cidade" (Padroeira: Bem-aventurada Virgem Maria)
+  -- Imaculado Coração de Maria - Nova Cidade
   (12, "Capela Imaculada Conceição", "Bem-aventurada Virgem Maria", "Alameda das Palmeiras, 18, Bairro Nova Cidade", "1995-12-08", 0, 7),
   (13, "Capela São Sebastião", "São Sebastião", "Travessa do Carmo, 45, Bairro Nova Cidade", "2018-01-20", 0, 7),
   (14, "Capela Imaculado Coração de Maria", "Bem-aventurada Virgem Maria", "Rua dos Lírios, 101, Bairro Nova Cidade", "1996-07-02", 0, 7),
-  -- Comunidade "Sagrado Coração de Jesus - Aníbal Teixeira"
+  -- Sagrado Coração de Jesus - Aníbal Teixeira
   (15, "Igreja Sagrado Coração de Jesus", "Sagrado Coração de Jesus", "Rua dos Anjos, 99, Bairro Aníbal Teixeira", "1988-06-05", 0, 1),
-  -- Comunidade "São João Batista - Malhadinha"
+  -- São João Batista - Malhadinha
   (16, "Capela São João Batista", "São João Batista", "Estrada Nova, 654, Sítio Malhadinha", "2015-04-20", 0, 2),
   -- Igrejas sem comunidade
   (17, "Igreja Nossa Senhora do Rosário", "Bem-aventurada Virgem Maria", "Avenida dos Anjos, 500, Centro", "1965-10-07", 0, NULL),
