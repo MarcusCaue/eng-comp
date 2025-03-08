@@ -30,12 +30,24 @@ SELECT p.nome "Padre", COUNT(peccms.missa_fk) "Missa Concelebradas"
   GROUP BY p.nome
   ORDER BY COUNT(peccms.missa_fk);
 
--- 4) Exiba 
-SELECT p.nome "Pessoa Batizada", b.data, m.nome "Missa", i.nome "Igreja"
+-- 4) Exiba, para cada batismo, o nome da pessoa batizada, o nome da igreja onde o batismo ocorreu e a missa durante a qual o batismo foi celebrado. Exiba também os batismos que não foram celebrados dentro de uma missa.
+SELECT p.nome "Pessoa Batizada", b.data, i.nome "Igreja", m.nome "Missa"
   FROM Batismo b
   INNER JOIN Pessoa p ON b.pessoa_batizada_fk = p.id
   LEFT OUTER JOIN Missa m ON b.missa_fk = m.id
   LEFT OUTER JOIN Igreja i ON b.igreja_fk = i.id
-  ORDER BY p.nome;
+  ORDER BY m.nome;
 
+-- 5) Exiba os nomes das igrejas e a quantidade de missas que foram celebradas nelas desde que essa quantia seja menor ou igual a 3. 
+SELECT i.nome "Igreja", COUNT(m.nome) "Quant. Missas celebradas"
+  FROM Missa m
+  RIGHT OUTER JOIN Igreja i ON i.id = m.igreja_fk
+  GROUP BY i.nome
+  HAVING COUNT(m.nome) <= 3;
 
+-- 6) Exiba o nome e a quantidade de fiéis das comunidades que possuem mais de 20 anos.
+SELECT c.nome "Comunidade", COUNT(f.comunidade_fk) "Quant. Fiéis"   
+  FROM Fiel f   
+  RIGHT OUTER JOIN Comunidade c ON f.comunidade_fk = c.id   
+  GROUP BY c.nome 
+  HAVING (2025 - YEAR(c.dataFundacao)) > 20;
