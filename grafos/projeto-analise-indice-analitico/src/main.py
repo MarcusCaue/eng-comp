@@ -1,9 +1,28 @@
-from bs4 import BeautifulSoup
+from functions import *
+from bs4 import BeautifulSoup # type: ignore
 import requests as req
 
 contentPage = req.get("https://angelgireh.tripod.com/a-b.html").content
 soup = BeautifulSoup(contentPage, 'html.parser')
 
-topicos = soup.find_all('span', style="mso-bidi-font-size:9.0pt")
+dados = soup.find_all('b')
+dadosPP = list()
 
-print(topicos)
+for d in dados[:10]:
+  text = d.get_text(strip=True)
+  print(text)
+  text = trataTexto(text)
+
+  if text == "":
+    continue
+
+  dadosPP.append(text)
+  
+  """ index_conforme = text.lower().find("conforme")
+  if index_conforme != -1:
+    text = text[:index_conforme] """    
+
+dadosPP.sort()
+print(dadosPP)
+
+
