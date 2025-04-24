@@ -1,0 +1,20 @@
+Crie um sistema de software Orientado a Objeto (de preferência ou em Java, ou em C++) que possa apresentar no terminal shell o resultado de operações matemáticas básicas: soma, multiplicação, subtração e divisão. 
+O sietma DEVE conter duas classes concretas, são elas: 
+1) Caculadora_<sua_matrícula_suap>, que implementa as 4 operações básicas;
+2) Cliente_<sua_matrícula_suap>, que faz uso das operações públicas da Calculadora_<matrícula>,, e dispara uma sequência de chamadas às operações da Calculadora. Por exemplo, se você estiver codificando em Java, o método "static public void main()" deve pertencer a classe Cliente_<sua_matrícula_suap> .
+
+Requisitos importantes para execução desta tarefa:
+1) Onde você lê <sua_matrícula_suap> é de fato a numeraçõa completa de sua matrícula no curso de Eng. de Computação e que esta registrada no Suap;
+2) A Caculadora_<sua_matrícula_suap> deve ser transformada em uma biblioteca capaz de ser utilizada por um Cliente_<OUTRA_matrícula_suap> de um aluno diferenet de você. Por exemplo, se em escrita em Java, use a IDE para gerar um Jar. Se em C++, use a IDE para gerar um ".o" que possa link editado num executável.
+3) Também deve rese criado um arquivo README<sua_matrícula_suap>.txt que contenha no míniumo as seguintes informações:
+- Linguagem de Programação e com versão do compilador;
+- IDE e respectiva versão;
+- Sistema Operacional e sua respectiva versão;
+- Tipo da Biblioteca criada para Caculadora_<sua_matrícula_suap> : .jar, .zip, .o, ou outro;
+- Descrição de cada um dos métodos da classe Calculadora_<sua_matrícula_suap>.  
+
+Observações para entrega: 
+1) Se for utilizar outra linguagen de programação, por exemplo Python, o ódigo deve Obrigatoriamente estar em Orientação a Objeto, caso contrário não será aceito;
+2) Deposite como resposta desse exercício os 2 arquivos que repesentam a codificação das classes (Caculadora_<sua_matrícula_suap> e   Cliente_<sua_matrícula_suap>), em seus formatos originais, por exemplo em .java, ou .cpp. ou .h. De maneira algum deposite o projeto da sua IDE, nem muito menos o comprima para depositálo como resposta. Arquivos que não estejam identificadas com <sua_matrícula_suap>, também não será aceito. 
+3) Deposite também o Caculadora_<sua_matrícula_suap>.jar ou Caculadora_<sua_matrícula_suap>.o  gerado por você através da sua IDE.
+4) Por fim, deposite o arquivo README<sua_matrícula_suap>.txt

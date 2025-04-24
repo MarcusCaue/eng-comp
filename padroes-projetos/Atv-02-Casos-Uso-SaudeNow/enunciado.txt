@@ -1,0 +1,44 @@
+Segue especificação do Sistema Saúde Now 
+
+Escopo
+O sistema Saúde Now visa oferecer uma plataforma web para agendamento de consultas com
+profissionais de saúde e bem-estar, incluindo médicos, dentistas, psicólogos, nutricionistas e
+enfermeiros. O objetivo é facilitar o acesso dos alunos e funcionários aos serviços de saúde
+disponibilizados pelo Instituto Federal da Paraíba.
+O sistema permitirá aos usuários:
+● Pesquisar profissionais disponíveis em diversas especialidades.
+● Visualizar horários disponíveis para agendamento de consultas.
+● Agendar e gerenciar consultas de forma fácil e conveniente.
+● Receber lembretes e notificações sobre consultas agendadas.
+● Avaliar a experiência das consultas realizadas.
+● Manter um histórico de consultas e procedimentos realizados.
+
+Requisitos Funcionais
+ID Descrição Estimativa Valor
+RF-01 Cadastrar Paciente
+RF-02 Cadastrar Médico
+RF-03 Efetuar Login
+RF-04 Pesquisar Profissionais Disponíveis
+RF-05 Visualizar Horários Disponíveis
+RF-06 Agendar Consulta
+RF-07 Gerenciar Consultas Agendadas
+RF-08 Receber Notificações de Consultas Agendadas
+RF-09 Visualizar Histórico de Consultas
+RF-11 Atualizar Dados de Perfil do Usuário
+RF-12 Cancelar Consulta
+RF-13 Visualizar Profissionais por Especialidade
+RF-14 Preencher Dados do Perfil
+RF-15 Área do Paciente
+RF-16 Preencher Histórico Médico
+RF-17 Visualizar Histórico Médico do Paciente
+
+Requisitos Não Funcionais
+ID Descrição Estimativa Valor
+RNF-01 Interface Intuitiva e Amigável
+RNF-02 Segurança dos Dados
+RNF-03 Tempo de Resposta Rápido
+RNF-04 Plataforma Web
+RNF-05 API REST
+RNF-06 WEB SOCKET
+
+Para essa especificação Crie um Diagrama de Caso de Uso que possa refletir para um grupo de desenvolvedores como o sistema deve funcionar. Como resposta gere um PDF.
