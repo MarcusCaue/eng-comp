@@ -9,17 +9,25 @@ public class Calculadora_202321250026 {
   }  
 
   public double multiplicar(double n1, double n2) {
-    return n1 * n2;
+    double result = n1 * n2;
+    
+    if (result == 0.0)
+      return Math.abs(result);
+
+    return result;
   }  
 
   public double dividir(double n1, double n2) {
     try {
       double result = n1 / n2;
-      return result;
+
+      throw new ArithmeticException();
+      
+      // return result;
     } catch (ArithmeticException e) {
       System.out.println("Erro no método dividir da classe 'Calculadora_202321250026.java'");
-      System.out.printf("Argumentos passados: n1 = %d e n2 = %d\n", n1, n2);
-      System.out.printf("Operação na qual a falha ocorreu: n1/n2 -> %d/%d\n", n1, n2);
+      System.out.printf("Argumentos passados: n1 = %f e n2 = %f\n", n1, n2);
+      System.out.printf("Operação na qual a falha ocorreu: n1/n2 -> %f/%f\n", n1, n2);
       System.out.println("Não é possível fazer divisão por zero.");
       System.out.println("Valor retornado: -1.0");
       return -1.0;
