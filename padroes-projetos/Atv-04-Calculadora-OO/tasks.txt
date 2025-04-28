@@ -1,0 +1,3 @@
+-> Gerar o arquivo .jar da classe Calculadora
+-> Escrever o README do exercício
+-> Enviar os arquivos .java e .jar e o README para o Classroom

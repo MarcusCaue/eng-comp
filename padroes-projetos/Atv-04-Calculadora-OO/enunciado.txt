@@ -5,7 +5,7 @@
   2) Cliente_<sua_matrícula_suap>, que faz uso das operações públicas da Calculadora_<matrícula>, disparando uma sequência de chamadas às operações da Calculadora. Por exemplo, se você estiver codificando em Java, o método "static public void main()" deve pertencer a classe Cliente_<sua_matrícula_suap>.
 
 -> Requisitos importantes para execução desta tarefa:
-  1) Onde você lê <sua_matrícula_suap> é de fato a numeração completa de sua matrícula no curso de Eng. de Computação e que esta registrada no Suap;
+  1) Onde você lê <sua_matrícula_suap> é de fato a numeração completa de sua matrícula no curso de Eng. de Computação e que está registrada no Suap;
   2) A Calculadora_<sua_matrícula_suap> deve ser transformada em uma biblioteca capaz de ser utilizada por um Cliente_<OUTRA_matrícula_suap> de um aluno diferente de você. Por exemplo, se foi escrita em Java, use a IDE para gerar um Jar. Se foi em C++, use a IDE para gerar um ".o" que possa link editado num executável.
   3) Também deve ser criado um arquivo README<sua_matrícula_suap>.txt que contenha no mínimo as seguintes informações:
     - Linguagem de Programação e com versão do compilador;
