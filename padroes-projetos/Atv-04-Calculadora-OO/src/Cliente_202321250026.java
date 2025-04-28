@@ -3,9 +3,10 @@ public class Cliente_202321250026 {
     
     Calculadora_202321250026 calc = new Calculadora_202321250026();
   
-    double n1 = 90;
-    double n2 = 0;
+    double n1 = 0;
+    double n2 = 90;
 
+    // System.out.println(90 / 0);
     System.out.println(n1 / n2);
 
     System.out.println("========== Chamadas à função somar() ==========");
@@ -52,8 +53,6 @@ public class Cliente_202321250026 {
     System.out.printf("Resultado da divisão: %.2f\n", calc.dividir(0, 0)); // Divisão por zero => Indefinição
     System.out.printf("Resultado da divisão: %.2f\n", calc.dividir(89, 0)); // Divisão por zero => Indeterminação
     System.out.printf("Resultado da divisão: %.2f\n\n", calc.dividir(-90, 0)); // Divisão por zero => Indeterminação
-
-
 
   }
 }
