@@ -1,0 +1,14 @@
+- Autor: Marcus Cauê de Farias Barbosa - 202321250026
+- Linguagem de Programação utilizada: Java com o compilador na versão 17.0.14
+- IDE: Visual Studio Code 1.88.1 x64
+- Sistema Operacional: Linux Ubuntu 24.04.2 LTS
+- Tipo de biblioteca para a classe: .jar
+- Métodos da classe Calculadora_202321250026:
+  - double somar(double n1, double n2): calcula e retorna a soma entre dois números reais quaisquer do tipo double
+  
+  - double subtrair(double n1, double n2): calcula e retorna a subtração entre dois números reais quaisquer do tipo double
+  
+  - double multiplicar(double n1, double n2): calcula e retorna a multiplicação entre dois números reais quaisquer  do tipo double 
+
+  - double dividir(double n1, double n2): tenta calcular a divisão entre dois números reais quaisquer do tipo double. Quando ocorrerem indeterminações ou indefinições, será exibida uma mensagem de erro e o valor -1.0 será retornado. Do contrário, será retornado o resultado da divisão.
+
