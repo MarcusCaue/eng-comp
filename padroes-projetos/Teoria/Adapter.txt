@@ -1,0 +1,11 @@
+-> Faz parte da categoria dos padrões de Interface.
+
+-> No mundo real: T de energia, adaptador para interfaces de áudio (P2, P10), adaptador de USB-C para USB-B, etc.
+
+-> Converte a interface de uma classe para uma interface esperada por uma aplicação cliente. 
+-> Permite a interação entre classes que sem o adapter não conseguiriam se comunicar por terem interfaces incompatíveis.
+-> Pode ser utilizado para permitir a comunicação entre um código legado com um código mais moderno.
+
+-> Tem dois tipos de implementação:
+	- Class Adapter ("herança múltipla") e Object Adapter (composição)
+

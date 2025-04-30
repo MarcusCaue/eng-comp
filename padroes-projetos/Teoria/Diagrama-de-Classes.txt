@@ -1,0 +1,17 @@
+-> Agregação: diamante (losango) branco ou transparente;
+-> Composição: diamante preto ou preenchido;
+-> Associação: linha reta ligando duas classes;
+	- Pode também ter um "x" na classe invocadora (A) e uma "seta" na classe invocada (B). Indica que A faz uma referência explícita a B.
+
+-> Herança: triângulo branco com uma linha reta;
+-> Classe abstrata: nome da classe em itálico;
+
+-> Com Interfaces:
+	- Realização: Triângulo com linha pontilhada;
+		- Indica que uma classe deve implementar ("realiza") os métodos definidos pela interface;
+		- Também pode ser representado por uma bolinha branca ou transparente ligada a uma classe.
+	- Dependência: Seta com linha pontilhada;
+		- Indica que uma classe faz uso (invoca) dos métodos definidos pela interface e que foram implementados por alguma classe.
+		- Depende dessas operações.
+		- Também pode ser representado por um semicírculo ligado a uma classe.
+
