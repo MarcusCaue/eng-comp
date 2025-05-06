@@ -1,0 +1,21 @@
+-> Agora faça com que seu Cliente<sua_matricula> [Python, Java, C++] da atividade anterior consiga utilizar todos os componentes Calculadoras [Python, Java, C++] de seus colegas que escreveram compontente na mesma linguagem e mesmo sistema operacional que você utilizou. 
+
+-> Para tanto será necessário você fazer uso do Padrão Adapter para intercomunicar seu Cliente<sua_matricula> com as outras Calculadora<outras_matriculas>.
+
+-> O seu Cliente<sua_matricula> deve:
+    - 1) ser capaz de usar mais de um Adapter para cada Calculadora<outra_matricula>;
+    - 2) Todos os componentes Calculadora<outras_matriculas> deverão ser utilizados para determinar a soma, a subtração, a multiplicação e também a divisão entre os mesmos valores chamados pelo Cliente<sua_matricula>.
+    - 3) O resultado de cada operação deve também informar a matrícula do autor do componente da Calculadora<outra_matricula> que realizou a operação.
+
+-> Por exemplo, se o seu Cliente<sua_matricula> passa uma lista de valores como [20.0, 4.0, 2.0] o resultado deve ser:
+soma 26 utilizando a Calculadora de 2022134001
+subtração 14 utilizando a Calculadora de 2022134001
+multicação 160 utilizando a Calculadora de 2022134001
+divisão 2.5 utilizando a Calculadora de 2022134001  
+---
+soma 26 utilizando a Calculadora de 2023134004
+subtração 14 utilizando a Calculadora de 2023134004
+multicação 160 utilizando a Calculadora de 2023134004
+divisão 2.5 utilizando a Calculadora de 2023134004
+
+-> ATENÇÃO: Como resposta, encaminhe o código fonte em formato .cpp, .java, ou .py. Também encaminhe o .txt mostre a saída com o print de exeplo acima. Nunca poste em ZIP nem o Projeto da IDE.
