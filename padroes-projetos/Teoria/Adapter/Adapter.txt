@@ -9,3 +9,5 @@
 -> Tem dois tipos de implementação:
 	- Class Adapter ("herança múltipla") e Object Adapter (composição)
 
+-> O Adapter deve ser utilizado quando:
+	- O seu código não quer depender diretamente (na grande maioria dos casos) de um código externo (não proprietário) ou legado.
