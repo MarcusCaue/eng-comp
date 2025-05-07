@@ -1,0 +1,11 @@
+- Java 22
+- Intellij Ultimate Edition 2024.1.2
+- Linux Zorin Core 17.2
+- .jar
+- (Descrição documentada nos métodos da classe com javadoc):
+sum(Number ...args):  Calcula a soma de n números consecultivos
+multiply(Number ...args): Calcula a multiplicação de n números consecultivos
+divide(Number ...args): Calcula a divisão de n números
+subtract(Number ...args): Calcula a subtração de n números
+
+OBS: .jar criado pela linha de comando usando javac e jar, não foi utilizada nenhuma IDE para esse fim.
