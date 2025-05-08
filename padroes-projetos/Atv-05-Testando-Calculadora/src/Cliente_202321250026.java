@@ -7,8 +7,8 @@ public class Cliente_202321250026 {
     double somaResult, subResult, multResult, divResult;
     double n1, n2;
 
-    n1 = 89;
-    n2 = -21;
+    n1 = 10;
+    n2 = 10;
     
     somaResult = calc.somar(n1, n2);
     subResult  = calc.subtrair(n1, n2);
@@ -23,13 +23,13 @@ public class Cliente_202321250026 {
   }
 
   public static void main(String args[]) {
-    // run(new CalcAdapter202221250002(), "202221250002");
 
     // Usando a calculadora de 202221250006
     run(new CalcAdapter202221250006(), "202221250006");
 
     // Usando a calculadora de 202221250012
     run(new CalcAdapter202221250012(), "202221250012");
+
   }
 }
 

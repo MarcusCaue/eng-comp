@@ -6,6 +6,9 @@ import calculadoras.Calculadora_202221250012;
 public class CalcAdapter202221250012 implements CalculadoraInterface {
 
   public double dividir(double a, double b) { 
+    if (b == 0)
+      throw new ArithmeticException("Não é possível calcular uma divisão por zero");
+
     Calculadora_202221250012 calc = new Calculadora_202221250012();
     double result = calc.calcular(a, b, '\\');
     return result;
