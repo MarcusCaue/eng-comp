@@ -1,3 +1,5 @@
+package calculadoras;
+
 public class Calculadora_202221250006 {
 
     public double soma(Number... valores) {
