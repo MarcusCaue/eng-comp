@@ -19,6 +19,7 @@ public class Cliente_202321250026 {
     System.out.printf("subtração %.2f utilizando a Calculadora de %s\n", subResult, calcName);
     System.out.printf("multiplicação %.2f utilizando a Calculadora de %s\n", multResult, calcName);
     System.out.printf("divisão %.2f utilizando a Calculadora de %s\n", divResult, calcName);
+    System.out.println();
   }
 
   public static void main(String args[]) {
@@ -26,6 +27,9 @@ public class Cliente_202321250026 {
 
     // Usando a calculadora de 202221250006
     run(new CalcAdapter202221250006(), "202221250006");
+
+    // Usando a calculadora de 202221250012
+    run(new CalcAdapter202221250012(), "202221250012");
   }
 }
 
