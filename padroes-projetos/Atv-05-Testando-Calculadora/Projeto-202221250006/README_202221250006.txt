@@ -1,0 +1,17 @@
+Linguagem de Programação: Java
+Versão do Compilador: OpenJDK 11.0.23
+
+IDE utilizada: IntelliJ IDEA Ultimate
+Versão da IDE: 2024.1.4
+
+Sistema Operacional: Ubuntu
+Versão do SO: 22.04.5 LTS
+
+Tipo da Biblioteca criada para Calculadora_202221250006: .jar
+
+Descrição dos métodos da classe Calculadora_202221250006:
+
+- soma(Number ... valores): Recebe zero ou mais valores numéricos e retorna a soma.
+- subtracao(Number ... valores): Recebe um ou mais valores numéricos e retorna a subtração, caso nenhum valor seja fornecido é lançado a exceção IllegalArgumentException.
+- multiplicacao(Number ... valores): Recebe zero ou mais valores numéricos e retorna a multiplicação
+- divisao(Number ... valores): Recebe um ou mais valores e retorna a divisão, caso nenhum valor seja fornecido é lançado a exceção IllegalArgumentException, caso haja divisão por zero é lancada a exceção ArithimeticException.
