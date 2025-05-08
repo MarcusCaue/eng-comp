@@ -1,0 +1,18 @@
+Linguagem: Java
+javac 21.0.2
+IDE: VScode 1.99.3
+SO: Windows 11
+Biblioteca: Calculadora_202221250012.jar
+
+Metodos:
+
+Um metodo publico chamado:
+
+calcular(), que recebe três parâmetros: dois Doubles e um char para operação. Exemplos:
+
+calcular(10.0, 5.0, "+") // Realiza a soma de 10.0 e 5.0
+calcular(10.0, 5.0, "-") // Realiza a subtração de 10.0 e 5.0
+calcular(10.0, 5.0, "*") // Realiza a multiplicação de 10.0 e 5.0
+calcular(10.0, 5.0, "\\") // Realiza a divisão de 10.0 e 5.0
+
+Existem também quatro metodos privados: somar(), subtrair(), multiplicar() e dividir(). Todos recebem dois Doubles como parâmetros.

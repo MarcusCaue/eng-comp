@@ -23,6 +23,9 @@ public class Cliente_202321250026 {
 
   public static void main(String args[]) {
     // run(new CalcAdapter202221250002(), "202221250002");
+
+    // Usando a calculadora de 202221250006
     run(new CalcAdapter202221250006(), "202221250006");
   }
 }
+
