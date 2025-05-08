@@ -8,7 +8,7 @@ public class Cliente_202321250026 {
     double n1, n2;
 
     n1 = 78.05;
-    n2 = 25.04;
+    n2 = -25.04;
     
     somaResult = calc.somar(n1, n2);
     subResult  = calc.subtrair(n1, n2);
@@ -22,6 +22,6 @@ public class Cliente_202321250026 {
   }
 
   public static void main(String args[]) {
-    run(new CalcAdapter20222125002(), "20222125002");
+    run(new CalcAdapter202221250002(), "202221250002");
   }
 }
