@@ -1,0 +1,20 @@
+-> É um padrão de interface, cujo objetivo é desacoplar uma abstração de sua implementação, de modo que ambas possam evoluir e modificar-se independentemente.
+
+-> Uma abstração é uma hierarquia de classes que define ações que devem ser feitas, enquanto que a implementação é uma hierarquia que põe em prática essas ações definidas.
+
+-> É um padrão que torna o código apto a receber alterações e ficar maior (aumentar em escala).
+-> O grande problema está quando a implementação e abstração crescem juntos (de maneira exponencial).
+
+-> Bridge x Adapter:
+    - Bridge: faz as interfaces se comunicarem na etapa de DESENVOLVIMENTO e PROJETO.
+    - Adapter: faz as interfaces se comunicarem APÓS o projeto ter sido lançado.
+
+-> Ou seja, Bridge torna o código escalável e Adapter faz o código pronto se comunicar com outros sistemas.
+
+-> Muito usado em classes que possuem variantes:
+    - Caneta -> CanetaVermelha, CanetaAzul, CanetaPreta
+    - Publicação -> Livro, Artigo, Jornal, DVD, CD, Revista
+    - Janela -> JanelaDialogo - Janela -> JanelaWindows, JanelaLinux, JanelaMac
+
+
+
