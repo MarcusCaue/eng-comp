@@ -1,0 +1,5 @@
+-> Para o exemplo de código do padrão bridge do Marcus Brizeno cujo link está em anexo, adicione as seguintes funcionalidades:
+    - 1) Possibilite que programa funcione também para o sistema de Janelas do Sistema Operacional MacOS;
+    - 2) Possibilite a entrada de caracteres para quaisquer dos Sistemas Operacionais através de um Janela que permita receber entrada de dados, por exemplo um EditBox.
+
+Como resposta encaminhe o print de saída de execução do programa após sua codificação. E também o código fonte APENAS das classes que você modificou.
