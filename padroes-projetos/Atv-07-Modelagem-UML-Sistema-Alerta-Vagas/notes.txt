@@ -1,0 +1,4 @@
+-> Possíveis padrões:
+    - Singleton: para implementar o log.
+    - Observer: para implementar o notificador de alterações em vagas
+    - 
