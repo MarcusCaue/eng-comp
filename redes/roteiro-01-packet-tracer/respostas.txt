@@ -1,0 +1,53 @@
+00) Os comportamentos do hub e do switch são diferentes? Por quê?
+Sim, pois o hub recebe um pacote de um host e o envia para todos os outros dispositivos conectados a ele; enquanto que o switch, depois de "conhecer" os hosts na rede, consegue direcionar o pacote para o destino especificado.
+
+01) Qual tipo de cabo foi utilizado para conectar os dois switches?
+Um cabo cross-over porque os dois dispositivos são do mesmo tipo.
+
+02) Qual tipo de cabo foi utilizado para conectar cada switch aos vários PCs?
+Um cabo reto para estabelecer uma conexão entre dispositivos de tipos diferentes.
+
+-> A faixa de endereçamento classe B utilizada foi: 144.24.0.0
+
+03) Qual o endereço de rede desta rede?
+144.24.0.0
+
+04) Qual a máscara da rede?
+255.255.0.0 ou 144.24.0.0/16
+
+5) Qual o endereço de Broadcast?
+144.24.255.255
+
+6) Qual o maior endereço que pode ser atribuído a uma máquina dentro dessa rede?
+144.24.255.254
+
+7) Utilizando o prompt de comando, que comando pode ser utilizado para verificar qual endereço IP foi aplicado na máquina?
+ipconfig ou ifconfig
+
+8) O endereço IP foi atribuído de qual forma? Manualmente ou dinamicamente?
+Manualmente pois configuramos direto na máquina, sem utilizar um servidor DHCP.
+
+9) Houve sucesso ou falha no comando ping? Se houver falha, explique o motivo.
+Houve falha, porque o PC3 está configurado com um endereço de uma outra sub-rede, para a qual o PC0 não consegue enviar a mensagem. É também por causa disso que PC3 não consegue enviar uma mensagem para PC0 porque é como se ambos estivessem em sub-redes diferentes.
+
+10) Houve sucesso ou falha no comando ping? Lembrando que ambas as máquinas utilizam endereços Classe B, se houve falha, explique o motivo.
+Ainda assim houve falha porque mesmo que as máquinas tenham endereços de mesma classe, o endereço do PC3 ainda não pertence à subrede por ter o segundo octeto diferente. Então é como se ambas as máquinas ainda estivessem em subredes diferentes e por conta disso não podem se comunicar.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
