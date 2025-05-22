@@ -1,0 +1,5 @@
+-> Possíveis padrões:
+	- Singleton: para o log (X)
+	- Observer: para a função notificar
+	- Proxy: para fazer o login e usar o sistema
+	- Facade: para definir o fluxo de execução
