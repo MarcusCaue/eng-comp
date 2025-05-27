@@ -1,4 +1,10 @@
 -> Possíveis padrões:
-    - Singleton: para implementar o log.
-    - Observer: para implementar o notificador de alterações em vagas
-    - 
+	- Singleton: para o log (X)
+	- Observer: para a função notificar (X)
+	- Proxy: para fazer o login e usar o sistema (X)
+	- Facade: para definir o fluxo de execução
+
+-> Verificar quem mais também pode ser observador:
+	- Fazer um CRUD é observar? Ou observar depende do objeto já estar criado?
+	
+-> Lembre-se que um representante também é um aluno, mas com métodos diferentes.
