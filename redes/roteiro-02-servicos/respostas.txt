@@ -1,0 +1,15 @@
+1) 169.254.89.120/16. Endereço APIPA, que é gerado quando o host não consegue se comunicar com um servidor DHCP na rede.
+2) Não, porque ele não conseguiu encontrar o servidor na rede. O endereço foi atribuído pelo próprio host.
+3) Existe um host servidor na rede, mas ele ainda não tem o serviço de DHCP configurado.
+4) A própria máquina PC0.
+
+5) PC0: 192.168.10.10
+   PC1: 192.168.10.11
+   PC2: 192.168.10.12
+   PC3: 192.168.10.13
+   
+6) O protocolo DNS
+
+7) Não funcionou.
+8) O erro aconteceu porque os hosts da rede desconhecem o endereço do servidor DNS: o DHCP não forneceu a eles o que era esperado.
+9) Reconfigurar o serviço DHCP para que ele forneça o endereço do servidor DNS, e fazer com que cada host da rede receba novamente  do DHCP os endereços necessários (ip, máscara, dns e gateway padrão).   
