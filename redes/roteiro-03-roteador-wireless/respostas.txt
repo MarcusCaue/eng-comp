@@ -1,0 +1,9 @@
+1) Informe quais os problemas de segurança que podemos ter em um roteador como o utilizado nessa prática.
+	- Conexão à rede sem fio sem credenciais de acesso.
+	- Acesso à interface de configuração do roteador com as credenciais de fábrica.
+	- SSID do roteador em modo broadcast.
+
+2) O que devemos fazer para evitar os problemas que você elencou na questão 01?
+	- Configurar no roteador as credenciais de acesso à rede local sem fio.
+	- Configurar as credenciais de acesso à interface de configurações do roteador.
+	- Desabilitar o modo broadcast do SSID do roteador.
