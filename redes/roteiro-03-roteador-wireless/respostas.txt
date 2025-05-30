@@ -1,0 +1,23 @@
+1) Informe quais os problemas de segurança que podemos ter em um roteador como o utilizado nessa prática.
+	- Conexão à rede sem fio sem credenciais de acesso.
+	- Acesso à interface de configuração do roteador com as credenciais de fábrica.
+	- SSID do roteador em modo broadcast.
+
+2) O que devemos fazer para evitar os problemas que você elencou na questão 01?
+	- Configurar no roteador as credenciais de acesso à rede local sem fio.
+	- Configurar as credenciais de acesso à interface de configurações do roteador.
+	- Desabilitar o modo broadcast do SSID do roteador.
+
+3) Qual dispositivo está entregando endereços IP na rede?
+	- O roteador através do serviço DHCP configurado nele.
+
+4) Qual protocolo é usado para realizar a tarefa de entrega automática de endereços IP?
+	- O DHCP
+
+
+5) Marque todos os serviços que estão sendo executados na máquina Server0, e que você precisou utilizar na prática de hoje.
+	- O HTTP (página web) e o DNS (resolução de nomes)
+
+
+6) O que foi preciso fazer para que os notebooks conseguissem acessar a página web do servidor, através do nome: www.redes.com.br?
+	- Configurar o serviço DNS no servidor Server0 para que o nome "www.redes.com.br" fosse uma referência para o endereço IP do próprio servidor (192.168.0.2), que fornece a página web; e também fazer com que todos os clientes, através do DHCP, recebessem novamente os endereços IP, mas dessa vez com o endereço do servidor DNS também.
