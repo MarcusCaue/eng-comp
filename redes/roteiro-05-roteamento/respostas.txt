@@ -1,0 +1,38 @@
+FALTA TESTAR O SERVIÇO DNS!!!!!!!!
+
+
+1) Qual a classe da subrede de Campina Grande?
+Classe C (/24)
+
+2) Qual a classe da subrede de João Pessoa?
+Classe A (/8)
+
+3) Qual a classe da subrede entre os dois roteadores?
+Classe C (/8)
+
+4) Um ping para o endereço de broadcast na subrede de João Pessoa seria de que forma?
+ping 10.255.255.255
+
+5) Julgue a seguinte afirmativa como "verdadeira" ou "falsa": "Os endereços dos PC's em ambas as cidades foram verificados, e estão com endereços pertencentes a cada sub-rede."
+Verdadeira.
+
+6) Qual o tipo de cabo foi utilizado para conectar os dois roteadores?
+Um cabo de fibra óptica.
+
+7) Olhando no modo de simulação, em qual dispositivo o seu pacote parou?
+Parou no roteador da subrede de Campina Grande.
+
+8) Se seu "ping" não chegou até o destino, qual pode ser o problema e em qual dispositivo?
+Não existe rota no roteador de Campina Grande para a rede de João Pessoa
+
+9) Julgue a seguinte afirmativa como "verdadeira" ou "falsa": "Agora, o ping da rede de Campina Grande para a rede de João Pessoa funcionou!"
+Falso, porque a resposta do PC em João Pessoa não chegou ao PC de origem em Campina Grande.
+
+10) Olhando no modo de simulação, até qual dispositivo mais distante o seu pacote chegou na ida (no envio)?
+Até o PC de destino na rede de João Pessoa.
+
+11) Olhando no modo de simulação, em qual dispositivo o seu pacote parou?
+No PC de destino.
+
+12) Se seu "ping" não funcionou, qual pode ser o problema e em qual dispositivo?
+Não existe rota no roteador de João Pessoa para a rede de Campina Grande.
