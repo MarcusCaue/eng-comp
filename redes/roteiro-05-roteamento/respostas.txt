@@ -1,6 +1,3 @@
-FALTA TESTAR O SERVIÇO DNS!!!!!!!!
-
-
 1) Qual a classe da subrede de Campina Grande?
 Classe C (/24)
 
@@ -32,7 +29,7 @@ Falso, porque a resposta do PC em João Pessoa não chegou ao PC de origem em Ca
 Até o PC de destino na rede de João Pessoa.
 
 11) Olhando no modo de simulação, em qual dispositivo o seu pacote parou?
-No PC de destino.
+No roteador de João Pessoa.
 
 12) Se seu "ping" não funcionou, qual pode ser o problema e em qual dispositivo?
 Não existe rota no roteador de João Pessoa para a rede de Campina Grande.
