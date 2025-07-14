@@ -1,6 +1,6 @@
 #construcao 
 
-De sua parte, o padrão *Factory Method* possui algumas similaridades ao padrão de interface *Bridge*, ao desacoplar a hierarquia de classes do **objeto produto** da hierarquia de **classes construtoras**, de modo que ambas possam se desenvolver independentemente.
+De sua parte, o padrão *Factory Method* possui algumas similaridades ao padrão de interface *[[Bridge]]*, ao desacoplar a hierarquia de classes do **objeto produto** da hierarquia de **classes construtoras**, de modo que ambas possam se desenvolver independentemente.
 
 Para o cliente obter o objeto, ele precisa solicitá-lo ao construtor específico que o “fabrica”.
 
