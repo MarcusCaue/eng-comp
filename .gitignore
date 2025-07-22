@@ -4,6 +4,7 @@
 venv/
 atividades_grafos/
 test_json/
+.obsidian/
 __pycache__/
 */__pycache__/*
 __pycache__
