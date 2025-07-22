@@ -1,0 +1,66 @@
+Questões – Parte I
+1. Qual a versão do HTTP que seu browser está utilizando?
+	HTTP 1.1
+	
+2. Quais linguagens que seu browser indica que ele aceita do servidor?
+	pt-BR,pt;q=0.8,en-US;q=0.5,en;q=0.3\r\n
+
+3. Qual o endereço IP do seu computador? E do servidor?
+	Meu PC: 192.168.1.109
+	Servidor: 128.119.245.12
+
+4. Qual a versão do HTTP que o servidor está utilizando?
+	HTTP 1.0
+	
+5. Qual o código de status retornado pelo servidor para o seu browser?
+	200 OK
+
+6. Quando o arquivo recuperado junto ao servidor foi alterado pela última vez?
+	Terça, 22 de julho 2025 5:59:01 GMT\r\n
+	
+7. Quantos bytes de conteúdo foram retornados para o seu browser?
+	126 byts
+
+Questões – Parte II
+1. Inspecione as requisições GET do HTTP de seu browser referentes à primeira requisição à página. Você verificou alguma linha “IF-MODIFIED-SINCE”?
+	Sim. Na segunda requisição tem com a modificação: terça 23 de setembro de 2003 as 5:35:00
+	
+2. Inspecione as respostas do servidor. O servidor, de fato, respondeu ao seu browser com conteúdo? Explique.
+	Ele respondeu a primeira com conteúdo, porém a segunda não tem conteúdo, pois o conteúdo já estava em cache.
+
+3. Inspecione as requisições GET do HTTP de seu browser referentes à segunda requisição à página. Você verificou a linha “IF-MODIFIED-SINCE”, certo? O que aparece nesse campo do cabeçalho?
+	A data da última modificação:
+	Tue, 23 Sep 2003 5:35:00 GMT\r\n
+
+4. Qual foi o status HTTP e a frase retornada pelo servidor em resposta a esse segundo GET? O servidor respondeu com conteúdo de fato?
+	Status 304
+	Frase Not Modified\r\n
+	Não respondeu com o conteúdo pois ele já estava em cache e não tinha ocorrido modificação.
+	
+Questões – Parte III
+1. Quantas mensagens HTTP GET foram enviadas pelo seu browser?
+	Apenas uma
+
+2. Qual o status e a frase associados com a resposta para a requisição HTTP GET?
+	200 OK
+
+3. Você consegue identificar as seções do texto da página em cada segmento TCP?
+	Sim
+	
+Questões – Parte IV
+1. Quantas requisições GET foram enviadas pelo seu browser? Para quais endereços as requisições foram enviadas?
+	Foram identificadas 3 requisições
+	
+2. Você pode dizer se as imagens foram obtidas de forma serial ou foram obtidas de forma paralela dos respectivos sites? Explique.
+	Foram obtidas de forma paralela, pois foram feitos dois gets seguidos sem esperar a resposta do servidor entre os pedidos.
+	
+Questões – Parte V
+1. Qual a resposta do servidor (código e texto) para a requisição inicial HTTP GET realizada pelo seu browser?
+
+	401 Authorization Required
+	
+2. Quando seu browser envia a segunda mensagem HTTP GET, que novo campo é incluído nessa mensagem? O que está contido neste campo?
+	O campo Authorization: com as credenciais do usuário e senha
+	Credentials: eth-students:networks
+	
+
