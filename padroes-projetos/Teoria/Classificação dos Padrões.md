@@ -19,6 +19,7 @@ Padrões de **Construção:** definem regras para a criação de objetos, seja d
   - [[Abstract Factory]]
   - Prototype
   - Memento
+  - [[Repository]] (não GOF).
 
 Padrões de **Operação:** especificam como que operações (serviços, funcionalidades) e algoritmos (instruções) são implementados
   - Template Method

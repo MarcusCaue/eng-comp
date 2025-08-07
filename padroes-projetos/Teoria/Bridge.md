@@ -15,7 +15,7 @@ Uma **abstração** é uma hierarquia de classes que define ações que devem se
 Muito usado em classes que possuem variantes:
 - Caneta -> CanetaVermelha, CanetaAzul, CanetaPreta
 - Publicação -> Livro, Artigo, Jornal, DVD, CD, Revista
-- Janela -> JanelaDialogo - Janela -> JanelaWindows, JanelaLinux, JanelaMac
+- Janela -> JanelaDialogo, JanelaPrincipal -> JanelaWindows, JanelaLinux, JanelaMac
 
 ![[bridge.png]]
 
