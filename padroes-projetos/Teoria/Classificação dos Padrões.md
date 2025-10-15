@@ -1,6 +1,6 @@
 
 Padrões de **Interface:** estabelecem regras para a comunicação entre classes
-  - Adapter
+  - [[Adapter]]
   - [[Facade]]
   - Composite
   - [[Bridge]]
